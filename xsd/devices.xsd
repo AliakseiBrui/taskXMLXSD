@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.devices.com"
+        xmlns:mc="http://www.devices.com">
+
+    <element name="devices" type="mc:Devices"/>
+
+    <element name="device" type="mc:Device"/>
+
+    <element name="origin-country" type="mc:Country"/>
+
+    <element name="price" type="mc:Money"/>
+
+    <element name="device-type" type="mc:DeviceType"/>
+
+    <element name="device-group" type="mc:DeviceGroup"/>
+
+    <element name="port" type="mc:Port"/>
+
+    <element name="peripheral" type="boolean"/>
+
+    <element name="critical" type="boolean"/>
+
+    <element name="has-cooler" type="boolean"/>
+
+    <element name="energy-consumption" type="positiveInteger"/>
+
+
+    <simpleType name="Country">
+        <restriction base="string">
+            <pattern value="\p{Lu}[\w\s]+"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Money">
+        <restriction base="positiveInteger"/>
+    </simpleType>
+
+    <simpleType name="Port">
+        <restriction base="string">
+            <enumeration value="COM"/>
+            <enumeration value="USB"/>
+            <enumeration value="LPT"/>
+            <enumeration value="PCI"/>
+            <enumeration value="SATA"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="DeviceGroup">
+        <restriction base="string">
+            <enumeration value="io"/>
+            <enumeration value="multimedia"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="DeviceType">
+        <sequence>
+            <element ref="mc:peripheral"/>
+            <element ref="mc:energy-consumption"/>
+            <element ref="mc:has-cooler"/>
+            <element ref="mc:device-group"/>
+            <element ref="mc:port"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Device">
+        <sequence>
+            <element ref="mc:origin-country"/>
+            <element ref="mc:price"/>
+            <element ref="mc:device-type"/>
+            <element ref="mc:critical"/>
+        </sequence>
+        <attribute name="id" type="ID" use="required"/>
+        <attribute name="name" type="string" default="Some Device"/>
+    </complexType>
+
+    <complexType name="Devices">
+        <sequence>
+            <element ref="mc:device" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+</schema>

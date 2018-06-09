@@ -1,0 +1,16 @@
+.device-button{
+    width: 120px;
+    height: 60px;
+    font-size: 36px;
+    font-family: "Segoe Print", serif;
+}
+
+.index-text{
+    font-size: 36px;
+    color: blue;
+}
+
+.parser-selector{
+    font-size: 36px;
+    color: red;
+}
