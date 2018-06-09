@@ -76,7 +76,7 @@
 
     <complexType name="Devices">
         <sequence>
-            <element ref="mc:device" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="mc:device" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
 

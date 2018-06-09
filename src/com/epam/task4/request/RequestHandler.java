@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 public class RequestHandler {
     private static final String XML_FILE_PATH = "someDevices.xml";
@@ -20,7 +21,7 @@ public class RequestHandler {
                 String parserType = request.getParameter("parserType");
                 DeviceBuilderFactory.DeviceBuilderType builderType = DeviceBuilderFactory.DeviceBuilderType.valueOf(parserType.toUpperCase());
                 AbstractDeviceBuilder deviceBuilder = DeviceBuilderFactory.createDeviceBuilder(builderType);
-                deviceBuilder.buildDeviceSet(servletContext.getRealPath("/res/")+XML_FILE_PATH);
+                Objects.requireNonNull(deviceBuilder).buildDeviceSet(servletContext.getRealPath("/res/")+XML_FILE_PATH);
                 request.setAttribute("deviceSet",deviceBuilder.getDeviceSet());
                 request.setAttribute("parserType",parserType);
                 request.getRequestDispatcher("jsp/result.jsp").forward(request,response);

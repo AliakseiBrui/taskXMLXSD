@@ -28,7 +28,7 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
 
     @Override
     public void buildDeviceSet(String fileName) {
-        Document document = null;
+        Document document;
 
         try{
             document=documentBuilder.parse(fileName);

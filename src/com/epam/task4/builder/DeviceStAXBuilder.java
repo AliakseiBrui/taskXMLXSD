@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class DeviceStAXBuilder extends AbstractDeviceBuilder {
     private XMLInputFactory inputFactory;
@@ -49,7 +50,7 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
         } finally {
 
             try {
-                inputStream.close();
+                Objects.requireNonNull(inputStream).close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
