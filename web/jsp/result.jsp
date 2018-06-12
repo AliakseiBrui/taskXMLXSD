@@ -52,6 +52,32 @@
         </tbody>
     </table>
     <br/>
+    <table border="2px" width="100% ">
+        <caption align="center" class="parser-selector">
+            Phone Table
+        </caption>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Origin Country</th>
+            <th>RAM</th>
+            <th>Build Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="phone" items="${phoneSet}">
+            <tr>
+                <td><c:out value="${phone.getDeviceId()}"/></td>
+                <td><c:out value="${phone.getDeviceName()}"/></td>
+                <td><c:out value="${phone.getOriginCountry()}"/></td>
+                <td><c:out value="${phone.getRam()}"/></td>
+                <td><c:out value="${phone.getBuildDate()}"/></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <br/>
     <form action="XMLServlet" method="get">
         <input type="hidden" name="requestType" value="TO_MAIN_PAGE"/>
         <input type="submit" id="back_button" value="Back" class="device-button"/>

@@ -3,6 +3,7 @@ package com.epam.task4.builder;
 import com.epam.task4.entity.DeviceEnum;
 import com.epam.task4.entity.PCComponent;
 import com.epam.task4.entity.ComponentType;
+import com.epam.task4.entity.Phone;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -13,6 +14,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Date;
 
 public class DeviceDOMBuilder extends AbstractDeviceBuilder {
     private DocumentBuilder documentBuilder;
@@ -34,19 +36,26 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
         try{
             document=documentBuilder.parse(fileName);
             Element root = document.getDocumentElement();
-            NodeList deviceList = root.getElementsByTagName(DeviceEnum.PC_COMPONENT.getTag());
+            NodeList componentList = root.getElementsByTagName(DeviceEnum.PC_COMPONENT.getTag());
+            NodeList phoneList = root.getElementsByTagName(DeviceEnum.PHONE.getTag());
 
-            for(int i = 0; i < deviceList.getLength(); i++){
-                Element deviceElement = (Element) deviceList.item(i);
-                PCComponent pcComponent = buildDevice(deviceElement);
+            for(int i = 0; i < componentList.getLength(); i++){
+                Element componentElement = (Element) componentList.item(i);
+                PCComponent pcComponent = buildComponent(componentElement);
                 pcComponentSet.add(pcComponent);
+            }
+
+            for(int i=0; i < phoneList.getLength(); i++){
+                Element phoneElement = (Element) phoneList.item(i);
+                Phone phone = buildPhone(phoneElement);
+                phoneSet.add(phone);
             }
         } catch (SAXException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private PCComponent buildDevice(Element deviceElement){
+    private PCComponent buildComponent(Element deviceElement){
         PCComponent pcComponent = new PCComponent();
         pcComponent.setDeviceId(deviceElement.getAttribute(DeviceEnum.ID.getTag()));
         pcComponent.setDeviceName(deviceElement.getAttribute(DeviceEnum.NAME.getTag()));
@@ -62,6 +71,18 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
         componentType.setPort(ComponentType.Port.valueOf(getElementTextContent(typeElement,DeviceEnum.PORT.getTag()).toUpperCase()));
 
         return pcComponent;
+    }
+
+    private Phone buildPhone(Element phoneElement){
+        Phone phone = new Phone();
+        phone.setDeviceId(phoneElement.getAttribute(DeviceEnum.ID.getTag()));
+        phone.setDeviceName(phoneElement.getAttribute(DeviceEnum.NAME.getTag()));
+        phone.setOriginCountry(getElementTextContent(phoneElement,DeviceEnum.ORIGIN_COUNTRY.getTag()));
+        phone.setDevicePrice(BigDecimal.valueOf(Long.parseLong(getElementTextContent(phoneElement,DeviceEnum.PRICE.getTag()))));
+        phone.setRam(Integer.parseInt(getElementTextContent(phoneElement,DeviceEnum.RAM.getTag())));
+        phone.setBuildDate(Date.valueOf(getElementTextContent(phoneElement,DeviceEnum.BUILD_DATE.getTag())));
+
+        return phone;
     }
 
     private static String getElementTextContent(Element element, String elementName){

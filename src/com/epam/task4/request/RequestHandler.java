@@ -23,6 +23,7 @@ public class RequestHandler {
                 AbstractDeviceBuilder deviceBuilder = DeviceBuilderFactory.createDeviceBuilder(builderType);
                 Objects.requireNonNull(deviceBuilder).buildDeviceSet(servletContext.getRealPath("/res/")+XML_FILE_PATH);
                 request.setAttribute("pcComponentSet",deviceBuilder.getPcComponentSet());
+                request.setAttribute("phoneSet",deviceBuilder.getPhoneSet());
                 request.setAttribute("parserType",parserType);
                 request.getRequestDispatcher("jsp/result.jsp").forward(request,response);
                 break;

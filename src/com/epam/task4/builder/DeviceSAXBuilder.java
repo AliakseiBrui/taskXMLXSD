@@ -3,7 +3,6 @@ package com.epam.task4.builder;
 import com.epam.task4.parsing.DeviceHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
@@ -32,6 +31,7 @@ public class DeviceSAXBuilder extends AbstractDeviceBuilder {
         } catch (SAXException | IOException e) {
             throw new RuntimeException(e);
         }
-        pcComponentSet =deviceHandler.getPcComponentSet();
+        pcComponentSet = deviceHandler.getPcComponentSet();
+        phoneSet = deviceHandler.getPhoneSet();
     }
 }

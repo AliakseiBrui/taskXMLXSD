@@ -1,23 +1,24 @@
 package com.epam.task4.parsing;
 
-import com.epam.task4.entity.ComponentType;
-import com.epam.task4.entity.PCComponent;
-import com.epam.task4.entity.DeviceEnum;
+import com.epam.task4.entity.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
 public class DeviceHandler extends DefaultHandler {
     private Set<PCComponent> pcComponentSet;
-    private PCComponent currentPCComponent = null;
+    private Set<Phone> phoneSet;
+    private Device current = null;
     private DeviceEnum currentEnum = null;
     private EnumSet<DeviceEnum> withText;
     public DeviceHandler(){
         pcComponentSet = new HashSet<>();
+        phoneSet = new HashSet<>();
         withText = EnumSet.range(DeviceEnum.ORIGIN_COUNTRY,DeviceEnum.ENERGY_CONSUMPTION);
     }
 
@@ -25,14 +26,23 @@ public class DeviceHandler extends DefaultHandler {
         return pcComponentSet;
     }
 
+
+    public Set<Phone> getPhoneSet() {
+        return phoneSet;
+    }
+
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes){
 
         if(DeviceEnum.PC_COMPONENT.getTag().equals(qName)){
-            currentPCComponent = new PCComponent();
-            currentPCComponent.setDeviceId(attributes.getValue(0));
-            currentPCComponent.setDeviceName(attributes.getValue(1));
-        }else{
+            current = new PCComponent();
+            current.setDeviceId(attributes.getValue(0));
+            current.setDeviceName(attributes.getValue(1));
+        }else if(DeviceEnum.PHONE.getTag().equals(qName)){
+            current = new Phone();
+            current.setDeviceId(attributes.getValue(0));
+            current.setDeviceName(attributes.getValue(1));
+        } else{
             DeviceEnum temp = DeviceEnum.checkTag(qName);
 
             if(withText.contains(temp)){
@@ -45,7 +55,9 @@ public class DeviceHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName){
 
         if(DeviceEnum.PC_COMPONENT.getTag().equals(qName)){
-            pcComponentSet.add(currentPCComponent);
+            pcComponentSet.add((PCComponent)current);
+        }else if(DeviceEnum.PHONE.getTag().equals(qName)){
+            phoneSet.add((Phone)current);
         }
     }
 
@@ -57,31 +69,37 @@ public class DeviceHandler extends DefaultHandler {
 
             switch (currentEnum){
                 case ORIGIN_COUNTRY:
-                    currentPCComponent.setOriginCountry(s);
+                    current.setOriginCountry(s);
                     break;
                 case PRICE:
-                    currentPCComponent.setDevicePrice(BigDecimal.valueOf(Long.parseLong(s)));
+                    current.setDevicePrice(BigDecimal.valueOf(Long.parseLong(s)));
                     break;
                 case CRITICAL:
-                    currentPCComponent.setCritical(Boolean.parseBoolean(s));
+                    ((PCComponent) current).setCritical(Boolean.parseBoolean(s));
                     break;
                 case PERIPHERAL:
-                    currentPCComponent.getComponentType().setPeripheral(Boolean.parseBoolean(s));
+                    ((PCComponent) current).getComponentType().setPeripheral(Boolean.parseBoolean(s));
                     break;
                 case ENERGY_CONSUMPTION:
-                    currentPCComponent.getComponentType().setEnergyConsumption(Integer.parseInt(s));
+                    ((PCComponent) current).getComponentType().setEnergyConsumption(Integer.parseInt(s));
                     break;
                 case HAS_COOLER:
-                    currentPCComponent.getComponentType().setHasCooler(Boolean.parseBoolean(s));
+                    ((PCComponent) current).getComponentType().setHasCooler(Boolean.parseBoolean(s));
                     break;
                 case COMPONENT_GROUP:
-                    currentPCComponent.getComponentType().setComponentGroup(ComponentType.ComponentGroup.valueOf(s.toUpperCase()));
+                    ((PCComponent) current).getComponentType().setComponentGroup(ComponentType.ComponentGroup.valueOf(s.toUpperCase()));
                     break;
                 case PORT:
-                    currentPCComponent.getComponentType().setPort(ComponentType.Port.valueOf(s.toUpperCase()));
+                    ((PCComponent) current).getComponentType().setPort(ComponentType.Port.valueOf(s.toUpperCase()));
                     break;
+                case RAM:
+                    ((Phone) current).setRam(Integer.parseInt(s));
+                    break;
+                case BUILD_DATE:
+                    ((Phone) current).setBuildDate(Date.valueOf(s));
             }
         }
         currentEnum = null;
     }
+
 }

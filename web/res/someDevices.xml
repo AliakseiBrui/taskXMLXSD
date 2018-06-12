@@ -195,5 +195,11 @@
             <port>PCI</port>
         </component-type>
     </pc-component>
-    
+
+    <phone id="sphone1" name="Nokia Lumia 800">
+        <origin-country>Finland</origin-country>
+        <price>100</price>
+        <ram>500</ram>
+        <build-date>2014-03-08</build-date>
+    </phone>
 </devices>
