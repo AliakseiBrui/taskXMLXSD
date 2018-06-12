@@ -5,12 +5,8 @@ C
 web/index.jsp,9\f\9f198ed450f32e45b10ec3c2b1406e609b4a96cd
 ^
 ..idea/artifacts/task4_XML_XSD_war_exploded.xml,2\4\242a0f011eb53972caa015c7fdce22c9bf88d33b
-Y
-)src/com/epam/task4/entity/DeviceType.java,7\5\756bbf4eb2278e05a3ffd4ce0232e3aac9b79b9b
 U
 %src/com/epam/task4/entity/Device.java,b\5\b5f5ac94e150af78059f3d826dc35ceda170da28
-?
-xsd/devices.xsd,b\f\bfa052ea616523682d7bcdb4d21e594386b451c7
 Z
 *src/com/epam/task4/servlet/XMLServlet.java,6\5\65628ec5a225a77756291e883ba47840f43bb3dc
 `
@@ -45,3 +41,11 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 A
 task4_XML&XSD.iml,b\9\b98167e508caf1c06a3ffbe06b2d52da58b9a875
+\
+,src/com/epam/task4/entity/ComponentType.java,1\c\1c51b90832b7f693d9292e4e3906a00b86760fc9
+Z
+*src/com/epam/task4/entity/PCComponent.java,b\4\b4c91c513064592d4aed47dbce7aee64cc42efcd
+T
+$src/com/epam/task4/entity/Phone.java,6\1\61fd434ab4ba6db552453b687c63226c2adddf62
+C
+web/xsd/devices.xsd,f\6\f6e4e7e0e3698ee15694441856db2746e095dc20

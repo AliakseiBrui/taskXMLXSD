@@ -14,7 +14,7 @@
   <body>
     <div align="center">
       <form action="XMLServlet" method="get">
-        <input type="hidden" name="requestType" value="PARSE"/>
+        <input type="hidden" name="commandType" value="PARSE_COMMAND"/>
         <label for="parser type" class="index-text">Select XML parser</label>
         <select id="parser type" name="parserType" class="parser-selector">
           <option>DOM</option>

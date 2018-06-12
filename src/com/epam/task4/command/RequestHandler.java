@@ -1,4 +1,4 @@
-package com.epam.task4.request;
+package com.epam.task4.command;
 
 import com.epam.task4.builder.AbstractDeviceBuilder;
 import com.epam.task4.factory.DeviceBuilderFactory;
@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
-public class RequestHandler {
+public class RequestHandler implements Handler {
     private static final String XML_FILE_PATH = "someDevices.xml";
 
-    public void handleRequest(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException {
-        RequestType requestType = RequestType.valueOf(request.getParameter("requestType"));
+    @Override
+    public void handle(XMLCommandType commandType, HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException {
 
-        switch (requestType){
-            case PARSE:
+        switch (commandType){
+            case PARSE_COMMAND:
                 String parserType = request.getParameter("parserType");
                 DeviceBuilderFactory.DeviceBuilderType builderType = DeviceBuilderFactory.DeviceBuilderType.valueOf(parserType.toUpperCase());
                 AbstractDeviceBuilder deviceBuilder = DeviceBuilderFactory.createDeviceBuilder(builderType);
@@ -27,8 +27,11 @@ public class RequestHandler {
                 request.setAttribute("parserType",parserType);
                 request.getRequestDispatcher("jsp/result.jsp").forward(request,response);
                 break;
-            case TO_MAIN_PAGE:
+            case TO_MAIN_PAGE_COMMAND:
                 request.getRequestDispatcher("index.jsp").forward(request,response);
+                break;
+            case AUTHORIZATION_COMMAND:
+                break;
         }
     }
 }
