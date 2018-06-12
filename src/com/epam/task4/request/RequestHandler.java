@@ -22,7 +22,7 @@ public class RequestHandler {
                 DeviceBuilderFactory.DeviceBuilderType builderType = DeviceBuilderFactory.DeviceBuilderType.valueOf(parserType.toUpperCase());
                 AbstractDeviceBuilder deviceBuilder = DeviceBuilderFactory.createDeviceBuilder(builderType);
                 Objects.requireNonNull(deviceBuilder).buildDeviceSet(servletContext.getRealPath("/res/")+XML_FILE_PATH);
-                request.setAttribute("deviceSet",deviceBuilder.getDeviceSet());
+                request.setAttribute("pcComponentSet",deviceBuilder.getPcComponentSet());
                 request.setAttribute("parserType",parserType);
                 request.getRequestDispatcher("jsp/result.jsp").forward(request,response);
                 break;

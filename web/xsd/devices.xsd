@@ -5,15 +5,19 @@
 
     <element name="devices" type="mc:Devices"/>
 
-    <element name="device" type="mc:Device"/>
+    <element name="device" type="mc:Device" abstract="true"/>
+
+    <element name="pc-component" type="mc:PCComponent" substitutionGroup="mc:device"/>
+
+    <element name="phone" type="mc:SmartPhone" substitutionGroup="mc:device"/>
 
     <element name="origin-country" type="mc:Country"/>
 
     <element name="price" type="mc:Money"/>
 
-    <element name="device-type" type="mc:DeviceType"/>
+    <element name="component-type" type="mc:ComponentType"/>
 
-    <element name="device-group" type="mc:DeviceGroup"/>
+    <element name="component-group" type="mc:DeviceGroup"/>
 
     <element name="port" type="mc:Port"/>
 
@@ -24,6 +28,10 @@
     <element name="has-cooler" type="boolean"/>
 
     <element name="energy-consumption" type="positiveInteger"/>
+
+    <element name="build-date" type="date"/>
+
+    <element name="ram" type="positiveInteger"/>
 
 
     <simpleType name="Country">
@@ -53,12 +61,12 @@
         </restriction>
     </simpleType>
 
-    <complexType name="DeviceType">
+    <complexType name="ComponentType">
         <sequence>
             <element ref="mc:peripheral"/>
             <element ref="mc:energy-consumption"/>
             <element ref="mc:has-cooler"/>
-            <element ref="mc:device-group"/>
+            <element ref="mc:component-group"/>
             <element ref="mc:port"/>
         </sequence>
     </complexType>
@@ -67,8 +75,6 @@
         <sequence>
             <element ref="mc:origin-country"/>
             <element ref="mc:price"/>
-            <element ref="mc:device-type"/>
-            <element ref="mc:critical"/>
         </sequence>
         <attribute name="id" type="ID" use="required"/>
         <attribute name="name" type="string" default="Some Device"/>
@@ -78,6 +84,28 @@
         <sequence>
             <element ref="mc:device" maxOccurs="unbounded"/>
         </sequence>
+    </complexType>
+
+    <complexType name="PCComponent">
+        <complexContent>
+            <extension base="mc:Device">
+                <sequence>
+                    <element ref="mc:critical"/>
+                    <element ref="mc:component-type"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SmartPhone">
+        <complexContent>
+            <extension base="mc:Device">
+                <sequence>
+                    <element ref="mc:ram"/>
+                    <element ref="mc:build-date"/>
+                </sequence>
+            </extension>
+        </complexContent>
     </complexType>
 
 </schema>

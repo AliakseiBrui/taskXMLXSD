@@ -2,8 +2,9 @@ package com.epam.task4.entity;
 
 public enum DeviceEnum {
         DEVICES("devices"),
-        DEVICE("device"),
-        DEVICE_TYPE("device-type"),
+        PC_COMPONENT("pc-component"),
+        PHONE("phone"),
+        COMPONENT_TYPE("component-type"),
         ID("id"),
         NAME("name"),
         ORIGIN_COUNTRY("origin-country"),
@@ -11,28 +12,30 @@ public enum DeviceEnum {
         PORT("port"),
         PERIPHERAL("peripheral"),
         CRITICAL("critical"),
-        DEVICE_GROUP("device-group"),
+        COMPONENT_GROUP("component-group"),
         HAS_COOLER("has-cooler"),
+        BUILD_DATE("build-date"),
+        RAM("ram"),
         ENERGY_CONSUMPTION("energy-consumption"),
         NONE;
 
-        private String value;
+        private String tag;
 
         DeviceEnum(){}
 
-        DeviceEnum(String value) {
-            this.value = value;
+        DeviceEnum(String tag) {
+            this.tag = tag;
         }
 
-        public String getValue() {
-            return value;
+        public String getTag() {
+            return tag;
 
         }
-        public static DeviceEnum checkValue(String value){
+        public static DeviceEnum checkTag(String value){
 
             for(DeviceEnum deviceEnum : DeviceEnum.values()){
 
-                if(deviceEnum.value.equals(value)){
+                if(deviceEnum.tag.equals(value)){
                     return deviceEnum;
                 }
             }

@@ -1,13 +1,12 @@
 
-esquid:S22594"IA "NullPointerException" could be thrown; "inputStream" is nullable here.(¶ò†Áşÿÿÿÿ
-Psquid:S11436"4Remove this throw statement from this finally block.(Ò‚Òéüÿÿÿÿ
-‡"squid:SwitchLastCaseIsDefaultChecko"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ö´¦·
-csquid:S001120"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
-P"squid:SwitchLastCaseIsDefaultCheckD""Add a default case to this switch.(ÜŸ•
-bsquid:S1301k"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•
-csquid:S001126"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
-bsquid:S1301D"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•
-Ysquid:S11636"=Refactor this code to not throw exceptions in finally blocks.(Ò‚Òéüÿÿÿÿ
-Fsquid:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
-‡"squid:SwitchLastCaseIsDefaultCheckH"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ö´¦·
-P"squid:SwitchLastCaseIsDefaultCheckk""Add a default case to this switch.(ÜŸ•
+‡"squid:SwitchLastCaseIsDefaultCheckp"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ö´¦·
+Psquid:S11437"4Remove this throw statement from this finally block.(Ò‚Òéüÿÿÿÿ
+P"squid:SwitchLastCaseIsDefaultCheckE""Add a default case to this switch.(ÜŸ•
+Ysquid:S11637"=Refactor this code to not throw exceptions in finally blocks.(Ò‚Òéüÿÿÿÿ
+Fsquid:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+bsquid:S1301E"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•
+bsquid:S1301l"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•
+csquid:S001121"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+‡"squid:SwitchLastCaseIsDefaultCheckI"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ö´¦·
+P"squid:SwitchLastCaseIsDefaultCheckl""Add a default case to this switch.(ÜŸ•
+csquid:S001127"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ

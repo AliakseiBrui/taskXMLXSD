@@ -5,6 +5,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
 public class DeviceSAXBuilder extends AbstractDeviceBuilder {
@@ -15,9 +17,9 @@ public class DeviceSAXBuilder extends AbstractDeviceBuilder {
         deviceHandler = new DeviceHandler();
 
         try{
-            xmlReader = XMLReaderFactory.createXMLReader();
+            xmlReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             xmlReader.setContentHandler(deviceHandler);
-        } catch (SAXException e) {
+        } catch (SAXException | ParserConfigurationException e) {
             throw new RuntimeException(e);
         }
     }
@@ -30,6 +32,6 @@ public class DeviceSAXBuilder extends AbstractDeviceBuilder {
         } catch (SAXException | IOException e) {
             throw new RuntimeException(e);
         }
-        deviceSet=deviceHandler.getDeviceSet();
+        pcComponentSet =deviceHandler.getPcComponentSet();
     }
 }

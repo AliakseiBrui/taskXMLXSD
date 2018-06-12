@@ -1,23 +1,23 @@
 package com.epam.task4.builder;
 
-import com.epam.task4.entity.Device;
+import com.epam.task4.entity.PCComponent;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public abstract class AbstractDeviceBuilder {
-    protected Set<Device> deviceSet;
+    protected Set<PCComponent> pcComponentSet;
 
     public AbstractDeviceBuilder(){
-        deviceSet = new HashSet<>();
+        pcComponentSet = new HashSet<>();
     }
 
-    public AbstractDeviceBuilder(Set<Device> deviceSet){
-        this.deviceSet = deviceSet;
+    public AbstractDeviceBuilder(Set<PCComponent> pcComponentSet){
+        this.pcComponentSet = pcComponentSet;
     }
 
-    public Set<Device> getDeviceSet(){
-        return deviceSet;
+    public Set<PCComponent> getPcComponentSet(){
+        return pcComponentSet;
     }
 
     abstract public void buildDeviceSet(String fileName);

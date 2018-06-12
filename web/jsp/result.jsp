@@ -15,9 +15,12 @@
 </head>
 <body>
 <div align="center">
+    <h1>
+        <c:out value="${parserType}"/>
+    </h1>
     <table border="2px" width="100% ">
         <caption align="center" class="parser-selector">
-            <c:out value="${parserType}"/>
+            PC Component Table
         </caption>
         <thead>
             <tr>
@@ -28,22 +31,22 @@
                 <th>isPeripheral</th>
                 <th>Energy Consumption</th>
                 <th>Has Cooler</th>
-                <th>Device Group</th>
+                <th>Component Group</th>
                 <th>Port</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="device" items="${deviceSet}">
+            <c:forEach var="pcComponent" items="${pcComponentSet}">
                 <tr>
-                    <td><c:out value="${device.getDeviceId()}"/></td>
-                    <td><c:out value="${device.getDeviceName()}"/></td>
-                    <td><c:out value="${device.getOriginCountry()}"/></td>
-                    <td><c:out value="${device.isCritical()}"/></td>
-                    <td><c:out value="${device.getDeviceType().isPeripheral()}"/></td>
-                    <td><c:out value="${device.getDeviceType().getEnergyConsumption()}"/></td>
-                    <td><c:out value="${device.getDeviceType().isHasCooler()}"/></td>
-                    <td><c:out value="${device.getDeviceType().getDeviceGroup()}"/></td>
-                    <td><c:out value="${device.getDeviceType().getPort()}"/></td>
+                    <td><c:out value="${pcComponent.getDeviceId()}"/></td>
+                    <td><c:out value="${pcComponent.getDeviceName()}"/></td>
+                    <td><c:out value="${pcComponent.getOriginCountry()}"/></td>
+                    <td><c:out value="${pcComponent.isCritical()}"/></td>
+                    <td><c:out value="${pcComponent.getComponentType().isPeripheral()}"/></td>
+                    <td><c:out value="${pcComponent.getComponentType().getEnergyConsumption()}"/></td>
+                    <td><c:out value="${pcComponent.getComponentType().isHasCooler()}"/></td>
+                    <td><c:out value="${pcComponent.getComponentType().getComponentGroup()}"/></td>
+                    <td><c:out value="${pcComponent.getComponentType().getPort()}"/></td>
                 </tr>
             </c:forEach>
         </tbody>

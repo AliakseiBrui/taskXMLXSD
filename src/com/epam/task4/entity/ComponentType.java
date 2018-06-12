@@ -2,8 +2,8 @@ package com.epam.task4.entity;
 
 import java.util.Objects;
 
-public class DeviceType{
-    public enum DeviceGroup{
+public class ComponentType {
+    public enum ComponentGroup {
         IO,MULTIMEDIA
     }
 
@@ -14,17 +14,17 @@ public class DeviceType{
     private boolean isPeripheral;
     private int energyConsumption;
     private boolean hasCooler;
-    private DeviceGroup deviceGroup;
+    private ComponentGroup componentGroup;
     private Port port;
 
-    public DeviceType() {
+    public ComponentType() {
     }
 
-    public DeviceType(boolean isPeripheral, int energyConsumption, boolean hasCooler, DeviceGroup deviceGroup, Port port) {
+    public ComponentType(boolean isPeripheral, int energyConsumption, boolean hasCooler, ComponentGroup componentGroup, Port port) {
         this.isPeripheral = isPeripheral;
         this.energyConsumption = energyConsumption;
         this.hasCooler = hasCooler;
-        this.deviceGroup = deviceGroup;
+        this.componentGroup = componentGroup;
         this.port = port;
     }
 
@@ -52,12 +52,12 @@ public class DeviceType{
         this.hasCooler = hasCooler;
     }
 
-    public DeviceGroup getDeviceGroup() {
-        return deviceGroup;
+    public ComponentGroup getComponentGroup() {
+        return componentGroup;
     }
 
-    public void setDeviceGroup(DeviceGroup deviceGroup) {
-        this.deviceGroup = deviceGroup;
+    public void setComponentGroup(ComponentGroup componentGroup) {
+        this.componentGroup = componentGroup;
     }
 
     public Port getPort() {
@@ -70,11 +70,11 @@ public class DeviceType{
 
     @Override
     public String toString() {
-        return "DeviceType{" +
+        return "ComponentType{" +
                 "isPeripheral=" + isPeripheral +
                 ", energyConsumption=" + energyConsumption +
                 ", hasCooler=" + hasCooler +
-                ", deviceGroup=" + deviceGroup +
+                ", componentGroup=" + componentGroup +
                 ", port=" + port +
                 '}';
     }
@@ -83,17 +83,17 @@ public class DeviceType{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DeviceType that = (DeviceType) o;
+        ComponentType that = (ComponentType) o;
         return isPeripheral == that.isPeripheral &&
                 energyConsumption == that.energyConsumption &&
                 hasCooler == that.hasCooler &&
-                deviceGroup == that.deviceGroup &&
+                componentGroup == that.componentGroup &&
                 port == that.port;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(isPeripheral, energyConsumption, hasCooler, deviceGroup, port);
+        return Objects.hash(isPeripheral, energyConsumption, hasCooler, componentGroup, port);
     }
 }

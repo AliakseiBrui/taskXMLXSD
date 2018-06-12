@@ -1,186 +1,199 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <devices xmlns="http://www.devices.com">
 
-    <device id="mouse1" name="SteelSeries Sensei Raw">
+    <pc-component id="mouse1" name="SteelSeries Sensei Raw">
         <origin-country>USA</origin-country>
         <price>40</price>
-        <device-type>
+        <critical>false</critical>
+        <component-type>
             <peripheral>true</peripheral>
             <energy-consumption>3</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>io</device-group>
+            <component-group>io</component-group>
             <port>USB</port>
-        </device-type>
-        <critical>false</critical>
-    </device>
+        </component-type>
 
-    <device id="ram1" name="Kingston RS34">
+    </pc-component>
+
+    <pc-component id="ram1" name="Kingston RS34">
         <origin-country>Sweden</origin-country>
         <price>200</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>20</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>COM</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
 
-    <device id="keyboard1" name="OwlTech T300">
+    </pc-component>
+
+    <pc-component id="keyboard1" name="OwlTech T300">
         <origin-country>Japan</origin-country>
         <price>111</price>
-        <device-type>
+        <critical>false</critical>
+        <component-type>
             <peripheral>true</peripheral>
             <energy-consumption>4</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>io</device-group>
+            <component-group>io</component-group>
             <port>USB</port>
-        </device-type>
-        <critical>false</critical>
-    </device>
+        </component-type>
+
+    </pc-component>
     
-    <device id="cpu1" name="Intel Core i5">
+    <pc-component id="cpu1" name="Intel Core i5">
         <origin-country>USA</origin-country>
         <price>210</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>65</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>PCI</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
+
+    </pc-component>
     
-    <device id="cpu2" name="AMD FX-8300">
+    <pc-component id="cpu2" name="AMD FX-8300">
         <origin-country>USA</origin-country>
         <price>54</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>95</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>PCI</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
+
+    </pc-component>
     
-    <device id="hdd1" name="WD Blue 2TB">
+    <pc-component id="hdd1" name="WD Blue 2TB">
         <origin-country>USA</origin-country>
         <price>95</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>4</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>SATA</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
+
+    </pc-component>
     
-    <device id="hdd2" name="Toshiba P300">
+    <pc-component id="hdd2" name="Toshiba P300">
         <origin-country>Japan</origin-country>
         <price>62</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>5</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>SATA</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
+
+    </pc-component>
     
-    <device id="hdd3" name="Huawei RH2288 V3">
+    <pc-component id="hdd3" name="Huawei RH2288 V3">
         <origin-country>China</origin-country>
         <price>3727</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>2</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>SATA</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
+
+    </pc-component>
 
 
-    <device id="ssd1" name="Samsung 850 Evo">
+    <pc-component id="ssd1" name="Samsung 850 Evo">
         <origin-country>South Korea</origin-country>
         <price>117</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>2</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>SATA</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
+
+    </pc-component>
     
-    <device id="mouse2" name="A4tech Bloody V7M">
+    <pc-component id="mouse2" name="A4tech Bloody V7M">
         <origin-country>Taiwan</origin-country>
         <price>23</price>
-        <device-type>
+        <critical>false</critical>
+        <component-type>
             <peripheral>true</peripheral>
             <energy-consumption>3</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>io</device-group>
+            <component-group>io</component-group>
             <port>USB</port>
-        </device-type>
-        <critical>false</critical>
-    </device>
+        </component-type>
 
-    <device id="mouse3" name="Razer Mamba">
+    </pc-component>
+
+    <pc-component id="mouse3" name="Razer Mamba">
         <origin-country>USA</origin-country>
         <price>112</price>
-        <device-type>
+        <critical>false</critical>
+        <component-type>
             <peripheral>true</peripheral>
             <energy-consumption>2</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>io</device-group>
+            <component-group>io</component-group>
             <port>USB</port>
-        </device-type>
-        <critical>false</critical>
-    </device>
+        </component-type>
 
-    <device id="power1" name="Chieftec Power Smart GPS-1250C">
+    </pc-component>
+
+    <pc-component id="power1" name="Chieftec Power Smart GPS-1250C">
         <origin-country>China</origin-country>
         <price>200</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>1248</energy-consumption>
             <has-cooler>true</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>SATA</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
+    </pc-component>
 
-    <device id="cooler1" name="Noctua NH-D15 6 heatpipe with Dual NF-A15 140mm fans">
+    <pc-component id="cooler1" name="Noctua NH-D15 6 heatpipe with Dual NF-A15 140mm fans">
         <origin-country>Austria</origin-country>
         <price>108</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>10</energy-consumption>
             <has-cooler>true</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>LPT</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
 
-    <device id="motherboard1" name="Raspberry Pi 3 Model B Motherboard ">
+    </pc-component>
+
+    <pc-component id="motherboard1" name="Raspberry Pi 3 Model B Motherboard ">
         <origin-country>UK</origin-country>
         <price>35</price>
-        <device-type>
+        <critical>true</critical>
+        <component-type>
             <peripheral>false</peripheral>
             <energy-consumption>1</energy-consumption>
             <has-cooler>false</has-cooler>
-            <device-group>multimedia</device-group>
+            <component-group>multimedia</component-group>
             <port>PCI</port>
-        </device-type>
-        <critical>true</critical>
-    </device>
+        </component-type>
+    </pc-component>
+    
 </devices>

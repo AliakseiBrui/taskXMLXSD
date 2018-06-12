@@ -1,19 +1,16 @@
 package com.epam.task4.builder;
 
-import com.epam.task4.entity.Device;
+import com.epam.task4.entity.ComponentType;
+import com.epam.task4.entity.PCComponent;
 import com.epam.task4.entity.DeviceEnum;
-import com.epam.task4.entity.DeviceType;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class DeviceStAXBuilder extends AbstractDeviceBuilder {
     private XMLInputFactory inputFactory;
@@ -24,12 +21,12 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
 
     @Override
     public void buildDeviceSet(String fileName) {
-        FileInputStream inputStream = null;
-        XMLStreamReader reader;
         String name;
+        XMLStreamReader reader;
 
-        try{
-            inputStream = new FileInputStream(new File(fileName));
+
+        try(FileInputStream inputStream = new FileInputStream(fileName)){
+
             reader = inputFactory.createXMLStreamReader(inputStream);
 
             while (reader.hasNext()){
@@ -39,28 +36,21 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
                 if(type == XMLStreamConstants.START_ELEMENT){
                     name = reader.getLocalName();
 
-                    if(DeviceEnum.DEVICE.getValue().equals(name)){
-                        Device device = buildDevice(reader);
-                        deviceSet.add(device);
+                    if(DeviceEnum.PC_COMPONENT.getTag().equals(name)){
+                        PCComponent pcComponent = buildDevice(reader);
+                        pcComponentSet.add(pcComponent);
                     }
                 }
             }
-        } catch (FileNotFoundException | XMLStreamException e) {
+        } catch (XMLStreamException | IOException e) {
             throw new RuntimeException(e);
-        } finally {
-
-            try {
-                Objects.requireNonNull(inputStream).close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
-    private Device buildDevice(XMLStreamReader reader) throws XMLStreamException{
-        Device device = new Device();
-        device.setDeviceId(reader.getAttributeValue(null,DeviceEnum.ID.getValue()));
-        device.setDeviceName(reader.getAttributeValue(null,DeviceEnum.NAME.getValue()));
+    private PCComponent buildDevice(XMLStreamReader reader) throws XMLStreamException{
+        PCComponent pcComponent = new PCComponent();
+        pcComponent.setDeviceId(reader.getAttributeValue(null,DeviceEnum.ID.getTag()));
+        pcComponent.setDeviceName(reader.getAttributeValue(null,DeviceEnum.NAME.getTag()));
         String name;
 
         while (reader.hasNext()){
@@ -70,18 +60,18 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
                 case XMLStreamConstants.START_ELEMENT:
                     name = reader.getLocalName();
 
-                    switch (DeviceEnum.checkValue(name)){
+                    switch (DeviceEnum.checkTag(name)){
                         case ORIGIN_COUNTRY:
-                            device.setOriginCountry(getXMLText(reader));
+                            pcComponent.setOriginCountry(getXMLText(reader));
                             break;
                         case PRICE:
-                            device.setDevicePrice(BigDecimal.valueOf(Long.parseLong(getXMLText(reader))));
+                            pcComponent.setDevicePrice(BigDecimal.valueOf(Long.parseLong(getXMLText(reader))));
                             break;
                         case CRITICAL:
-                            device.setCritical(Boolean.parseBoolean(getXMLText(reader)));
+                            pcComponent.setCritical(Boolean.parseBoolean(getXMLText(reader)));
                             break;
-                        case DEVICE_TYPE:
-                            device.setDeviceType(getXMLType(reader));
+                        case COMPONENT_TYPE:
+                            pcComponent.setComponentType(getXMLType(reader));
                             break;
                     }
                     break;
@@ -89,16 +79,16 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
                     case XMLStreamConstants.END_ELEMENT:
                         name = reader.getLocalName();
 
-                        if(DeviceEnum.DEVICE.getValue().equals(name)){
-                            return device;
+                        if(DeviceEnum.PC_COMPONENT.getTag().equals(name)){
+                            return pcComponent;
                         }
             }
         }
-        throw new XMLStreamException("Unknown element in tag device");
+        throw new XMLStreamException("Unknown element in tag pc-component");
     }
 
-    private DeviceType getXMLType(XMLStreamReader reader) throws XMLStreamException{
-        DeviceType deviceType = new DeviceType();
+    private ComponentType getXMLType(XMLStreamReader reader) throws XMLStreamException{
+        ComponentType componentType = new ComponentType();
         int type;
         String name;
 
@@ -109,33 +99,33 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
                 case XMLStreamConstants.START_ELEMENT:
                     name = reader.getLocalName();
 
-                    switch (DeviceEnum.checkValue(name)){
+                    switch (DeviceEnum.checkTag(name)){
                         case PERIPHERAL:
-                            deviceType.setPeripheral(Boolean.parseBoolean(getXMLText(reader)));
+                            componentType.setPeripheral(Boolean.parseBoolean(getXMLText(reader)));
                             break;
                         case ENERGY_CONSUMPTION:
-                            deviceType.setEnergyConsumption(Integer.parseInt(getXMLText(reader)));
+                            componentType.setEnergyConsumption(Integer.parseInt(getXMLText(reader)));
                             break;
                         case HAS_COOLER:
-                            deviceType.setHasCooler(Boolean.parseBoolean(getXMLText(reader)));
+                            componentType.setHasCooler(Boolean.parseBoolean(getXMLText(reader)));
                             break;
-                        case DEVICE_GROUP:
-                            deviceType.setDeviceGroup(DeviceType.DeviceGroup.valueOf(getXMLText(reader).toUpperCase()));
+                        case COMPONENT_GROUP:
+                            componentType.setComponentGroup(ComponentType.ComponentGroup.valueOf(getXMLText(reader).toUpperCase()));
                             break;
                         case PORT:
-                            deviceType.setPort(DeviceType.Port.valueOf(getXMLText(reader).toUpperCase()));
+                            componentType.setPort(ComponentType.Port.valueOf(getXMLText(reader).toUpperCase()));
                     }
                     break;
 
                     case XMLStreamConstants.END_ELEMENT:
                         name = reader.getLocalName();
 
-                        if(DeviceEnum.DEVICE_TYPE.getValue().equals(name)){
-                            return deviceType;
+                        if(DeviceEnum.COMPONENT_TYPE.getTag().equals(name)){
+                            return componentType;
                         }
             }
         }
-        throw new XMLStreamException("Unknown element in tag device-type");
+        throw new XMLStreamException("Unknown element in tag component-type");
     }
 
     private String getXMLText(XMLStreamReader reader) throws XMLStreamException{

@@ -37,3 +37,11 @@ G
 web/res/someDevices.xml,3\7\37db428872000651a57c1c89db8a979a2c9981cc
 e
 5src/com/epam/task4/builder/AbstractDeviceBuilder.java,2\5\2598bbdd9cfe831eb932023f670baa9a56e9e425
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
+Z
+*.idea/libraries/javax_servlet_jstl_1_2.xml,b\0\b06d1ae898bd45f42e809e6b117aba3c01de9ca9
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+A
+task4_XML&XSD.iml,b\9\b98167e508caf1c06a3ffbe06b2d52da58b9a875
