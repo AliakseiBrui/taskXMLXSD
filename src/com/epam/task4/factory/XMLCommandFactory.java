@@ -4,6 +4,8 @@ import com.epam.task4.command.*;
 
 public class XMLCommandFactory {
 
+    private XMLCommandFactory(){}
+
     public static XMLCommand createXMLCommand(XMLCommandType commandType){
 
         XMLCommand command = null;
@@ -14,6 +16,9 @@ public class XMLCommandFactory {
                 break;
             case PARSE_COMMAND:
                 command = new ParseXMLCommand(new RequestHandler());
+                break;
+            case AUTHORIZATION_COMMAND:
+                break;
         }
         return command;
     }

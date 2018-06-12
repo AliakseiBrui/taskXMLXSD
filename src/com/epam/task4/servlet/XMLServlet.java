@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/XMLServlet")
+@WebServlet(name="XMLParsingServlet",
+            urlPatterns = "/XMLServlet")
 public class XMLServlet extends HttpServlet {
 
     @Override

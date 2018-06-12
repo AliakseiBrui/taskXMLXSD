@@ -8,5 +8,5 @@ import java.io.IOException;
 
 public interface Handler {
 
-    void handle(XMLCommandType XMLCommandType, HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException;
+    void handle(XMLCommandType commandType, HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException;
 }
