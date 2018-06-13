@@ -9,13 +9,13 @@
 <html>
 <head>
     <title></title>
-    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div align="right">
     <form action="XMLServlet" method="get">
         <input type="hidden" name="commandType" value="SIGN_OUT_COMMAND"/>
-        <input type="submit" name="sign out" value="Sign out" class="sign-out-button">
+        <input type="submit" name="sign out" value="Sign out">
     </form>
 </div>
 <div align="center">

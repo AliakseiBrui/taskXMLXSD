@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Parsed devices</title>
-    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div align="center">
