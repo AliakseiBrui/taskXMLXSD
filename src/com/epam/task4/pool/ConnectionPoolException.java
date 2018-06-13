@@ -6,7 +6,7 @@ public class ConnectionPoolException extends RuntimeException {
         super(message,throwable);
     }
 
-    public ConnectionPoolException(Throwable throwable){
+    ConnectionPoolException(Throwable throwable){
         super(throwable);
     }
 }
