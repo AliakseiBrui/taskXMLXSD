@@ -27,7 +27,7 @@
 
     <element name="has-cooler" type="boolean"/>
 
-    <element name="energy-consumption" type="positiveInteger"/>
+    <element name="energy-consumption" type="nonNegativeInteger"/>
 
     <element name="build-date" type="date"/>
 

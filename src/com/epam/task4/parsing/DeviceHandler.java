@@ -103,4 +103,6 @@ public class DeviceHandler extends DefaultHandler {
         currentEnum = null;
     }
 
+
+
 }

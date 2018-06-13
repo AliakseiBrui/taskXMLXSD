@@ -28,7 +28,6 @@ public class PCComponent extends Device {
         this.componentType = componentType;
     }
 
-
     public boolean isCritical() {
         return isCritical;
     }
