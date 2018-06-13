@@ -89,3 +89,5 @@ S
 +src/com/epam/task4/factory/UserFactory.java,4\b\4b799945f3068516316a77734bc6b5e2e4cbc481
 S
 #src/com/epam/task4/dao/UserDAO.java,3\b\3bc93d5b5e921b386d4ab80c58c40b2ca241d20a
+f
+6src/com/epam/task4/builder/DeviceBuilderException.java,e\f\efcac32bdc80ca93a2ddd31400c4b12a0e6ec98d

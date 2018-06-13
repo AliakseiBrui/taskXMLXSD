@@ -7,6 +7,11 @@
         <element id="directory" name="classes">
           <element id="module-output" name="task4_XML&amp;XSD" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="org.testng:testng:6.14.3" />
+          <element id="library" level="project" name="mysql:mysql-connector-java:8.0.11" />
+          <element id="library" level="project" name="org.zenframework.z8.dependencies.birt:org.apache.commons.codec_1.6.0.v201305230611:2.0-SNAPSHOT" />
+        </element>
       </element>
     </root>
   </artifact>

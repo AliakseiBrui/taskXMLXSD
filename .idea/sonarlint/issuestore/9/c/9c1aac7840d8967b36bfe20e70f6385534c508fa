@@ -1,11 +1,0 @@
-
-"squid:SwitchLastCaseIsDefaultCheckl"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ş«®8øÊĞ®¿,
-isquid:S1301@"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8øÊĞ®¿,
-jsquid:S001123"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8øÊĞ®¿,
-W"squid:SwitchLastCaseIsDefaultCheckh""Add a default case to this switch.(ÜŸ•8øÊĞ®¿,
-jsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8øÊĞ®¿,
-"squid:SwitchLastCaseIsDefaultCheckD"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ş«®8øÊĞ®¿,
-isquid:S1301h"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8øÊĞ®¿,
-X"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ÜŸ•8øÊĞ®¿,
-"squid:SwitchLastCaseIsDefaultCheck“"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ş«®8øÊĞ®¿,
-W"squid:SwitchLastCaseIsDefaultCheck@""Add a default case to this switch.(ÜŸ•8øÊĞ®¿,

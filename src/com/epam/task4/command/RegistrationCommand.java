@@ -6,18 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ParseXMLCommand extends XMLCommand {
-
-    public ParseXMLCommand(Handler handler) {
+public class RegistrationCommand extends XMLCommand {
+    public RegistrationCommand(Handler handler) {
         super(handler);
     }
 
-    public ParseXMLCommand() {
+    public RegistrationCommand() {
     }
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException {
 
-        getHandler().handle(XMLCommandType.PARSE_COMMAND,request,response,servletContext);
+        getHandler().handle(XMLCommandType.REGISTRATION_COMMAND,request,response,servletContext);
     }
 }

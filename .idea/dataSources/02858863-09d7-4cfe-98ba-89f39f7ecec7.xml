@@ -1417,7 +1417,7 @@
     </column>
     <column id="330" parent="285" name="password">
       <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>char(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>

@@ -1,5 +1,7 @@
 package com.epam.task4.pool;
 
+import com.mysql.jdbc.Driver;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,10 +18,14 @@ public enum ConnectionPool {
     private LinkedBlockingQueue<Connection> connectionQueue = new LinkedBlockingQueue<>();
     private final ReentrantLock locker = new ReentrantLock();
 
+    ConnectionPool(){
+        init();
+    }
+
     public void init(){
 
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            DriverManager.registerDriver(new Driver());
 
             for(int i=0;i < DEFAULT_MAX_SIZE; i++){
                 Connection connection = DriverManager.getConnection(DB_URL,DEFAULT_USER,DEFAULT_PASS);

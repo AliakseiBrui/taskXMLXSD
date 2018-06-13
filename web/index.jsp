@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -8,21 +9,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title></title>
-    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Authorization</title>
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div align="center">
+    <div>
       <form action="XMLServlet" method="get">
-        <input type="hidden" name="commandType" value="PARSE_COMMAND"/>
-        <label for="parser type" class="index-text">Select XML parser</label>
-        <select id="parser type" name="parserType" class="parser-selector">
-          <option>DOM</option>
-          <option>SAX</option>
-          <option>StAX</option>
-        </select>
-        <br/><br/>
-        <input type="submit" name="parse_button" value="Parse" class="device-button"/>
+          <input type="hidden" name="commandType" value="TO_REGISTRATION_PAGE_COMMAND"/>
+          <input type="submit" name="to_register" value="Sign in">
+      </form>
+    </div>
+    <div align="center">
+        <c:out value="${mainPageMessage}"/>
+        <br/>
+      <form action="XMLServlet" method="post">
+        <input type="hidden" name="commandType" value="AUTHORIZATION_COMMAND"/>
+        <label for="login">Login</label>
+        <input type="text" name="login" id="login"/>
+          <br/><br/>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+          <br/><br/>
+        <input type="submit" name="log_in_button" value="Log in"/>
       </form>
     </div>
   </body>

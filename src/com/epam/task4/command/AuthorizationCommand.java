@@ -6,18 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ParseXMLCommand extends XMLCommand {
-
-    public ParseXMLCommand(Handler handler) {
+public class AuthorizationCommand extends XMLCommand {
+    public AuthorizationCommand(Handler handler) {
         super(handler);
     }
 
-    public ParseXMLCommand() {
+    public AuthorizationCommand() {
     }
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException {
 
-        getHandler().handle(XMLCommandType.PARSE_COMMAND,request,response,servletContext);
+        getHandler().handle(XMLCommandType.AUTHORIZATION_COMMAND,request,response,servletContext);
     }
 }
