@@ -10,6 +10,7 @@ public enum ConnectionPool {
     INSTANCE;
 
     private static final int DEFAULT_MAX_SIZE = 10;
+    private static final String DB_URL = "jdbc:mysql://localhost/xml?useSSL=false&useUnicode=true";
     private static final String DEFAULT_USER = "root";
     private static final String DEFAULT_PASS = "27031998";
     private LinkedBlockingQueue<Connection> connectionQueue = new LinkedBlockingQueue<>();
@@ -21,7 +22,7 @@ public enum ConnectionPool {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
             for(int i=0;i < DEFAULT_MAX_SIZE; i++){
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/xml?useSSL=false&useUnicode=true",DEFAULT_USER,DEFAULT_PASS);
+                Connection connection = DriverManager.getConnection(DB_URL,DEFAULT_USER,DEFAULT_PASS);
                 //
                 connectionQueue.put(connection);
             }
