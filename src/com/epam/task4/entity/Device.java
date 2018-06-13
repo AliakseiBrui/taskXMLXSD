@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public abstract class Device {
-    protected String deviceId;
-    protected String deviceName;
-    protected String originCountry;
-    protected BigDecimal devicePrice;
+    String deviceId;
+    String deviceName;
+    String originCountry;
+    BigDecimal devicePrice;
 
     public Device(String deviceId, String deviceName, String originCountry, BigDecimal devicePrice) {
         this.deviceId = deviceId;

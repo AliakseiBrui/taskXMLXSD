@@ -8,7 +8,7 @@ public class DAOException extends SQLException {
         super(message,cause);
     }
 
-    public DAOException(Throwable cause){
+    DAOException(Throwable cause){
         super(cause);
     }
 }

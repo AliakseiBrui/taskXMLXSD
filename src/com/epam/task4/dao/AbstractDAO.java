@@ -17,7 +17,7 @@ public abstract class AbstractDAO<K,T extends Entity> {
     public abstract boolean create(T entity) throws DAOException;
     public abstract boolean update(T entity) throws DAOException;
 
-    protected void close(Statement statement) throws DAOException {
+    void close(Statement statement) {
 
         if(statement!=null) {
 
@@ -29,7 +29,7 @@ public abstract class AbstractDAO<K,T extends Entity> {
         }
     }
 
-    protected void close(ResultSet resultSet) throws DAOException{
+    void close(ResultSet resultSet) {
 
         if(resultSet!=null){
 
@@ -41,7 +41,7 @@ public abstract class AbstractDAO<K,T extends Entity> {
         }
     }
 
-    protected void returnConnection(Connection connection){
+    void returnConnection(Connection connection){
 
         if(connection!=null){
             ConnectionPool.INSTANCE.returnConnection(connection);

@@ -8,6 +8,7 @@ import com.epam.task4.pool.ConnectionPool;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<Integer, User> {
     private static final String ID_COLUMN = "id";
@@ -24,14 +25,9 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
     public List<User> findAll() throws DAOException {
         List<User> userList = new ArrayList<>();
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
-        Statement statement = null;
         ResultSet resultSet = null;
 
-        try{
-
-            if (connection != null) {
-                statement=connection.createStatement();
-            }
+        try(Statement statement = Objects.requireNonNull(connection).createStatement()){
 
             if (statement != null) {
                 resultSet = statement.executeQuery(SELECT_ALL_FROM_USER);
@@ -48,7 +44,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             throw new DAOException(e);
         } finally {
             close(resultSet);
-            close(statement);
             returnConnection(connection);
         }
         return userList;
@@ -57,14 +52,9 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
     @Override
     public User findEntityById(Integer id) throws DAOException{
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
-        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        try {
-
-            if (connection != null) {
-                preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);
-            }
+        try (PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(SELECT_USER_BY_ID);){
 
             if (preparedStatement != null) {
                 preparedStatement.setInt(1,id);
@@ -78,7 +68,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             throw new DAOException(e);
         } finally {
             close(resultSet);
-            close(preparedStatement);
             returnConnection(connection);
         }
         return null;
@@ -87,13 +76,8 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
     @Override
     public boolean delete(Integer id) throws DAOException{
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
-        PreparedStatement preparedStatement = null;
 
-        try{
-
-            if (connection != null) {
-                preparedStatement = connection.prepareStatement(DELETE_USER_BY_ID);
-            }
+        try(PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(DELETE_USER_BY_ID);){
 
             if (preparedStatement != null) {
                 preparedStatement.setInt(1,id);
@@ -102,7 +86,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            close(preparedStatement);
             returnConnection(connection);
         }
         return false;
@@ -116,13 +99,8 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
     @Override
     public boolean create(User entity) throws DAOException{
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
-        PreparedStatement preparedStatement = null;
 
-        try {
-
-            if (connection != null) {
-                preparedStatement=connection.prepareStatement(INSERT_USER);
-            }
+        try (PreparedStatement preparedStatement=Objects.requireNonNull(connection).prepareStatement(INSERT_USER);){
 
             if(preparedStatement!=null){
                 preparedStatement.setString(1,entity.getLogin());
@@ -132,7 +110,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
         } catch (SQLException e) {
             throw new DAOException(e);
         }finally {
-            close(preparedStatement);
             returnConnection(connection);
         }
         return false;
@@ -141,13 +118,8 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
     @Override
     public boolean update(User entity) throws DAOException{
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
-        PreparedStatement preparedStatement = null;
 
-        try{
-
-            if(connection != null){
-                preparedStatement=connection.prepareStatement(UPDATE_USER);
-            }
+        try(PreparedStatement preparedStatement=Objects.requireNonNull(connection).prepareStatement(UPDATE_USER);){
 
             if(preparedStatement != null){
                 preparedStatement.setInt(3,entity.getId());
@@ -158,7 +130,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            close(preparedStatement);
             returnConnection(connection);
         }
 
@@ -168,14 +139,9 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
     @Override
     public User findUserByLogin(String login) throws DAOException{
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
-        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        try{
-
-            if(connection!=null){
-                preparedStatement = connection.prepareStatement(SELECT_USER_BY_LOGIN);
-            }
+        try(PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(SELECT_USER_BY_LOGIN);){
 
             if(preparedStatement!=null){
                 preparedStatement.setString(1,login);
@@ -189,7 +155,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             throw new DAOException(e);
         } finally {
             close(resultSet);
-            close(preparedStatement);
             returnConnection(connection);
         }
         return null;

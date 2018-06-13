@@ -98,6 +98,7 @@ public class DeviceHandler extends DefaultHandler {
                 case BUILD_DATE:
                     ((Phone) current).setBuildDate(Date.valueOf(s));
                     break;
+                default:
             }
         }
         currentEnum = null;

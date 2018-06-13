@@ -75,3 +75,17 @@ d
 4src/com/epam/task4/pool/ConnectionPoolException.java,a\d\adbe5e29b095ac6c1fe14dcde6694e090bace954
 [
 +src/com/epam/task4/pool/ConnectionPool.java,f\e\fe46026448e3fa0c51cdf22e5c1353ffb1ac3bdb
+W
+'src/com/epam/task4/dao/AbstractDAO.java,8\3\83dd3dcd933991fa3ca9cbf28749869379a89251
+X
+(src/com/epam/task4/dao/DAOException.java,2\8\2857e48ced574c82251580baa6dc5d382bc03ed8
+X
+(src/com/epam/task4/dao/UserTableDAO.java,b\7\b7afd0e548e2831cc27a8d063a9ee74a03ab0bf6
+U
+%src/com/epam/task4/entity/Entity.java,4\9\49eb0337605422af3a834336f3a1fcf5bd70d7d5
+S
+#src/com/epam/task4/entity/User.java,f\9\f91215776757aa2845ade325598d08ecf22209af
+[
++src/com/epam/task4/factory/UserFactory.java,4\b\4b799945f3068516316a77734bc6b5e2e4cbc481
+S
+#src/com/epam/task4/dao/UserDAO.java,3\b\3bc93d5b5e921b386d4ab80c58c40b2ca241d20a

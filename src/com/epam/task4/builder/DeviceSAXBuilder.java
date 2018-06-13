@@ -19,7 +19,7 @@ public class DeviceSAXBuilder extends AbstractDeviceBuilder {
             xmlReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             xmlReader.setContentHandler(deviceHandler);
         } catch (SAXException | ParserConfigurationException e) {
-            throw new RuntimeException(e);
+            throw new DeviceBuilderException(e);
         }
     }
 
@@ -29,7 +29,7 @@ public class DeviceSAXBuilder extends AbstractDeviceBuilder {
         try{
             xmlReader.parse(fileName);
         } catch (SAXException | IOException e) {
-            throw new RuntimeException(e);
+            throw new DeviceBuilderException(e);
         }
         pcComponentSet = deviceHandler.getPcComponentSet();
         phoneSet = deviceHandler.getPhoneSet();

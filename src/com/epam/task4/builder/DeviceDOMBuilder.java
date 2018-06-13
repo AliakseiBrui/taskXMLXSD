@@ -25,7 +25,7 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
         try{
             documentBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e);
+            throw new DeviceBuilderException(e);
         }
     }
 
@@ -51,7 +51,7 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
                 phoneSet.add(phone);
             }
         } catch (SAXException | IOException e) {
-            throw new RuntimeException(e);
+            throw new DeviceBuilderException(e);
         }
     }
 

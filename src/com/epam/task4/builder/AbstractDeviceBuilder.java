@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class AbstractDeviceBuilder {
-    protected Set<PCComponent> pcComponentSet;
-    protected Set<Phone> phoneSet;
+    Set<PCComponent> pcComponentSet;
+    Set<Phone> phoneSet;
 
     AbstractDeviceBuilder(){
         pcComponentSet = new HashSet<>();

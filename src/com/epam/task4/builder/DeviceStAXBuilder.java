@@ -48,7 +48,7 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
                 }
             }
         } catch (XMLStreamException | IOException e) {
-            throw new RuntimeException(e);
+            throw new DeviceBuilderException(e);
         }
     }
 
@@ -61,32 +61,31 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
         while (reader.hasNext()){
             int type = reader.next();
 
-            switch (type){
-                case XMLStreamConstants.START_ELEMENT:
-                    name = reader.getLocalName();
+            if (type == XMLStreamConstants.START_ELEMENT) {
+                name = reader.getLocalName();
 
-                    switch (DeviceEnum.checkTag(name)){
-                        case ORIGIN_COUNTRY:
-                            pcComponent.setOriginCountry(getXMLText(reader));
-                            break;
-                        case PRICE:
-                            pcComponent.setDevicePrice(BigDecimal.valueOf(Long.parseLong(getXMLText(reader))));
-                            break;
-                        case CRITICAL:
-                            pcComponent.setCritical(Boolean.parseBoolean(getXMLText(reader)));
-                            break;
-                        case COMPONENT_TYPE:
-                            pcComponent.setComponentType(getXMLType(reader));
-                            break;
-                    }
-                    break;
+                switch (DeviceEnum.checkTag(name)) {
+                    case ORIGIN_COUNTRY:
+                        pcComponent.setOriginCountry(getXMLText(reader));
+                        break;
+                    case PRICE:
+                        pcComponent.setDevicePrice(BigDecimal.valueOf(Long.parseLong(getXMLText(reader))));
+                        break;
+                    case CRITICAL:
+                        pcComponent.setCritical(Boolean.parseBoolean(getXMLText(reader)));
+                        break;
+                    case COMPONENT_TYPE:
+                        pcComponent.setComponentType(getXMLType(reader));
+                        break;
+                    default:
+                }
 
-                    case XMLStreamConstants.END_ELEMENT:
-                        name = reader.getLocalName();
+            } else if (type == XMLStreamConstants.END_ELEMENT) {
+                name = reader.getLocalName();
 
-                        if(DeviceEnum.PC_COMPONENT.getTag().equals(name)){
-                            return pcComponent;
-                        }
+                if (DeviceEnum.PC_COMPONENT.getTag().equals(name)) {
+                    return pcComponent;
+                }
             }
         }
         throw new XMLStreamException("Unknown element in tag pc-component");
@@ -101,32 +100,31 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
         while (reader.hasNext()){
             int type = reader.next();
 
-            switch (type){
-                case XMLStreamConstants.START_ELEMENT:
-                    name = reader.getLocalName();
+            if (type == XMLStreamConstants.START_ELEMENT) {
+                name = reader.getLocalName();
 
-                    switch (DeviceEnum.checkTag(name)){
-                        case ORIGIN_COUNTRY:
-                            phone.setOriginCountry(getXMLText(reader));
-                            break;
-                        case PRICE:
-                            phone.setDevicePrice(BigDecimal.valueOf(Long.parseLong(getXMLText(reader))));
-                            break;
-                        case RAM:
-                            phone.setRam(Integer.parseInt(getXMLText(reader)));
-                            break;
-                        case BUILD_DATE:
-                            phone.setBuildDate(Date.valueOf(getXMLText(reader)));
-                            break;
-                    }
-                    break;
+                switch (DeviceEnum.checkTag(name)) {
+                    case ORIGIN_COUNTRY:
+                        phone.setOriginCountry(getXMLText(reader));
+                        break;
+                    case PRICE:
+                        phone.setDevicePrice(BigDecimal.valueOf(Long.parseLong(getXMLText(reader))));
+                        break;
+                    case RAM:
+                        phone.setRam(Integer.parseInt(getXMLText(reader)));
+                        break;
+                    case BUILD_DATE:
+                        phone.setBuildDate(Date.valueOf(getXMLText(reader)));
+                        break;
+                    default:
+                }
 
-                case XMLStreamConstants.END_ELEMENT:
-                    name = reader.getLocalName();
+            } else if (type == XMLStreamConstants.END_ELEMENT) {
+                name = reader.getLocalName();
 
-                    if(DeviceEnum.PHONE.getTag().equals(name)){
-                        return phone;
-                    }
+                if (DeviceEnum.PHONE.getTag().equals(name)) {
+                    return phone;
+                }
             }
         }
         throw new XMLStreamException("Unknown element in tag phone");
@@ -140,34 +138,34 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
         while (reader.hasNext()){
             type=reader.next();
 
-            switch (type){
-                case XMLStreamConstants.START_ELEMENT:
-                    name = reader.getLocalName();
+            if (type == XMLStreamConstants.START_ELEMENT) {
+                name = reader.getLocalName();
 
-                    switch (DeviceEnum.checkTag(name)){
-                        case PERIPHERAL:
-                            componentType.setPeripheral(Boolean.parseBoolean(getXMLText(reader)));
-                            break;
-                        case ENERGY_CONSUMPTION:
-                            componentType.setEnergyConsumption(Integer.parseInt(getXMLText(reader)));
-                            break;
-                        case HAS_COOLER:
-                            componentType.setHasCooler(Boolean.parseBoolean(getXMLText(reader)));
-                            break;
-                        case COMPONENT_GROUP:
-                            componentType.setComponentGroup(ComponentType.ComponentGroup.valueOf(getXMLText(reader).toUpperCase()));
-                            break;
-                        case PORT:
-                            componentType.setPort(ComponentType.Port.valueOf(getXMLText(reader).toUpperCase()));
-                    }
-                    break;
+                switch (DeviceEnum.checkTag(name)) {
+                    case PERIPHERAL:
+                        componentType.setPeripheral(Boolean.parseBoolean(getXMLText(reader)));
+                        break;
+                    case ENERGY_CONSUMPTION:
+                        componentType.setEnergyConsumption(Integer.parseInt(getXMLText(reader)));
+                        break;
+                    case HAS_COOLER:
+                        componentType.setHasCooler(Boolean.parseBoolean(getXMLText(reader)));
+                        break;
+                    case COMPONENT_GROUP:
+                        componentType.setComponentGroup(ComponentType.ComponentGroup.valueOf(getXMLText(reader).toUpperCase()));
+                        break;
+                    case PORT:
+                        componentType.setPort(ComponentType.Port.valueOf(getXMLText(reader).toUpperCase()));
+                        break;
+                    default:
+                }
 
-                    case XMLStreamConstants.END_ELEMENT:
-                        name = reader.getLocalName();
+            } else if (type == XMLStreamConstants.END_ELEMENT) {
+                name = reader.getLocalName();
 
-                        if(DeviceEnum.COMPONENT_TYPE.getTag().equals(name)){
-                            return componentType;
-                        }
+                if (DeviceEnum.COMPONENT_TYPE.getTag().equals(name)) {
+                    return componentType;
+                }
             }
         }
         throw new XMLStreamException("Unknown element in tag component-type");

@@ -23,7 +23,6 @@ public enum ConnectionPool {
 
             for(int i=0;i < DEFAULT_MAX_SIZE; i++){
                 Connection connection = DriverManager.getConnection(DB_URL,DEFAULT_USER,DEFAULT_PASS);
-                //
                 connectionQueue.put(connection);
             }
         } catch (SQLException e) {
