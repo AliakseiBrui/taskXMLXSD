@@ -1,28 +1,36 @@
 package com.epam.task4.command;
 
+import com.epam.task4.commandhandler.CommandHandler;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public abstract class XMLCommand {
-    private Handler handler;
+public class XMLCommand {
+    private CommandHandler handler;
 
-    XMLCommand(Handler handler) {
+    public XMLCommand(CommandHandler handler) {
         this.handler = handler;
     }
 
-    XMLCommand() {
+    public XMLCommand() {
     }
 
-    public Handler getHandler() {
+    public CommandHandler getHandler() {
         return handler;
     }
 
-    public void setHandler(Handler handler) {
+    public void setHandler(CommandHandler handler) {
         this.handler = handler;
     }
 
-    public abstract void execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException;
+    public void execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
+            throws ServletException, IOException{
+
+        if(handler!=null) {
+            handler.handle(request, response, servletContext);
+        }
+    }
 }

@@ -14,8 +14,8 @@
 <body>
 <div align="right">
     <form action="XMLServlet" method="get">
-        <input type="hidden" name="commandType" value="SIGN_OUT_COMMAND"/>
-        <input type="submit" name="sign out" value="Sign out">
+        <input type="hidden" name="commandType" value="LOG_OUT_COMMAND"/>
+        <input type="submit" name="log_out_button" value="Log out">
     </form>
 </div>
 <div align="center">

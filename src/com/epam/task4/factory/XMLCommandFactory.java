@@ -1,32 +1,33 @@
 package com.epam.task4.factory;
 
 import com.epam.task4.command.*;
+import com.epam.task4.commandhandler.*;
 
 public class XMLCommandFactory {
 
     private XMLCommandFactory(){}
 
     public static XMLCommand createXMLCommand(XMLCommandType commandType){
-        XMLCommand command = null;
+        XMLCommand command = new XMLCommand();
 
         switch (commandType){
             case TO_MAIN_PAGE_COMMAND:
-                command = new ToMainPageXMLCommand(new RequestHandler());
+                command.setHandler(new ToMainPageCommandHandler());
                 break;
             case PARSE_COMMAND:
-                command = new ParseXMLCommand(new RequestHandler());
+                command.setHandler(new ParseCommandHandler());
                 break;
             case AUTHORIZATION_COMMAND:
-                command = new AuthorizationCommand(new RequestHandler());
+                command.setHandler(new AuthorizationCommandHandler());
                 break;
             case REGISTRATION_COMMAND:
-                command = new RegistrationCommand(new RequestHandler());
+                command.setHandler(new RegistrationCommandHandler());
                 break;
             case TO_REGISTRATION_PAGE_COMMAND:
-                command = new ToRegistrationPageCommand(new RequestHandler());
+                command.setHandler(new ToRegistrationPageCommandHandler());
                 break;
-            case SIGN_OUT_COMMAND:
-                command = new SignOutCommand(new RequestHandler());
+            case LOG_OUT_COMMAND:
+                command.setHandler(new LogOutCommandHandler());
                 break;
         }
         return command;
