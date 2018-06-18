@@ -13,6 +13,6 @@ public class ToRegistrationPageCommandHandler implements CommandHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher(JSP.REGISTRATION_PAGE).forward(request,response);
+        response.sendRedirect(JSP.REGISTRATION_PAGE);
     }
 }

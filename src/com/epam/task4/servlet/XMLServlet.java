@@ -1,6 +1,5 @@
 package com.epam.task4.servlet;
 
-import com.epam.task4.command.XMLCommand;
 import com.epam.task4.command.XMLCommandType;
 import com.epam.task4.pool.ConnectionPool;
 

@@ -14,7 +14,7 @@
   </head>
   <body>
     <div>
-      <form action="XMLServlet" method="get">
+      <form action="/XMLServlet" method="get">
           <input type="hidden" name="commandType" value="TO_REGISTRATION_PAGE_COMMAND"/>
           <input type="submit" name="to_register" value="Sign in">
       </form>
@@ -26,7 +26,7 @@
       <p class="succeed-message">
         <c:out value="${message}"/>
       </p>
-      <form action="XMLServlet" method="post">
+      <form action="/XMLServlet" method="post">
         <input type="hidden" name="commandType" value="AUTHORIZATION_COMMAND"/>
         <label for="login">Login</label><br/>
         <input type="text" name="login" id="login"/>

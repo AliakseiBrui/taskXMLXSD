@@ -13,6 +13,7 @@ public class LogOutCommandHandler implements CommandHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
+        request.getSession().removeAttribute("login");
+        response.sendRedirect(JSP.AUTHORIZATION_PAGE);
     }
 }

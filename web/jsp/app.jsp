@@ -15,13 +15,13 @@
 <body>
 <div align="right">
     <c:out value="Login: ${sessionScope.get('login')}"></c:out>
-    <form action="XMLServlet" method="get">
+    <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="LOG_OUT_COMMAND"/>
         <input type="submit" name="log_out_button" value="Log out">
     </form>
 </div>
 <div align="center">
-    <form action="XMLServlet" method="get">
+    <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="PARSE_COMMAND"/>
         <label for="parser type" class="index-text">Select XML parser</label>
         <select id="parser type" name="parserType" class="parser-selector">

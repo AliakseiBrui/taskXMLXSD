@@ -13,8 +13,14 @@
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <div align="left">
+        <form action="/XMLServlet" method="get">
+            <input type="hidden" name="commandType" value="TO_AUTHORIZATION_PAGE_COMMAND"/>
+            <input type="submit" name="to_auth_page_button" value="Log in"/>
+        </form>
+    </div>
     <div align="center">
-        <form action="XMLServlet" method="post">
+        <form action="/XMLServlet" method="post">
             <input type="hidden" name="commandType" value="REGISTRATION_COMMAND"/>
             <label for="login">Login</label>
             <input type="text" name="login" id="login"/>

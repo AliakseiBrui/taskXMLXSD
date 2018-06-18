@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ToMainPageCommandHandler implements CommandHandler {
+public class ToAuthorizationPageCommandHandler implements CommandHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
             throws ServletException, IOException {
 
-        response.sendRedirect(JSP.MAIN_PAGE);
+        response.sendRedirect(JSP.AUTHORIZATION_PAGE);
     }
 }

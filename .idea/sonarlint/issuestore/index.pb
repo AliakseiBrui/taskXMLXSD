@@ -49,8 +49,6 @@ C
 .src/com/epam/task4/command/XMLCommandType.java,7\7\770d748089df02c13a5d9901aa65de99a1c26e0f
 Z
 *src/com/epam/task4/command/XMLCommand.java,e\e\ee6a42952ec7dbed842b655e5914e4c2d47ee141
-a
-1src/com/epam/task4/factory/XMLCommandFactory.java,0\a\0acb6bee2eebe2622c19c76d0b30a9e80b5f1509
 >
 src/log4j2.xml,1\c\1cf906b37b429e2cd3ffc010578e1569ae4d847f
 \
@@ -61,8 +59,6 @@ j
 :.idea/dataSources/02858863-09d7-4cfe-98ba-89f39f7ecec7.xml,9\a\9aa34d125add89386dc04c9e9ac9d071696f5bb1
 _
 /src/com/test/task4/pool/ConnectionPoolTest.java,7\0\7078a6f0753a320b5126f6b9c52e526f9505b5e6
-d
-4src/com/epam/task4/pool/ConnectionPoolException.java,a\d\adbe5e29b095ac6c1fe14dcde6694e090bace954
 [
 +src/com/epam/task4/pool/ConnectionPool.java,f\e\fe46026448e3fa0c51cdf22e5c1353ffb1ac3bdb
 W
@@ -107,3 +103,5 @@ o
 ?src/com/epam/task4/commandhandler/ToMainPageCommandHandler.java,7\c\7cb0b62e06edf850d5d58f1a965d034a65e61d08
 w
 Gsrc/com/epam/task4/commandhandler/ToRegistrationPageCommandHandler.java,e\6\e60628f46469420ef35e96b3777808dcea5a0937
+T
+$src/com/epam/task4/constant/JSP.java,b\4\b4253a750692d6bc7eb8cdeb1be41fe29bf6f5f4
