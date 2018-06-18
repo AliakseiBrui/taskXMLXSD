@@ -1,6 +1,7 @@
 package com.epam.task4.commandhandler;
 
 import com.epam.task4.builder.AbstractDeviceBuilder;
+import com.epam.task4.constant.JSP;
 import com.epam.task4.factory.DeviceBuilderFactory;
 
 import javax.servlet.ServletContext;
@@ -24,6 +25,6 @@ public class ParseCommandHandler implements CommandHandler {
         request.setAttribute("pcComponentSet",deviceBuilder.getPcComponentSet());
         request.setAttribute("phoneSet",deviceBuilder.getPhoneSet());
         request.setAttribute("parserType",parserType);
-        request.getRequestDispatcher("jsp/result.jsp").forward(request,response);
+        request.getRequestDispatcher(JSP.RESULT_PAGE).forward(request,response);
     }
 }

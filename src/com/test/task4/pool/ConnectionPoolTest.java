@@ -9,7 +9,6 @@ public class ConnectionPoolTest {
 
     @Test
     public void testConnectionPoolWork(){
-        ConnectionPool.INSTANCE.init();
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
         System.out.println(connection);
         ConnectionPool.INSTANCE.returnConnection(connection);

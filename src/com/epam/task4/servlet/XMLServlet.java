@@ -2,7 +2,6 @@ package com.epam.task4.servlet;
 
 import com.epam.task4.command.XMLCommand;
 import com.epam.task4.command.XMLCommandType;
-import com.epam.task4.factory.XMLCommandFactory;
 import com.epam.task4.pool.ConnectionPool;
 
 import javax.servlet.ServletException;
@@ -26,14 +25,15 @@ public class XMLServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String commandName = request.getParameter("commandType");
-        XMLCommand command =XMLCommandFactory.createXMLCommand(XMLCommandType.valueOf(commandName));
-        command.execute(request,response,getServletContext());
+        XMLCommandType.valueOf(commandName).getCommand()
+                .execute(request,response,getServletContext());
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        XMLCommandFactory.createXMLCommand(XMLCommandType.valueOf(request.getParameter("commandType")))
+        String commandName = request.getParameter("commandType");
+        XMLCommandType.valueOf(commandName).getCommand()
                 .execute(request,response,getServletContext());
     }
 }

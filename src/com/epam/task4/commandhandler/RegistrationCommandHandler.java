@@ -1,5 +1,6 @@
 package com.epam.task4.commandhandler;
 
+import com.epam.task4.constant.JSP;
 import com.epam.task4.dao.DAOException;
 import com.epam.task4.dao.UserDAO;
 import com.epam.task4.encoder.PasswordEncoder;
@@ -24,11 +25,11 @@ public class RegistrationCommandHandler implements CommandHandler {
         if(register(registerLogin,registerPassword)){
             //To authorization page + successful registration
             request.setAttribute("devicePageMessage","Registration succeeded");
-            request.getRequestDispatcher("index.jsp").forward(request,response);
+            request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
         }else{
             //To registration page + error
             request.setAttribute("errorMessage","Something was wrong");
-            request.getRequestDispatcher("jsp/register.jsp").forward(request,response);
+            request.getRequestDispatcher(JSP.REGISTRATION_PAGE).forward(request,response);
         }
     }
 

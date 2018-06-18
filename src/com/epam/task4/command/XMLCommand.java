@@ -11,7 +11,7 @@ import java.io.IOException;
 public class XMLCommand {
     private CommandHandler handler;
 
-    public XMLCommand(CommandHandler handler) {
+    XMLCommand(CommandHandler handler) {
         this.handler = handler;
     }
 

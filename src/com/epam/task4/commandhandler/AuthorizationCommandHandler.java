@@ -1,5 +1,6 @@
 package com.epam.task4.commandhandler;
 
+import com.epam.task4.constant.JSP;
 import com.epam.task4.dao.DAOException;
 import com.epam.task4.dao.UserDAO;
 import com.epam.task4.encoder.PasswordEncoder;
@@ -21,11 +22,12 @@ public class AuthorizationCommandHandler implements CommandHandler {
 
         if(authorize(authorizationLogin,authorizationPassword)){
             //To application page
-            request.getRequestDispatcher("jsp/app.jsp").forward(request,response);
+            request.getSession().setAttribute("login",authorizationLogin);
+            request.getRequestDispatcher(JSP.MAIN_PAGE).forward(request,response);
         }else{
             //To authorization page + errors
             request.setAttribute("mainPageMessage","Something was wrong");
-            request.getRequestDispatcher("index.jsp").forward(request,response);
+            request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
         }
     }
 
