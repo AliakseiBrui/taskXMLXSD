@@ -83,7 +83,7 @@
     <br/>
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="TO_MAIN_PAGE_COMMAND"/>
-        <input type="submit" id="back_button" value="Back" class="device-button"/>
+        <input type="submit" id="back_button" value="Back" class="nice-button"/>
     </form>
 </div>
 </body>

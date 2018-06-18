@@ -16,17 +16,19 @@
     <div align="left">
         <form action="/XMLServlet" method="get">
             <input type="hidden" name="commandType" value="TO_AUTHORIZATION_PAGE_COMMAND"/>
-            <input type="submit" name="to_auth_page_button" value="Log in"/>
+            <input type="submit" name="to_auth_page_button" value="Log in" class="nice-button"/>
         </form>
     </div>
     <div align="center">
         <form action="/XMLServlet" method="post">
             <input type="hidden" name="commandType" value="REGISTRATION_COMMAND"/>
-            <label for="login">Login</label>
-            <input type="text" name="login" id="login"/>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <input type="submit" name="sign_in_button" value="Sign in"/>
+            <label for="login">Login</label><br/>
+            <input type="text" name="login" id="login" class="input-text"/>
+            <br/><br/>
+            <label for="password">Password</label><br/>
+            <input type="password" name="password" id="password" class="input-text">
+            <br/><br/>
+            <input type="submit" name="sign_in_button" value="Sign in" class="nice-button"/>
         </form>
         <p class="error-message">
             <c:out value="${errorMessage}"/>

@@ -105,3 +105,5 @@ w
 Gsrc/com/epam/task4/commandhandler/ToRegistrationPageCommandHandler.java,e\6\e60628f46469420ef35e96b3777808dcea5a0937
 T
 $src/com/epam/task4/constant/JSP.java,b\4\b4253a750692d6bc7eb8cdeb1be41fe29bf6f5f4
+x
+Hsrc/com/epam/task4/commandhandler/ToAuthorizationPageCommandHandler.java,0\8\0840a2a3e4b8ff21619f29c5ea22191713a90d05

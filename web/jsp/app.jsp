@@ -6,7 +6,7 @@
   Time: 23:45
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Application</title>
@@ -14,10 +14,10 @@
 </head>
 <body>
 <div align="right">
-    <c:out value="Login: ${sessionScope.get('login')}"></c:out>
+    <c:out value="Login: ${sessionScope.get('login')}"/>
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="LOG_OUT_COMMAND"/>
-        <input type="submit" name="log_out_button" value="Log out">
+        <input type="submit" name="log_out_button" value="Log out" class="nice-button">
     </form>
 </div>
 <div align="center">
@@ -30,7 +30,7 @@
             <option>StAX</option>
         </select>
         <br/><br/>
-        <input type="submit" name="parse_button" value="Parse" class="device-button"/>
+        <input type="submit" name="parse_button" value="Parse" class="nice-button"/>
     </form>
 </div>
 </body>
