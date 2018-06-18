@@ -76,7 +76,8 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
 
             if (preparedStatement != null) {
                 preparedStatement.setInt(1,id);
-                return preparedStatement.execute();
+
+                return preparedStatement.executeUpdate()>0;
             }
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -100,7 +101,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             if(preparedStatement!=null){
                 preparedStatement.setString(1,entity.getLogin());
                 preparedStatement.setString(2,entity.getPass());
-                return preparedStatement.execute();
+                return preparedStatement.executeUpdate()>0;
             }
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -120,7 +121,8 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
                 preparedStatement.setInt(3,entity.getId());
                 preparedStatement.setString(1,entity.getLogin());
                 preparedStatement.setString(2,entity.getPass());
-                return preparedStatement.execute();
+
+                return preparedStatement.executeUpdate()>0;
             }
         } catch (SQLException e) {
             throw new DAOException(e);

@@ -20,14 +20,18 @@
       </form>
     </div>
     <div align="center">
-        <c:out value="${mainPageMessage}"/>
-        <br/>
+      <p class="error-message">
+        <c:out value="${errorMessage}"/>
+      </p>
+      <p class="succeed-message">
+        <c:out value="${message}"/>
+      </p>
       <form action="XMLServlet" method="post">
         <input type="hidden" name="commandType" value="AUTHORIZATION_COMMAND"/>
-        <label for="login">Login</label>
+        <label for="login">Login</label><br/>
         <input type="text" name="login" id="login"/>
           <br/><br/>
-        <label for="password">Password</label>
+        <label for="password">Password</label><br/>
         <input type="password" name="password" id="password">
           <br/><br/>
         <input type="submit" name="log_in_button" value="Log in"/>

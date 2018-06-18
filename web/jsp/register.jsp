@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Registration</title>
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div align="center">
@@ -21,7 +22,10 @@
             <input type="password" name="password" id="password">
             <input type="submit" name="sign_in_button" value="Sign in"/>
         </form>
-        <c:out value="${errorMessage}"/>
+        <p class="error-message">
+            <c:out value="${errorMessage}"/>
+        </p>
+
     </div>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class RegistrationCommandHandler implements CommandHandler {
 
         if(register(registerLogin,registerPassword,errorMessage)){
             //To authorization page + successful registration
-            request.setAttribute("devicePageMessage","Registration succeeded");
+            request.setAttribute("message","Registration succeeded");
             request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
         }else{
             //To registration page + error
@@ -42,7 +42,6 @@ public class RegistrationCommandHandler implements CommandHandler {
             User user = UserFactory.createUser(login,passwordEncoder
                     .encryptPassword(password));
             return userDAO.create(user);
-
         }catch (DAOException e){
             errorMessage.append(e.getMessage());
         }

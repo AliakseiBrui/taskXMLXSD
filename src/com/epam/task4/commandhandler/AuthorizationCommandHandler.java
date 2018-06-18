@@ -27,7 +27,7 @@ public class AuthorizationCommandHandler implements CommandHandler {
             request.getRequestDispatcher(JSP.MAIN_PAGE).forward(request,response);
         }else{
             //To authorization page + errors
-            request.setAttribute("mainPageMessage",errorMessage);
+            request.setAttribute("errorMessage",errorMessage);
             request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
         }
     }
@@ -43,7 +43,7 @@ public class AuthorizationCommandHandler implements CommandHandler {
 
                 return true;
             }
-            errorMessage.append("Wrong name or password");
+            errorMessage.append("Wrong login or password");
         } catch (DAOException e) {
             errorMessage.append(e.getMessage());
         }
