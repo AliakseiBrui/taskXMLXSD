@@ -21,19 +21,20 @@ public class RegistrationCommandHandler implements CommandHandler {
 
         String registerLogin = request.getParameter("login");
         String registerPassword = request.getParameter("password");
+        StringBuilder errorMessage = new StringBuilder();
 
-        if(register(registerLogin,registerPassword)){
+        if(register(registerLogin,registerPassword,errorMessage)){
             //To authorization page + successful registration
             request.setAttribute("devicePageMessage","Registration succeeded");
             request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
         }else{
             //To registration page + error
-            request.setAttribute("errorMessage","Something was wrong");
+            request.setAttribute("errorMessage",errorMessage);
             request.getRequestDispatcher(JSP.REGISTRATION_PAGE).forward(request,response);
         }
     }
 
-    private boolean register(String login, String password){
+    private boolean register(String login, String password, StringBuilder errorMessage){
         UserDAO userDAO = new UserDAO();
         PasswordEncoder passwordEncoder = new PasswordEncoder();
 
@@ -43,7 +44,8 @@ public class RegistrationCommandHandler implements CommandHandler {
             return userDAO.create(user);
 
         }catch (DAOException e){
-            throw new RuntimeException(e);
+            errorMessage.append(e.getMessage());
         }
+        return false;
     }
 }

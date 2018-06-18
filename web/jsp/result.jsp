@@ -14,6 +14,9 @@
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div align="right">
+    <c:out value="Login: ${sessionScope.get('login')}"/>
+</div>
 <div align="center">
     <h1>
         <c:out value="${parserType}"/>

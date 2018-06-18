@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -13,6 +14,7 @@
 </head>
 <body>
 <div align="right">
+    <c:out value="Login: ${sessionScope.get('login')}"></c:out>
     <form action="XMLServlet" method="get">
         <input type="hidden" name="commandType" value="LOG_OUT_COMMAND"/>
         <input type="submit" name="log_out_button" value="Log out">

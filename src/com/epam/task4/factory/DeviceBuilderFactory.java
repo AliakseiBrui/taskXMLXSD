@@ -23,7 +23,8 @@ public class DeviceBuilderFactory {
             case SAX:
                 return new DeviceSAXBuilder();
 
-                default: return null;
+            default:
+                throw new EnumConstantNotPresentException(builderType.getClass(),builderType.name());
         }
     }
 }

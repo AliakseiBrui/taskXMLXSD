@@ -19,19 +19,20 @@ public class AuthorizationCommandHandler implements CommandHandler {
 
         String authorizationLogin = request.getParameter("login");
         String authorizationPassword = request.getParameter("password");
+        StringBuilder errorMessage = new StringBuilder();
 
-        if(authorize(authorizationLogin,authorizationPassword)){
+        if(authorize(authorizationLogin,authorizationPassword,errorMessage)){
             //To application page
             request.getSession().setAttribute("login",authorizationLogin);
             request.getRequestDispatcher(JSP.MAIN_PAGE).forward(request,response);
         }else{
             //To authorization page + errors
-            request.setAttribute("mainPageMessage","Something was wrong");
+            request.setAttribute("mainPageMessage",errorMessage);
             request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
         }
     }
 
-    private boolean authorize(String login, String password){
+    private boolean authorize(String login, String password, StringBuilder errorMessage){
         UserDAO userDAO = new UserDAO();
         PasswordEncoder passwordEncoder = new PasswordEncoder();
 
@@ -42,8 +43,9 @@ public class AuthorizationCommandHandler implements CommandHandler {
 
                 return true;
             }
+            errorMessage.append("Wrong name or password");
         } catch (DAOException e) {
-            throw new RuntimeException(e);
+            errorMessage.append(e.getMessage());
         }
         return false;
     }

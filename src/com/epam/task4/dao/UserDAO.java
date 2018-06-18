@@ -25,13 +25,9 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
     public List<User> findAll() throws DAOException {
         List<User> userList = new ArrayList<>();
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
-        ResultSet resultSet = null;
 
-        try(Statement statement = Objects.requireNonNull(connection).createStatement()){
-
-            if (statement != null) {
-                resultSet = statement.executeQuery(SELECT_ALL_FROM_USER);
-            }
+        try(Statement statement = Objects.requireNonNull(connection).createStatement();
+            ResultSet resultSet = statement.executeQuery(SELECT_ALL_FROM_USER)){
 
             if(resultSet!=null){
 
@@ -43,7 +39,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
-            close(resultSet);
             returnConnection(connection);
         }
         return userList;
@@ -54,7 +49,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
         Connection connection = ConnectionPool.INSTANCE.takeConnection();
         ResultSet resultSet = null;
 
-        try (PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(SELECT_USER_BY_ID);){
+        try (PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(SELECT_USER_BY_ID)){
 
             if (preparedStatement != null) {
                 preparedStatement.setInt(1,id);
