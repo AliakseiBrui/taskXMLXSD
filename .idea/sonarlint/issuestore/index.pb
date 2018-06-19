@@ -49,8 +49,6 @@ C
 .src/com/epam/task4/command/XMLCommandType.java,7\7\770d748089df02c13a5d9901aa65de99a1c26e0f
 Z
 *src/com/epam/task4/command/XMLCommand.java,e\e\ee6a42952ec7dbed842b655e5914e4c2d47ee141
->
-src/log4j2.xml,1\c\1cf906b37b429e2cd3ffc010578e1569ae4d847f
 \
 ,.idea/libraries/org_testng_testng_6_14_3.xml,a\f\aff3acf2edd2208e57539644610a6875f14cdbf3
 ‘
@@ -75,8 +73,6 @@ S
 +src/com/epam/task4/factory/UserFactory.java,4\b\4b799945f3068516316a77734bc6b5e2e4cbc481
 S
 #src/com/epam/task4/dao/UserDAO.java,3\b\3bc93d5b5e921b386d4ab80c58c40b2ca241d20a
-f
-6src/com/epam/task4/builder/DeviceBuilderException.java,e\f\efcac32bdc80ca93a2ddd31400c4b12a0e6ec98d
 e
 5.idea/libraries/mysql_mysql_connector_java_8_0_11.xml,7\e\7ee290f80612ac683a323f160f2bc0bc9349182f
 £
@@ -107,3 +103,7 @@ T
 $src/com/epam/task4/constant/JSP.java,b\4\b4253a750692d6bc7eb8cdeb1be41fe29bf6f5f4
 x
 Hsrc/com/epam/task4/commandhandler/ToAuthorizationPageCommandHandler.java,0\8\0840a2a3e4b8ff21619f29c5ea22191713a90d05
+[
++src/com/epam/task4/pool/SafeConnection.java,d\5\d5ebc0d4936e0ee704ff39b6e523b3bcddd5c9a9
+s
+C.idea/libraries/org_ops4j_pax_logging_pax_logging_log4j2_1_10_1.xml,3\5\35ed497458fa2a4d88caa2cec2d39a8613e877af

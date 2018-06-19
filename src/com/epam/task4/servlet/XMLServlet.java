@@ -15,6 +15,12 @@ import java.io.IOException;
 public class XMLServlet extends HttpServlet {
 
     @Override
+    public void init() throws ServletException {
+        super.init();
+        ConnectionPool.INSTANCE.init();
+    }
+
+    @Override
     public void destroy() {
         ConnectionPool.INSTANCE.closeAll();
         super.destroy();

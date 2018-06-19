@@ -1,6 +1,8 @@
 package com.epam.task4.pool;
 
 import com.mysql.jdbc.Driver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,9 +20,9 @@ public enum ConnectionPool {
     private static final String DEFAULT_PASS = "27031998";
     private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
     private final ReentrantLock locker = new ReentrantLock();
+    private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
     ConnectionPool(){
-        init();
     }
 
     public SafeConnection takeConnection(){
@@ -65,7 +67,8 @@ public enum ConnectionPool {
         connectionQueue.clear();
     }
 
-    private void init(){
+    public void init(){
+        LOGGER.debug("Initiating connection pool.");
 
         try {
             DriverManager.registerDriver(new Driver());
@@ -82,7 +85,7 @@ public enum ConnectionPool {
                 connectionQueue.put(safeConnection);
             }
         } catch (SQLException e) {
-
+            LOGGER.error("Exception while creating connections for connection pool.");
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
 

@@ -24,11 +24,11 @@ public class RegistrationCommandHandler implements CommandHandler {
         StringBuilder errorMessage = new StringBuilder();
 
         if(register(registerLogin,registerPassword,errorMessage)){
-            //To authorization page + successful registration
+
             request.setAttribute("message","Registration succeeded");
             request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
         }else{
-            //To registration page + error
+
             request.setAttribute("errorMessage",errorMessage);
             request.getRequestDispatcher(JSP.REGISTRATION_PAGE).forward(request,response);
         }

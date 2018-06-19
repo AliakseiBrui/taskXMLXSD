@@ -4,6 +4,8 @@ import com.epam.task4.entity.User;
 import com.epam.task4.factory.UserFactory;
 import com.epam.task4.pool.ConnectionPool;
 import com.epam.task4.pool.SafeConnection;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import java.sql.*;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<Integer, User> {
+    private static final Logger LOGGER = LogManager.getLogger(UserDAO.class);
     private static final String ID_COLUMN = "id";
     private static final String LOGIN_COLUMN = "login";
     private static final String PASS_COLUMN = "password";
@@ -24,6 +27,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
 
     @Override
     public List<User> findAll() throws DAOException {
+        LOGGER.debug("Selecting all users.");
         List<User> userList = new ArrayList<>();
 
 
@@ -46,7 +50,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
 
     @Override
     public User findEntityById(Integer id) throws DAOException{
-
+        LOGGER.debug("Selecting user by id. Id: "+id);
         ResultSet resultSet = null;
 
         try (SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
@@ -70,6 +74,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
 
     @Override
     public boolean delete(Integer id) throws DAOException{
+        LOGGER.debug("Deleting user by id. Id: "+id);
 
         try(SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
             PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(DELETE_USER_BY_ID);){
@@ -92,6 +97,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
 
     @Override
     public boolean create(User entity) throws DAOException{
+        LOGGER.debug("Creating new user. " + entity);
 
         try (SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
              PreparedStatement preparedStatement=Objects.requireNonNull(connection).prepareStatement(INSERT_USER);){
@@ -109,6 +115,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
 
     @Override
     public boolean update(User entity) throws DAOException{
+        LOGGER.debug("Updating user." + entity);
 
         try(SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
             PreparedStatement preparedStatement=Objects.requireNonNull(connection).prepareStatement(UPDATE_USER);){
@@ -128,6 +135,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
 
     @Override
     public User findUserByLogin(String login) throws DAOException{
+        LOGGER.debug("Selecting user by login. Login: "+login);
         ResultSet resultSet = null;
 
         try(SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();

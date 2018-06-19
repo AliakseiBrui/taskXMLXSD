@@ -4,6 +4,8 @@ import com.epam.task4.entity.ComponentType;
 import com.epam.task4.entity.PCComponent;
 import com.epam.task4.entity.DeviceEnum;
 import com.epam.task4.entity.Phone;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -16,6 +18,7 @@ import java.sql.Date;
 
 public class DeviceStAXBuilder extends AbstractDeviceBuilder {
     private XMLInputFactory inputFactory;
+    private static final Logger LOGGER = LogManager.getLogger(DeviceStAXBuilder.class);
 
     public DeviceStAXBuilder(){
         inputFactory = XMLInputFactory.newInstance();
@@ -23,6 +26,7 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
 
     @Override
     public void buildDeviceSet(String fileName) {
+        LOGGER.debug("Building device set.");
         String name;
         XMLStreamReader reader;
 
@@ -48,7 +52,8 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
                 }
             }
         } catch (XMLStreamException | IOException e) {
-            throw new DeviceBuilderException(e);
+            LOGGER.error("Exception while parsing devices.",e);
+            throw new RuntimeException(e);
         }
     }
 

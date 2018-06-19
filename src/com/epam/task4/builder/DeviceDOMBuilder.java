@@ -4,6 +4,8 @@ import com.epam.task4.entity.DeviceEnum;
 import com.epam.task4.entity.PCComponent;
 import com.epam.task4.entity.ComponentType;
 import com.epam.task4.entity.Phone;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -18,6 +20,7 @@ import java.sql.Date;
 
 public class DeviceDOMBuilder extends AbstractDeviceBuilder {
     private DocumentBuilder documentBuilder;
+    private static final Logger LOGGER  = LogManager.getLogger(DeviceDOMBuilder.class);
 
     public DeviceDOMBuilder(){
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -25,12 +28,13 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
         try{
             documentBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            throw new DeviceBuilderException(e);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public void buildDeviceSet(String fileName) {
+        LOGGER.debug("Building device set.");
         Document document;
 
         try{
@@ -51,7 +55,8 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
                 phoneSet.add(phone);
             }
         } catch (SAXException | IOException e) {
-            throw new DeviceBuilderException(e);
+            LOGGER.error("Exception while parsing devices.",e);
+            throw new RuntimeException(e);
         }
     }
 

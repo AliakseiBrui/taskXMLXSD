@@ -1,6 +1,8 @@
 package com.epam.task4.command;
 
 import com.epam.task4.commandhandler.CommandHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import java.io.IOException;
 
 public class XMLCommand {
     private CommandHandler handler;
+    private static final Logger LOGGER = LogManager.getLogger(XMLCommand.class);
 
     XMLCommand(CommandHandler handler) {
         this.handler = handler;
@@ -28,6 +31,7 @@ public class XMLCommand {
 
     public void execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
             throws ServletException, IOException{
+        LOGGER.debug("Executing command.");
 
         if(handler!=null) {
             handler.handle(request, response, servletContext);
