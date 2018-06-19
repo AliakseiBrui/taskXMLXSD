@@ -22,11 +22,11 @@ public class AuthorizationCommandHandler implements CommandHandler {
         StringBuilder errorMessage = new StringBuilder();
 
         if(authorize(authorizationLogin,authorizationPassword,errorMessage)){
-            //To application page
+
             request.getSession().setAttribute("login",authorizationLogin);
             response.sendRedirect(JSP.MAIN_PAGE);
         }else{
-            //To authorization page + errors
+
             request.setAttribute("errorMessage",errorMessage);
             request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
         }

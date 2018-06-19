@@ -198,8 +198,15 @@
 
     <phone id="sphone1" name="Nokia Lumia 800">
         <origin-country>Finland</origin-country>
-        <price>100</price>
+        <price>60</price>
         <ram>500</ram>
         <build-date>2014-03-08</build-date>
+    </phone>
+
+    <phone id="sphone2" name="Xiaomi Redmi 4x">
+        <origin-country>China</origin-country>
+        <price>150</price>
+        <ram>2000</ram>
+        <build-date>2017-04-15</build-date>
     </phone>
 </devices>

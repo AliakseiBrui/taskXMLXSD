@@ -2,8 +2,6 @@ package com.epam.task4.builder;
 
 import com.epam.task4.entity.PCComponent;
 import com.epam.task4.entity.Phone;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
