@@ -107,3 +107,9 @@ Hsrc/com/epam/task4/commandhandler/ToAuthorizationPageCommandHandler.java,0\8\0
 +src/com/epam/task4/pool/SafeConnection.java,d\5\d5ebc0d4936e0ee704ff39b6e523b3bcddd5c9a9
 s
 C.idea/libraries/org_ops4j_pax_logging_pax_logging_log4j2_1_10_1.xml,3\5\35ed497458fa2a4d88caa2cec2d39a8613e877af
+>
+src/log4j2.xml,1\c\1cf906b37b429e2cd3ffc010578e1569ae4d847f
+n
+>src/com/epam/task4/commandhandler/ToXMLPageCommandHandler.java,7\2\72405d8de8d6b348d5a40768596798083fa6bfcd
+?
+web/jsp/xml.jsp,3\2\3218ccdbcde5b7ea56d2688a7ca1e95bd99ca5e6
