@@ -21,7 +21,7 @@
         <input type="hidden" name="commandType" value="LOG_OUT_COMMAND"/>
         <input type="submit" name="log_out_button" value="Log out" class="nice-button">
     </form>
-    <form action="/XMLServlet" method="get" align="left">
+    <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="TO_XML_PAGE_COMMAND"/>
         <input type="submit" name="to_xml_page_button" value="XML" class="nice-button"/>
     </form>

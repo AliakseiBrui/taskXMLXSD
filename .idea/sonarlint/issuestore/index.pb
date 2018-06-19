@@ -113,3 +113,5 @@ n
 >src/com/epam/task4/commandhandler/ToXMLPageCommandHandler.java,7\2\72405d8de8d6b348d5a40768596798083fa6bfcd
 ?
 web/jsp/xml.jsp,3\2\3218ccdbcde5b7ea56d2688a7ca1e95bd99ca5e6
+C
+web/res/devices.xsl,5\2\52e977a6e000151d7e8a16af7083b0d9eac9c989
