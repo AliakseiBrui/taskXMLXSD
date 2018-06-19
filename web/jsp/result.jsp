@@ -15,7 +15,9 @@
 </head>
 <body>
 <div align="right">
+    <a class="login-text">
     <c:out value="Login: ${sessionScope.get('login')}"/>
+    </a>
 </div>
 <div align="center">
     <h1>

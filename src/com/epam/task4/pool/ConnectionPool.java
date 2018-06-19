@@ -5,6 +5,7 @@ import com.mysql.jdbc.Driver;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -12,17 +13,17 @@ public enum ConnectionPool {
     INSTANCE;
 
     private static final int DEFAULT_MAX_SIZE = 10;
-    private static final String DB_URL = "jdbc:mysql://localhost/xml?useSSL=false&useUnicode=true";
+    private static final String DB_URL = "jdbc:mysql://localhost/xml";
     private static final String DEFAULT_USER = "root";
     private static final String DEFAULT_PASS = "27031998";
-    private LinkedBlockingQueue<Connection> connectionQueue = new LinkedBlockingQueue<>();
+    private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
     private final ReentrantLock locker = new ReentrantLock();
 
     ConnectionPool(){
         init();
     }
 
-    public Connection takeConnection(){
+    public SafeConnection takeConnection(){
         locker.lock();
 
         try{
@@ -35,7 +36,7 @@ public enum ConnectionPool {
         return null;
     }
 
-    public void returnConnection(Connection connection){
+    public void returnConnection(SafeConnection connection){
         locker.lock();
 
         try {
@@ -54,7 +55,7 @@ public enum ConnectionPool {
             if (connection != null) {
 
                 try {
-                    connection.close();
+                    connection.closeConnection();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -68,10 +69,17 @@ public enum ConnectionPool {
 
         try {
             DriverManager.registerDriver(new Driver());
+            Properties dbProperties = new Properties();
+            dbProperties.put("user", DEFAULT_USER);
+            dbProperties.put("password", DEFAULT_PASS);
+            dbProperties.put("autoReconnect", "true");
+            dbProperties.put("characterEncoding", "UTF-8");
+            dbProperties.put("useUnicode", "true");
 
             for(int i=0;i < DEFAULT_MAX_SIZE; i++){
-                Connection connection = DriverManager.getConnection(DB_URL,DEFAULT_USER,DEFAULT_PASS);
-                connectionQueue.put(connection);
+                Connection connection = DriverManager.getConnection(DB_URL,dbProperties);
+                SafeConnection safeConnection = new SafeConnection(connection);
+                connectionQueue.put(safeConnection);
             }
         } catch (SQLException e) {
 

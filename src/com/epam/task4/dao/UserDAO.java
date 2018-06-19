@@ -3,6 +3,7 @@ package com.epam.task4.dao;
 import com.epam.task4.entity.User;
 import com.epam.task4.factory.UserFactory;
 import com.epam.task4.pool.ConnectionPool;
+import com.epam.task4.pool.SafeConnection;
 
 
 import java.sql.*;
@@ -24,9 +25,10 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
     @Override
     public List<User> findAll() throws DAOException {
         List<User> userList = new ArrayList<>();
-        Connection connection = ConnectionPool.INSTANCE.takeConnection();
 
-        try(Statement statement = Objects.requireNonNull(connection).createStatement();
+
+        try(SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
+            Statement statement = Objects.requireNonNull(connection).createStatement();
             ResultSet resultSet = statement.executeQuery(SELECT_ALL_FROM_USER)){
 
             if(resultSet!=null){
@@ -38,18 +40,17 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             }
         } catch (SQLException e) {
             throw new DAOException(e);
-        } finally {
-            returnConnection(connection);
         }
         return userList;
     }
 
     @Override
     public User findEntityById(Integer id) throws DAOException{
-        Connection connection = ConnectionPool.INSTANCE.takeConnection();
+
         ResultSet resultSet = null;
 
-        try (PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(SELECT_USER_BY_ID)){
+        try (SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
+             PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(SELECT_USER_BY_ID)){
 
             if (preparedStatement != null) {
                 preparedStatement.setInt(1,id);
@@ -63,16 +64,15 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             throw new DAOException(e);
         } finally {
             close(resultSet);
-            returnConnection(connection);
         }
         return null;
     }
 
     @Override
     public boolean delete(Integer id) throws DAOException{
-        Connection connection = ConnectionPool.INSTANCE.takeConnection();
 
-        try(PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(DELETE_USER_BY_ID);){
+        try(SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
+            PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(DELETE_USER_BY_ID);){
 
             if (preparedStatement != null) {
                 preparedStatement.setInt(1,id);
@@ -81,8 +81,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             }
         } catch (SQLException e) {
             throw new DAOException(e);
-        } finally {
-            returnConnection(connection);
         }
         return false;
     }
@@ -94,9 +92,9 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
 
     @Override
     public boolean create(User entity) throws DAOException{
-        Connection connection = ConnectionPool.INSTANCE.takeConnection();
 
-        try (PreparedStatement preparedStatement=Objects.requireNonNull(connection).prepareStatement(INSERT_USER);){
+        try (SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
+             PreparedStatement preparedStatement=Objects.requireNonNull(connection).prepareStatement(INSERT_USER);){
 
             if(preparedStatement!=null){
                 preparedStatement.setString(1,entity.getLogin());
@@ -105,17 +103,15 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             }
         } catch (SQLException e) {
             throw new DAOException(e);
-        }finally {
-            returnConnection(connection);
         }
         return false;
     }
 
     @Override
     public boolean update(User entity) throws DAOException{
-        Connection connection = ConnectionPool.INSTANCE.takeConnection();
 
-        try(PreparedStatement preparedStatement=Objects.requireNonNull(connection).prepareStatement(UPDATE_USER);){
+        try(SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
+            PreparedStatement preparedStatement=Objects.requireNonNull(connection).prepareStatement(UPDATE_USER);){
 
             if(preparedStatement != null){
                 preparedStatement.setInt(3,entity.getId());
@@ -126,19 +122,16 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             }
         } catch (SQLException e) {
             throw new DAOException(e);
-        } finally {
-            returnConnection(connection);
         }
-
         return false;
     }
 
     @Override
     public User findUserByLogin(String login) throws DAOException{
-        Connection connection = ConnectionPool.INSTANCE.takeConnection();
         ResultSet resultSet = null;
 
-        try(PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(SELECT_USER_BY_LOGIN);){
+        try(SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
+            PreparedStatement preparedStatement = Objects.requireNonNull(connection).prepareStatement(SELECT_USER_BY_LOGIN);){
 
             if(preparedStatement!=null){
                 preparedStatement.setString(1,login);
@@ -152,7 +145,6 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<I
             throw new DAOException(e);
         } finally {
             close(resultSet);
-            returnConnection(connection);
         }
         return null;
     }

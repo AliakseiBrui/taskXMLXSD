@@ -14,7 +14,9 @@
 </head>
 <body>
 <div align="right">
+    <a class="login-text">
     <c:out value="Login: ${sessionScope.get('login')}"/>
+    </a>
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="LOG_OUT_COMMAND"/>
         <input type="submit" name="log_out_button" value="Log out" class="nice-button">
@@ -23,7 +25,7 @@
 <div align="center">
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="PARSE_COMMAND"/>
-        <label for="parser type" class="index-text">Select XML parser</label>
+        <label for="parser type" class="index-text">Select XML parser: </label>
         <select id="parser type" name="parserType" class="parser-selector">
             <option>DOM</option>
             <option>SAX</option>

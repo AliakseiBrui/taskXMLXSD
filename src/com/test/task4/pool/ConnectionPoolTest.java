@@ -1,15 +1,14 @@
 package com.test.task4.pool;
 
 import com.epam.task4.pool.ConnectionPool;
+import com.epam.task4.pool.SafeConnection;
 import org.testng.annotations.Test;
-
-import java.sql.Connection;
 
 public class ConnectionPoolTest {
 
     @Test
     public void testConnectionPoolWork(){
-        Connection connection = ConnectionPool.INSTANCE.takeConnection();
+        SafeConnection connection = ConnectionPool.INSTANCE.takeConnection();
         System.out.println(connection);
         ConnectionPool.INSTANCE.returnConnection(connection);
         ConnectionPool.INSTANCE.closeAll();
