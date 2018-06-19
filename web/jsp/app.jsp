@@ -14,12 +14,16 @@
 </head>
 <body>
 <div align="right">
-    <a class="login-text">
+    <p class="login-text">
     <c:out value="Login: ${sessionScope.get('login')}"/>
-    </a>
+    </p>
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="LOG_OUT_COMMAND"/>
         <input type="submit" name="log_out_button" value="Log out" class="nice-button">
+    </form>
+    <form action="/XMLServlet" method="get" align="left">
+        <input type="hidden" name="commandType" value="TO_XML_PAGE_COMMAND"/>
+        <input type="submit" name="to_xml_page_button" value="XML" class="nice-button"/>
     </form>
 </div>
 <div align="center">
