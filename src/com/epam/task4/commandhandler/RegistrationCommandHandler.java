@@ -43,7 +43,7 @@ public class RegistrationCommandHandler implements CommandHandler {
                     .encryptPassword(password));
             return userDAO.create(user);
         }catch (DAOException e){
-            errorMessage.append(e.getMessage());
+            errorMessage.append("Error code: ").append(e.getErrorCode()).append(". ").append(e.getMessage());
         }
         return false;
     }

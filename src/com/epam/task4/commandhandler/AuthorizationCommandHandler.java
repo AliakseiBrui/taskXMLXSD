@@ -45,7 +45,7 @@ public class AuthorizationCommandHandler implements CommandHandler {
             }
             errorMessage.append("Wrong login or password");
         } catch (DAOException e) {
-            errorMessage.append(e.getMessage());
+            errorMessage.append("Error code: ").append(e.getErrorCode()).append(". ").append(e.getMessage());
         }
         return false;
     }
