@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO<Integer, User> {
+public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
     private static final Logger LOGGER = LogManager.getLogger(UserDAO.class);
     private static final String ID_COLUMN = "id";
     private static final String LOGIN_COLUMN = "login";

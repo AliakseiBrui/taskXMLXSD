@@ -1,8 +1,8 @@
 package com.epam.task4.dao;
 
-import com.epam.task4.entity.Entity;
+import com.epam.task4.entity.User;
 
-public interface UserTableDAO<K,T extends Entity> {
+public interface UserTableDAO {
 
-    T findUserByLogin(String login) throws DAOException;
+    User findUserByLogin(String login) throws DAOException;
 }
