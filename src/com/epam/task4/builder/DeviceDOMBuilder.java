@@ -28,6 +28,7 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
         try{
             documentBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
+            LOGGER.error("Exception while creating document builder for DOM.",e);
             throw new RuntimeException(e);
         }
     }
