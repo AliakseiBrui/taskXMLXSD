@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.locks.ReentrantLock;
 
 public enum ConnectionPool {
     INSTANCE;
@@ -19,31 +18,24 @@ public enum ConnectionPool {
     private static final String DEFAULT_USER = "root";
     private static final String DEFAULT_PASS = "27031998";
     private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
-    private final ReentrantLock locker = new ReentrantLock();
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
     public SafeConnection takeConnection(){
-        locker.lock();
 
         try{
             return connectionQueue.take();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-        } finally {
-            locker.unlock();
         }
         return null;
     }
 
     public void returnConnection(SafeConnection connection){
-        locker.lock();
 
         try {
             connectionQueue.put(connection);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-        } finally {
-            locker.unlock();
         }
     }
 
@@ -56,6 +48,7 @@ public enum ConnectionPool {
                 try {
                     connection.closeConnection();
                 } catch (SQLException e) {
+                    LOGGER.error("Exception while closing connection.",e);
                     throw new RuntimeException(e);
                 }
             }
@@ -65,7 +58,7 @@ public enum ConnectionPool {
     }
 
     public void init(){
-        LOGGER.debug("Initiating connection pool.");
+        LOGGER.debug("Initializing connection pool.");
 
         try {
             DriverManager.registerDriver(new Driver());
