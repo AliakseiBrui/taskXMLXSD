@@ -23,7 +23,7 @@
     <h1>
         <c:out value="${parserType}"/>
     </h1>
-    <table border="2px" width="100% ">
+    <table width="100% ">
         <caption align="center" class="parser-selector">
             PC Component Table
         </caption>
@@ -57,7 +57,7 @@
         </tbody>
     </table>
     <br/>
-    <table border="2px" width="100% ">
+    <table width="100% ">
         <caption align="center" class="parser-selector">
             Phone Table
         </caption>

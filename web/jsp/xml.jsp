@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -23,7 +24,7 @@
     </form>
 </div>
 <div align="center" style="height: 100%; align-content: center">
-    <embed src="${pageContext.request.contextPath}/res/someDevices.xml" width="100%" style="height: 100%; text-align: center"/>
+    <embed src="${pageContext.request.contextPath}/res/someDevices.xml" width="100%" style="height: 100%;"/>
 </div>
 </body>
 </html>

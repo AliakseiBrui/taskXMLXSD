@@ -14,16 +14,13 @@ import java.util.concurrent.locks.ReentrantLock;
 public enum ConnectionPool {
     INSTANCE;
 
-    private static final int DEFAULT_MAX_SIZE = 10;
+    private static final int DEFAULT_POOL_SIZE = 10;
     private static final String DB_URL = "jdbc:mysql://localhost/xml";
     private static final String DEFAULT_USER = "root";
     private static final String DEFAULT_PASS = "27031998";
     private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
     private final ReentrantLock locker = new ReentrantLock();
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
-
-    ConnectionPool(){
-    }
 
     public SafeConnection takeConnection(){
         locker.lock();
@@ -79,16 +76,16 @@ public enum ConnectionPool {
             dbProperties.put("characterEncoding", "UTF-8");
             dbProperties.put("useUnicode", "true");
 
-            for(int i=0;i < DEFAULT_MAX_SIZE; i++){
+            for(int i = 0; i < DEFAULT_POOL_SIZE; i++){
                 Connection connection = DriverManager.getConnection(DB_URL,dbProperties);
                 SafeConnection safeConnection = new SafeConnection(connection);
                 connectionQueue.put(safeConnection);
             }
         } catch (SQLException e) {
-            LOGGER.error("Exception while creating connections for connection pool.");
+            LOGGER.error("Exception while creating connections for connection pool.",e);
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
-
+            LOGGER.error("Interrupted while creating connections for connection pool.",e);
             Thread.currentThread().interrupt();
         }
     }
