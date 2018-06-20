@@ -20,6 +20,7 @@ public class ServletContextListenerImpl implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         ConnectionPool.INSTANCE.closeAll();
+
         try {
             Enumeration<Driver> driverEnumeration = DriverManager.getDrivers();
 
