@@ -58,9 +58,7 @@ public enum ConnectionPool {
             dbProperties.put("useUnicode", "true");
 
             for(int i = 0; i < DEFAULT_POOL_SIZE; i++){
-                Connection connection = DriverManager.getConnection(DB_URL,dbProperties);
-                SafeConnection safeConnection = new SafeConnection(connection);
-                connectionQueue.put(safeConnection);
+                connectionQueue.put(createConnection(dbProperties));
             }
         } catch (SQLException e) {
             LOGGER.error("Exception while creating connections for connection pool.",e);
@@ -69,5 +67,10 @@ public enum ConnectionPool {
             LOGGER.error("Interrupted while creating connections for connection pool.",e);
             Thread.currentThread().interrupt();
         }
+    }
+
+    private SafeConnection createConnection(Properties dbProperties) throws SQLException {
+
+        return new SafeConnection(DriverManager.getConnection(DB_URL,dbProperties));
     }
 }
