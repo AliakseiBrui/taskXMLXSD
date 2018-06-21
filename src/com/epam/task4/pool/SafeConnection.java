@@ -1,5 +1,8 @@
 package com.epam.task4.pool;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
@@ -7,13 +10,15 @@ import java.util.concurrent.Executor;
 
 public class SafeConnection implements Connection {
     private Connection connection;
+    private static final Logger LOGGER = LogManager.getLogger(SafeConnection.class);
 
     SafeConnection(Connection connection){
         this.connection = connection;
     }
 
     void closeConnection(){
-        
+        LOGGER.debug("Closing connection " + toString() + ".");
+
         try {
             connection.close();
         } catch (SQLException e) {

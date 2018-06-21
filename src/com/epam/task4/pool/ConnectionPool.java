@@ -1,10 +1,8 @@
 package com.epam.task4.pool;
 
-import com.mysql.jdbc.Driver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -19,6 +17,7 @@ public enum ConnectionPool {
     private static final String DEFAULT_PASS = "27031998";
     private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
+    private SQLDriverManager sqlDriverManager = new SQLDriverManager();
 
     public SafeConnection takeConnection(){
 
@@ -39,38 +38,41 @@ public enum ConnectionPool {
         }
     }
 
-    public void closeAll(){
+    void closeAll(){
 
         connectionQueue.forEach(SafeConnection::closeConnection);
         connectionQueue.clear();
+        sqlDriverManager.deregisterDrivers();
     }
 
-    public void init(){
+    void init(){
         LOGGER.debug("Initializing connection pool.");
+        sqlDriverManager.registerDriver();
+        Properties dbProperties = new Properties();
+        dbProperties.put("user", DEFAULT_USER);
+        dbProperties.put("password", DEFAULT_PASS);
+        dbProperties.put("autoReconnect", "true");
+        dbProperties.put("characterEncoding", "UTF-8");
+        dbProperties.put("useUnicode", "true");
 
         try {
-            DriverManager.registerDriver(new Driver());
-            Properties dbProperties = new Properties();
-            dbProperties.put("user", DEFAULT_USER);
-            dbProperties.put("password", DEFAULT_PASS);
-            dbProperties.put("autoReconnect", "true");
-            dbProperties.put("characterEncoding", "UTF-8");
-            dbProperties.put("useUnicode", "true");
 
             for(int i = 0; i < DEFAULT_POOL_SIZE; i++){
                 connectionQueue.put(createConnection(dbProperties));
             }
-        } catch (SQLException e) {
-            LOGGER.error("Exception while creating connections for connection pool.",e);
-            throw new RuntimeException(e);
         } catch (InterruptedException e) {
             LOGGER.error("Interrupted while creating connections for connection pool.",e);
             Thread.currentThread().interrupt();
         }
     }
 
-    private SafeConnection createConnection(Properties dbProperties) throws SQLException {
+    private SafeConnection createConnection(Properties dbProperties){
 
-        return new SafeConnection(DriverManager.getConnection(DB_URL,dbProperties));
+        try {
+            return new SafeConnection(DriverManager.getConnection(DB_URL,dbProperties));
+        } catch (SQLException e) {
+            LOGGER.error("Exception while creating connection.",e);
+            throw new RuntimeException(e);
+        }
     }
 }
