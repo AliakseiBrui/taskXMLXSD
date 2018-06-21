@@ -12,8 +12,13 @@ public class SafeConnection implements Connection {
         this.connection = connection;
     }
 
-    void closeConnection() throws SQLException{
-        connection.close();
+    void closeConnection(){
+        
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

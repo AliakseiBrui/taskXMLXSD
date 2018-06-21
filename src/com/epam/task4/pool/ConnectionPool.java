@@ -41,19 +41,7 @@ public enum ConnectionPool {
 
     public void closeAll(){
 
-        connectionQueue.forEach(connection -> {
-
-            if (connection != null) {
-
-                try {
-                    connection.closeConnection();
-                } catch (SQLException e) {
-                    LOGGER.error("Exception while closing connection.",e);
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
+        connectionQueue.forEach(SafeConnection::closeConnection);
         connectionQueue.clear();
     }
 

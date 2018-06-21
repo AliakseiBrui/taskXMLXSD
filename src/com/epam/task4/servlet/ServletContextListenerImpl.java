@@ -8,7 +8,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Enumeration;
 
 @WebListener
 public class ServletContextListenerImpl implements ServletContextListener {
@@ -20,13 +19,13 @@ public class ServletContextListenerImpl implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         ConnectionPool.INSTANCE.closeAll();
+        DriverManager.drivers().forEach((this::deregisterDriver));
+    }
+
+    private void deregisterDriver(Driver driver){
 
         try {
-            Enumeration<Driver> driverEnumeration = DriverManager.getDrivers();
-
-            while(driverEnumeration.hasMoreElements()) {
-                DriverManager.deregisterDriver(driverEnumeration.nextElement());
-            }
+            DriverManager.deregisterDriver(driver);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

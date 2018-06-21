@@ -115,3 +115,7 @@ n
 web/jsp/xml.jsp,3\2\3218ccdbcde5b7ea56d2688a7ca1e95bd99ca5e6
 C
 web/res/devices.xsl,5\2\52e977a6e000151d7e8a16af7083b0d9eac9c989
+P
+ web/WEB-INF/META-INF/MANIFEST.MF,9\4\944784108cbf635e648ec195ab45cb87551dca9e
+j
+:src/com/epam/task4/servlet/ServletContextListenerImpl.java,e\9\e93db72d2f62474b1dce05953fbf11a0c6cb5dac
