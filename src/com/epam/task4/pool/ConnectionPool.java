@@ -15,9 +15,13 @@ public enum ConnectionPool {
     private static final String DB_URL = "jdbc:mysql://localhost/xml";
     private static final String DEFAULT_USER = "root";
     private static final String DEFAULT_PASS = "27031998";
+    private static final String AUTO_RECONNECT = "true";
+    private static final String CHARACTER_ENCODING = "UTF-8";
+    private static final String USE_UNICODE = "true";
     private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private SQLDriverManager sqlDriverManager = new SQLDriverManager();
+    private boolean canInitialize = true;
 
     public SafeConnection takeConnection(){
 
@@ -38,33 +42,45 @@ public enum ConnectionPool {
         }
     }
 
-    void closeAll(){
+    public void init(){
 
-        connectionQueue.forEach(SafeConnection::closeConnection);
-        connectionQueue.clear();
+        if(canInitialize) {
+            LOGGER.debug("Initializing connection pool.");
+            sqlDriverManager.registerDriver();
+            Properties dbProperties = new Properties();
+            dbProperties.put("user", DEFAULT_USER);
+            dbProperties.put("password", DEFAULT_PASS);
+            dbProperties.put("autoReconnect", AUTO_RECONNECT);
+            dbProperties.put("characterEncoding", CHARACTER_ENCODING);
+            dbProperties.put("useUnicode", USE_UNICODE);
+
+            try {
+
+                for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
+                    connectionQueue.put(createConnection(dbProperties));
+                }
+            } catch (InterruptedException e) {
+                LOGGER.error("Interrupted while creating connections for connection pool.", e);
+                Thread.currentThread().interrupt();
+            }
+            canInitialize = false;
+        }
+    }
+
+    public void closeAll(){
+
+        while(!connectionQueue.isEmpty()){
+
+            try {
+                connectionQueue.take().closeConnection();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
         sqlDriverManager.deregisterDrivers();
     }
 
-    void init(){
-        LOGGER.debug("Initializing connection pool.");
-        sqlDriverManager.registerDriver();
-        Properties dbProperties = new Properties();
-        dbProperties.put("user", DEFAULT_USER);
-        dbProperties.put("password", DEFAULT_PASS);
-        dbProperties.put("autoReconnect", "true");
-        dbProperties.put("characterEncoding", "UTF-8");
-        dbProperties.put("useUnicode", "true");
 
-        try {
-
-            for(int i = 0; i < DEFAULT_POOL_SIZE; i++){
-                connectionQueue.put(createConnection(dbProperties));
-            }
-        } catch (InterruptedException e) {
-            LOGGER.error("Interrupted while creating connections for connection pool.",e);
-            Thread.currentThread().interrupt();
-        }
-    }
 
     private SafeConnection createConnection(Properties dbProperties){
 

@@ -22,8 +22,13 @@ public class SafeConnection implements Connection {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error("Cannot close connection.",e);
         }
+    }
+
+    @Override
+    public void close() throws SQLException {
+        ConnectionPool.INSTANCE.returnConnection(this);
     }
 
     @Override
@@ -64,11 +69,6 @@ public class SafeConnection implements Connection {
     @Override
     public void rollback() throws SQLException {
         connection.rollback();
-    }
-
-    @Override
-    public void close() throws SQLException {
-        ConnectionPool.INSTANCE.returnConnection(this);
     }
 
     @Override

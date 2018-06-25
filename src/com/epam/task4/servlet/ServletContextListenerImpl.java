@@ -1,4 +1,6 @@
-package com.epam.task4.pool;
+package com.epam.task4.servlet;
+
+import com.epam.task4.pool.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

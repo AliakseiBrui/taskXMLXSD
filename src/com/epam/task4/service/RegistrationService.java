@@ -1,36 +1,38 @@
-package com.epam.task4.commandhandler;
+package com.epam.task4.service;
 
-import com.epam.task4.constant.JSP;
+import com.epam.task4.constant.PagePath;
 import com.epam.task4.dao.DAOException;
 import com.epam.task4.dao.UserDAO;
 import com.epam.task4.encoder.PasswordEncoder;
+import com.epam.task4.entity.AnswerType;
 import com.epam.task4.entity.User;
+import com.epam.task4.factory.AnswerFactory;
 import com.epam.task4.factory.UserFactory;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
-public class RegistrationCommandHandler implements CommandHandler {
+public class RegistrationService implements CommandService {
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
+    public void process(HashMap<String, String> parameterMap, HashMap<String, Object> attributeMap)
             throws ServletException, IOException {
 
-        String registerLogin = request.getParameter("login");
-        String registerPassword = request.getParameter("password");
+        String registerLogin = parameterMap.get("login");
+        String registerPassword = parameterMap.get("password");
         StringBuilder errorMessage = new StringBuilder();
 
         if(register(registerLogin,registerPassword,errorMessage)){
 
-            request.setAttribute("message","Registration succeeded");
-            request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
+            attributeMap.put("message","Registration succeeded");
+            attributeMap.put(ANSWER_ATTRIBUTE,AnswerFactory
+                    .createAnswer(AnswerType.FORWARD,PagePath.AUTHORIZATION_PAGE));
         }else{
 
-            request.setAttribute("errorMessage",errorMessage);
-            request.getRequestDispatcher(JSP.REGISTRATION_PAGE).forward(request,response);
+            attributeMap.put("errorMessage",errorMessage);
+            attributeMap.put(ANSWER_ATTRIBUTE,AnswerFactory
+                    .createAnswer(AnswerType.FORWARD,PagePath.REGISTRATION_PAGE));
         }
     }
 

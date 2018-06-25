@@ -28,7 +28,7 @@ class SQLDriverManager {
     }
 
     private void deregisterDriver(java.sql.Driver driver){
-        LOGGER.debug("Deregistering drivers.");
+        LOGGER.debug("Deregistering driver.");
 
         try {
             DriverManager.deregisterDriver(driver);

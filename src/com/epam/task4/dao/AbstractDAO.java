@@ -17,19 +17,4 @@ public abstract class AbstractDAO<K,T extends Entity> {
     public abstract boolean update(T entity) throws DAOException;
     private static final Logger LOGGER = LogManager.getLogger(AbstractDAO.class);
 
-
-    void close(ResultSet resultSet) throws DAOException {
-        LOGGER.debug("Closing result set.");
-
-        if(resultSet!=null){
-
-            try{
-                resultSet.close();
-            } catch (SQLException e) {
-                throw new DAOException("Cannot close resultSet",e);
-            }
-        }
-    }
-
-
 }

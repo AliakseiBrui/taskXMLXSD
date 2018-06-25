@@ -1,8 +1,7 @@
 package com.epam.task4.command;
 
-import com.epam.task4.commandhandler.CommandHandler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.task4.entity.Answer;
+import com.epam.task4.service.CommandService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,31 +9,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class XMLCommand {
-    private CommandHandler handler;
-    private static final Logger LOGGER = LogManager.getLogger(XMLCommand.class);
+public abstract class XMLCommand {
+    private CommandService service;
 
-    XMLCommand(CommandHandler handler) {
-        this.handler = handler;
+
+    XMLCommand(CommandService service) {
+        this.service = service;
     }
 
-    public XMLCommand() {
+    XMLCommand() {
     }
 
-    public CommandHandler getHandler() {
-        return handler;
+    public CommandService getService() {
+        return service;
     }
 
-    public void setHandler(CommandHandler handler) {
-        this.handler = handler;
+    public void setService(CommandService service) {
+        this.service = service;
     }
 
-    public void execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
-            throws ServletException, IOException{
-        LOGGER.debug("Executing command.");
-
-        if(handler!=null) {
-            handler.handle(request, response, servletContext);
-        }
-    }
+    public abstract Answer execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
+            throws ServletException, IOException;
 }

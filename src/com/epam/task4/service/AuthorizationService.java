@@ -1,34 +1,35 @@
-package com.epam.task4.commandhandler;
+package com.epam.task4.service;
 
-import com.epam.task4.constant.JSP;
+import com.epam.task4.constant.PagePath;
 import com.epam.task4.dao.DAOException;
 import com.epam.task4.dao.UserDAO;
 import com.epam.task4.encoder.PasswordEncoder;
+import com.epam.task4.entity.AnswerType;
 import com.epam.task4.entity.User;
+import com.epam.task4.factory.AnswerFactory;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
-public class AuthorizationCommandHandler implements CommandHandler {
+public class AuthorizationService implements CommandService {
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
+    public void process(HashMap<String, String> parameterMap, HashMap<String, Object> attributeMap)
             throws ServletException, IOException {
 
-        String authorizationLogin = request.getParameter("login");
-        String authorizationPassword = request.getParameter("password");
+        String authorizationLogin = parameterMap.get("login");
+        String authorizationPassword = parameterMap.get("password");
         StringBuilder errorMessage = new StringBuilder();
 
         if(authorize(authorizationLogin,authorizationPassword,errorMessage)){
-
-            request.getSession().setAttribute("login",authorizationLogin);
-            response.sendRedirect(JSP.MAIN_PAGE);
+            attributeMap.put("logged in",true);
+            attributeMap.put(ANSWER_ATTRIBUTE, AnswerFactory
+                    .createAnswer(AnswerType.REDIRECT,PagePath.MAIN_PAGE));
         }else{
-
-            request.setAttribute("errorMessage",errorMessage);
-            request.getRequestDispatcher(JSP.AUTHORIZATION_PAGE).forward(request,response);
+            attributeMap.put("logged in",false);
+            attributeMap.put("errorMessage",errorMessage);
+            attributeMap.put(ANSWER_ATTRIBUTE, AnswerFactory
+                    .createAnswer(AnswerType.FORWARD,PagePath.AUTHORIZATION_PAGE));
         }
     }
 

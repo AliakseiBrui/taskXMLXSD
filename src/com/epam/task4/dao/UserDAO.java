@@ -1,5 +1,6 @@
 package com.epam.task4.dao;
 
+import com.epam.task4.constant.TableColumn;
 import com.epam.task4.entity.User;
 import com.epam.task4.factory.UserFactory;
 import com.epam.task4.pool.ConnectionPool;
@@ -15,9 +16,6 @@ import java.util.Objects;
 
 public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
     private static final Logger LOGGER = LogManager.getLogger(UserDAO.class);
-    private static final String ID_COLUMN = "id";
-    private static final String LOGIN_COLUMN = "login";
-    private static final String PASS_COLUMN = "password";
     private static final String SELECT_USER_BY_ID = "SELECT xml.users.id,xml.users.login,xml.users.password FROM xml.users WHERE xml.users.id = ?";
     private static final String SELECT_ALL_FROM_USER = "SELECT xml.users.id,xml.users.login,xml.users.password FROM xml.users";
     private static final String DELETE_USER_BY_ID = "DELETE FROM xml.users WHERE xml.users.id = ?";
@@ -39,11 +37,11 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
 
                 while (resultSet.next()){
                     userList.add(UserFactory
-                            .createUser(resultSet.getInt(ID_COLUMN),resultSet.getString(LOGIN_COLUMN),resultSet.getString(PASS_COLUMN)));
+                            .createUser(resultSet.getInt(TableColumn.ID),resultSet.getString(TableColumn.LOGIN),resultSet.getString(TableColumn.PASSWORD)));
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(e);
+            throw new DAOException("Exception while selecting all users.",e);
         }
         return userList;
     }
@@ -62,12 +60,10 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
             }
 
             if(resultSet!=null && resultSet.next()){
-                return UserFactory.createUser(resultSet.getInt(ID_COLUMN),resultSet.getString(LOGIN_COLUMN),resultSet.getString(PASS_COLUMN));
+                return UserFactory.createUser(resultSet.getInt(TableColumn.ID),resultSet.getString(TableColumn.LOGIN),resultSet.getString(TableColumn.PASSWORD));
             }
         } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            close(resultSet);
+            throw new DAOException("Exception while selecting user by id",e);
         }
         return null;
     }
@@ -85,7 +81,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
                 return preparedStatement.executeUpdate()>0;
             }
         } catch (SQLException e) {
-            throw new DAOException(e);
+            throw new DAOException("Exception while deleting user.",e);
         }
         return false;
     }
@@ -108,7 +104,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
                 return preparedStatement.executeUpdate()>0;
             }
         } catch (SQLException e) {
-            throw new DAOException(e);
+            throw new DAOException("Exception while inserting user.",e);
         }
         return false;
     }
@@ -128,7 +124,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
                 return preparedStatement.executeUpdate()>0;
             }
         } catch (SQLException e) {
-            throw new DAOException(e);
+            throw new DAOException("Exception while updating user",e);
         }
         return false;
     }
@@ -147,12 +143,10 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
             }
 
             if(resultSet!=null && resultSet.next()){
-                return UserFactory.createUser(resultSet.getInt(ID_COLUMN),resultSet.getString(LOGIN_COLUMN),resultSet.getString(PASS_COLUMN));
+                return UserFactory.createUser(resultSet.getInt(TableColumn.ID),resultSet.getString(TableColumn.LOGIN),resultSet.getString(TableColumn.PASSWORD));
             }
         } catch (SQLException e) {
-            throw new DAOException(e);
-        } finally {
-            close(resultSet);
+            throw new DAOException("Exception while selecting user by login",e);
         }
         return null;
     }
