@@ -1,6 +1,7 @@
 package com.epam.task4.servlet;
 
 import com.epam.task4.command.XMLCommandType;
+import com.epam.task4.constant.ParameterConstant;
 import com.epam.task4.entity.Answer;
 
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class XMLServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        String commandName = request.getParameter("commandType");
+        String commandName = request.getParameter(ParameterConstant.PARSER_TYPE_PARAMETER);
         Answer answer = XMLCommandType.valueOf(commandName).getCommand().
                 execute(request,response,getServletContext());
 
