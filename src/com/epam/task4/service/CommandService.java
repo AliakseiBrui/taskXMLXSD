@@ -2,10 +2,10 @@ package com.epam.task4.service;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 
 public interface CommandService {
-    static final String ANSWER_ATTRIBUTE = "answer";
-    void process(HashMap<String, String> parameterMap, HashMap<String, Object> attributeMap)
+
+    void process(Map<String, String> parameterMap, Map<String, Object> attributeMap)
             throws ServletException, IOException;
 }

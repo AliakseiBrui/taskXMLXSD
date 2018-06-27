@@ -1,5 +1,7 @@
 package com.epam.task4.command;
 
+import com.epam.task4.constant.AttributeConstant;
+import com.epam.task4.constant.ParameterConstant;
 import com.epam.task4.entity.Answer;
 import com.epam.task4.service.CommandService;
 
@@ -11,26 +13,25 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class AuthorizationCommand extends XMLCommand {
-    private static final String LOGIN_PARAMETER = "login";
-    private static final String PASSWORD_PARAMETER = "password";
 
     public AuthorizationCommand(CommandService service) {
         super(service);
     }
 
     @Override
-    public Answer execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException {
+    public Answer execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
+            throws ServletException, IOException {
         HashMap<String, String> parameterMap = new HashMap<>();
         HashMap<String, Object> attributeMap = new HashMap<>();
-        parameterMap.put(LOGIN_PARAMETER, request.getParameter(LOGIN_PARAMETER));
-        parameterMap.put(PASSWORD_PARAMETER,request.getParameter(PASSWORD_PARAMETER));
+        parameterMap.put(ParameterConstant.LOGIN_PARAMETER, request.getParameter(ParameterConstant.LOGIN_PARAMETER));
+        parameterMap.put(ParameterConstant.PASSWORD_PARAMETER,request.getParameter(ParameterConstant.PASSWORD_PARAMETER));
 
         getService().process(parameterMap,attributeMap);
 
-        if((boolean) attributeMap.get("logged in")){
-            request.getSession().setAttribute(LOGIN_PARAMETER,parameterMap.get(LOGIN_PARAMETER));
+        if((boolean) attributeMap.get(AttributeConstant.LOGGED_IN_ATTRIBUTE)){
+            request.getSession().setAttribute(AttributeConstant.LOGIN_ATTRIBUTE,parameterMap.get(ParameterConstant.LOGIN_PARAMETER));
         }
-        request.setAttribute("errorMessage",attributeMap.get("errorMessage"));
-        return (Answer) attributeMap.get(CommandService.ANSWER_ATTRIBUTE);
+        request.setAttribute(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE,attributeMap.get(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE));
+        return (Answer) attributeMap.get(AttributeConstant.ANSWER_ATTRIBUTE);
     }
 }

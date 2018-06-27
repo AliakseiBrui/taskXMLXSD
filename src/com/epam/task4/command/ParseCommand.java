@@ -1,5 +1,7 @@
 package com.epam.task4.command;
 
+import com.epam.task4.constant.AttributeConstant;
+import com.epam.task4.constant.ParameterConstant;
 import com.epam.task4.entity.Answer;
 import com.epam.task4.service.CommandService;
 
@@ -18,17 +20,18 @@ public class ParseCommand extends XMLCommand {
     }
 
     @Override
-    public Answer execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext) throws ServletException, IOException {
+    public Answer execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
+            throws ServletException, IOException {
         HashMap<String, String> parameterMap = new HashMap<>();
         HashMap<String, Object> attributeMap = new HashMap<>();
-        parameterMap.put("parserType", request.getParameter("parserType"));
-        parameterMap.put("pathToXML", servletContext.getRealPath("/res/"+XML_FILE_PATH));
+        parameterMap.put(ParameterConstant.PARSER_TYPE_PARAMETER, request.getParameter(ParameterConstant.PARSER_TYPE_PARAMETER));
+        parameterMap.put(ParameterConstant.PATH_TO_XML_PARAMETER, servletContext.getRealPath("/res/"+XML_FILE_PATH));
 
         getService().process(parameterMap,attributeMap);
 
-        request.setAttribute("pcComponentSet", attributeMap.get("pcComponentSet"));
-        request.setAttribute("phoneSet", attributeMap.get("phoneSet"));
-        request.setAttribute("parserType", attributeMap.get("parserType"));
-        return (Answer) attributeMap.get(CommandService.ANSWER_ATTRIBUTE);
+        request.setAttribute(AttributeConstant.PC_COMPONENT_SET_ATTRIBUTE, attributeMap.get(AttributeConstant.PC_COMPONENT_SET_ATTRIBUTE));
+        request.setAttribute(AttributeConstant.PHONE_SET_ATTRIBUTE, attributeMap.get(AttributeConstant.PHONE_SET_ATTRIBUTE));
+        request.setAttribute(AttributeConstant.PARSER_TYPE_ATTRIBUTE, attributeMap.get(AttributeConstant.PARSER_TYPE_ATTRIBUTE));
+        return (Answer) attributeMap.get(AttributeConstant.ANSWER_ATTRIBUTE);
     }
 }

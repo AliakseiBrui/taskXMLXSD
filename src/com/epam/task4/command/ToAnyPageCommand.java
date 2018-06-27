@@ -1,5 +1,6 @@
 package com.epam.task4.command;
 
+import com.epam.task4.constant.AttributeConstant;
 import com.epam.task4.entity.Answer;
 import com.epam.task4.service.CommandService;
 
@@ -22,6 +23,6 @@ public class ToAnyPageCommand extends XMLCommand {
 
         getService().process(null,attributeMap);
 
-        return (Answer) attributeMap.get(CommandService.ANSWER_ATTRIBUTE);
+        return (Answer) attributeMap.get(AttributeConstant.ANSWER_ATTRIBUTE);
     }
 }

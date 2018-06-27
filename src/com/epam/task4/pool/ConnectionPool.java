@@ -69,7 +69,7 @@ public enum ConnectionPool {
 
     public void closeAll(){
 
-        while(!connectionQueue.isEmpty()){
+       for(int i=0; i<DEFAULT_POOL_SIZE; i++){
 
             try {
                 connectionQueue.take().closeConnection();

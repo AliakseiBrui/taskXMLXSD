@@ -1,6 +1,8 @@
 package com.epam.task4.service;
 
+import com.epam.task4.constant.AttributeConstant;
 import com.epam.task4.constant.PagePath;
+import com.epam.task4.constant.ParameterConstant;
 import com.epam.task4.dao.DAOException;
 import com.epam.task4.dao.UserDAO;
 import com.epam.task4.encoder.PasswordEncoder;
@@ -10,25 +12,25 @@ import com.epam.task4.factory.AnswerFactory;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 
 public class AuthorizationService implements CommandService {
     @Override
-    public void process(HashMap<String, String> parameterMap, HashMap<String, Object> attributeMap)
+    public void process(Map<String, String> parameterMap, Map<String, Object> attributeMap)
             throws ServletException, IOException {
 
-        String authorizationLogin = parameterMap.get("login");
-        String authorizationPassword = parameterMap.get("password");
+        String authorizationLogin = parameterMap.get(ParameterConstant.LOGIN_PARAMETER);
+        String authorizationPassword = parameterMap.get(ParameterConstant.PASSWORD_PARAMETER);
         StringBuilder errorMessage = new StringBuilder();
 
         if(authorize(authorizationLogin,authorizationPassword,errorMessage)){
-            attributeMap.put("logged in",true);
-            attributeMap.put(ANSWER_ATTRIBUTE, AnswerFactory
+            attributeMap.put(AttributeConstant.LOGGED_IN_ATTRIBUTE,true);
+            attributeMap.put(AttributeConstant.ANSWER_ATTRIBUTE, AnswerFactory
                     .createAnswer(AnswerType.REDIRECT,PagePath.MAIN_PAGE));
         }else{
-            attributeMap.put("logged in",false);
-            attributeMap.put("errorMessage",errorMessage);
-            attributeMap.put(ANSWER_ATTRIBUTE, AnswerFactory
+            attributeMap.put(AttributeConstant.LOGGED_IN_ATTRIBUTE,false);
+            attributeMap.put(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE,errorMessage);
+            attributeMap.put(AttributeConstant.ANSWER_ATTRIBUTE, AnswerFactory
                     .createAnswer(AnswerType.FORWARD,PagePath.AUTHORIZATION_PAGE));
         }
     }
