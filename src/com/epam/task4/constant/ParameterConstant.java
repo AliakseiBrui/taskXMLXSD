@@ -5,6 +5,7 @@ public class ParameterConstant {
     public static final String PASSWORD_PARAMETER = "password";
     public static final String PARSER_TYPE_PARAMETER = "parserType";
     public static final String PATH_TO_XML_PARAMETER = "pathToXML";
+    public static final String COMMAND_TYPE_PARAMETER = "commandType";
 
     private ParameterConstant(){}
 }

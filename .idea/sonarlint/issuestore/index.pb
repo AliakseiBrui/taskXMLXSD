@@ -137,3 +137,7 @@ c
 3src/com/epam/task4/command/RegistrationCommand.java,3\a\3ab42df3ccfa5b4547f49c66962d56dfaa052fb5
 \
 ,src/com/epam/task4/constant/TableColumn.java,5\5\5542b6d91149f0b82a862cc15743aa07cb502f96
+b
+2src/com/epam/task4/constant/AttributeConstant.java,5\5\55139a5498bbcbaf2b07dc6ae142539754701eaa
+b
+2src/com/epam/task4/constant/ParameterConstant.java,e\2\e2449d988b066f1de531b7cef227798b493ad554

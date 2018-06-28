@@ -6,9 +6,9 @@ import com.epam.task4.constant.ParameterConstant;
 import com.epam.task4.dao.DAOException;
 import com.epam.task4.dao.UserDAO;
 import com.epam.task4.encoder.PasswordEncoder;
-import com.epam.task4.entity.AnswerType;
+import com.epam.task4.entity.Router;
 import com.epam.task4.entity.User;
-import com.epam.task4.factory.AnswerFactory;
+import com.epam.task4.factory.RouterFactory;
 import com.epam.task4.factory.UserFactory;
 
 import javax.servlet.ServletException;
@@ -28,13 +28,13 @@ public class RegistrationService implements CommandService {
         if(register(registerLogin,registerPassword,errorMessage)){
 
             attributeMap.put(AttributeConstant.MESSAGE_ATTRIBUTE,"Registration succeeded");
-            attributeMap.put(AttributeConstant.ANSWER_ATTRIBUTE,AnswerFactory
-                    .createAnswer(AnswerType.FORWARD,PagePath.AUTHORIZATION_PAGE));
+            attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory
+                    .createAnswer(Router.RouteType.FORWARD,PagePath.AUTHORIZATION_PAGE));
         }else{
 
             attributeMap.put(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE,errorMessage);
-            attributeMap.put(AttributeConstant.ANSWER_ATTRIBUTE,AnswerFactory
-                    .createAnswer(AnswerType.FORWARD,PagePath.REGISTRATION_PAGE));
+            attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory
+                    .createAnswer(Router.RouteType.FORWARD,PagePath.REGISTRATION_PAGE));
         }
     }
 

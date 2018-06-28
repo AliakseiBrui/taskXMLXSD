@@ -4,8 +4,8 @@ import com.epam.task4.builder.AbstractDeviceBuilder;
 import com.epam.task4.constant.AttributeConstant;
 import com.epam.task4.constant.PagePath;
 import com.epam.task4.constant.ParameterConstant;
-import com.epam.task4.entity.AnswerType;
-import com.epam.task4.factory.AnswerFactory;
+import com.epam.task4.entity.Router;
+import com.epam.task4.factory.RouterFactory;
 import com.epam.task4.factory.DeviceBuilderFactory;
 
 import javax.servlet.ServletException;
@@ -26,7 +26,7 @@ public class ParseService implements CommandService {
         attributeMap.put(AttributeConstant.PC_COMPONENT_SET_ATTRIBUTE,deviceBuilder.getPcComponentSet());
         attributeMap.put(AttributeConstant.PHONE_SET_ATTRIBUTE,deviceBuilder.getPhoneSet());
         attributeMap.put(AttributeConstant.PARSER_TYPE_ATTRIBUTE,parserType);
-        attributeMap.put(AttributeConstant.ANSWER_ATTRIBUTE,AnswerFactory
-                .createAnswer(AnswerType.FORWARD,PagePath.RESULT_PAGE));
+        attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory
+                .createAnswer(Router.RouteType.FORWARD,PagePath.RESULT_PAGE));
     }
 }

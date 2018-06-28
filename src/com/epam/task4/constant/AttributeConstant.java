@@ -1,7 +1,7 @@
 package com.epam.task4.constant;
 
 public class AttributeConstant {
-   public static final String ANSWER_ATTRIBUTE = "answer";
+   public static final String ROUTER_ATTRIBUTE = "router";
    public static final String ERROR_MESSAGE_ATTRIBUTE = "errorMessage";
    public static final String LOGGED_IN_ATTRIBUTE = "logged in";
    public static final String LOGIN_ATTRIBUTE = "login";

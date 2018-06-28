@@ -2,7 +2,7 @@ package com.epam.task4.servlet;
 
 import com.epam.task4.command.XMLCommandType;
 import com.epam.task4.constant.ParameterConstant;
-import com.epam.task4.entity.Answer;
+import com.epam.task4.entity.Router;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,16 +29,16 @@ public class XMLServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        String commandName = request.getParameter(ParameterConstant.PARSER_TYPE_PARAMETER);
-        Answer answer = XMLCommandType.valueOf(commandName).getCommand().
-                execute(request,response,getServletContext());
+        String commandName = request.getParameter(ParameterConstant.COMMAND_TYPE_PARAMETER);
+        Router router = XMLCommandType.valueOf(commandName).getCommand().
+                execute(request, getServletContext());
 
-        switch (answer.getAnswerType()){
+        switch (router.getRouteType()){
             case FORWARD:
-                request.getRequestDispatcher(answer.getAnswerPage()).forward(request,response);
+                request.getRequestDispatcher(router.getRoutePage()).forward(request,response);
                 break;
             case REDIRECT:
-                response.sendRedirect(answer.getAnswerPage());
+                response.sendRedirect(router.getRoutePage());
                 break;
             default:
         }

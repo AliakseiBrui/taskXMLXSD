@@ -2,13 +2,12 @@ package com.epam.task4.command;
 
 import com.epam.task4.constant.AttributeConstant;
 import com.epam.task4.constant.ParameterConstant;
-import com.epam.task4.entity.Answer;
+import com.epam.task4.entity.Router;
 import com.epam.task4.service.CommandService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -19,7 +18,7 @@ public class AuthorizationCommand extends XMLCommand {
     }
 
     @Override
-    public Answer execute(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
+    public Router execute(HttpServletRequest request, ServletContext servletContext)
             throws ServletException, IOException {
         HashMap<String, String> parameterMap = new HashMap<>();
         HashMap<String, Object> attributeMap = new HashMap<>();
@@ -32,6 +31,6 @@ public class AuthorizationCommand extends XMLCommand {
             request.getSession().setAttribute(AttributeConstant.LOGIN_ATTRIBUTE,parameterMap.get(ParameterConstant.LOGIN_PARAMETER));
         }
         request.setAttribute(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE,attributeMap.get(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE));
-        return (Answer) attributeMap.get(AttributeConstant.ANSWER_ATTRIBUTE);
+        return (Router) attributeMap.get(AttributeConstant.ROUTER_ATTRIBUTE);
     }
 }

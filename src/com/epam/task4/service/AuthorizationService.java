@@ -6,9 +6,9 @@ import com.epam.task4.constant.ParameterConstant;
 import com.epam.task4.dao.DAOException;
 import com.epam.task4.dao.UserDAO;
 import com.epam.task4.encoder.PasswordEncoder;
-import com.epam.task4.entity.AnswerType;
+import com.epam.task4.entity.Router;
 import com.epam.task4.entity.User;
-import com.epam.task4.factory.AnswerFactory;
+import com.epam.task4.factory.RouterFactory;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -25,13 +25,13 @@ public class AuthorizationService implements CommandService {
 
         if(authorize(authorizationLogin,authorizationPassword,errorMessage)){
             attributeMap.put(AttributeConstant.LOGGED_IN_ATTRIBUTE,true);
-            attributeMap.put(AttributeConstant.ANSWER_ATTRIBUTE, AnswerFactory
-                    .createAnswer(AnswerType.REDIRECT,PagePath.MAIN_PAGE));
+            attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE, RouterFactory
+                    .createAnswer(Router.RouteType.REDIRECT,PagePath.MAIN_PAGE));
         }else{
             attributeMap.put(AttributeConstant.LOGGED_IN_ATTRIBUTE,false);
             attributeMap.put(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE,errorMessage);
-            attributeMap.put(AttributeConstant.ANSWER_ATTRIBUTE, AnswerFactory
-                    .createAnswer(AnswerType.FORWARD,PagePath.AUTHORIZATION_PAGE));
+            attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE, RouterFactory
+                    .createAnswer(Router.RouteType.FORWARD,PagePath.AUTHORIZATION_PAGE));
         }
     }
 
