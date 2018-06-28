@@ -31,7 +31,7 @@ public class XMLServlet extends HttpServlet {
 
         String commandName = request.getParameter(ParameterConstant.COMMAND_TYPE_PARAMETER);
         Router router = XMLCommandType.valueOf(commandName).getCommand().
-                execute(request, getServletContext());
+                execute(request);
 
         switch (router.getRouteType()){
             case FORWARD:

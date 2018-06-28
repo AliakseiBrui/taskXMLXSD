@@ -3,7 +3,6 @@ package com.epam.task4.command;
 import com.epam.task4.entity.Router;
 import com.epam.task4.service.CommandService;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -27,6 +26,6 @@ public abstract class XMLCommand {
         this.service = service;
     }
 
-    public abstract Router execute(HttpServletRequest request, ServletContext servletContext)
+    public abstract Router execute(HttpServletRequest request)
             throws ServletException, IOException;
 }

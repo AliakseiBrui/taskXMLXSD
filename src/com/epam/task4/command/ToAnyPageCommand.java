@@ -4,7 +4,6 @@ import com.epam.task4.constant.AttributeConstant;
 import com.epam.task4.entity.Router;
 import com.epam.task4.service.CommandService;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class ToAnyPageCommand extends XMLCommand {
     }
 
     @Override
-    public Router execute(HttpServletRequest request, ServletContext servletContext) throws ServletException, IOException {
+    public Router execute(HttpServletRequest request) throws ServletException, IOException {
         HashMap<String, Object> attributeMap = new HashMap<>();
 
         getService().process(null,attributeMap);

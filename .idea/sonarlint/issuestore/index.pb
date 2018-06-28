@@ -109,12 +109,6 @@ d
 -src/com/epam/task4/service/LogOutService.java,1\2\12c5cd4412c462dc86a8cbbf475f8518fd4d8706
 ^
 .src/com/epam/task4/service/CommandService.java,7\5\7520f02b2986c5193a524d482f5f8396699ba75b
-U
-%src/com/epam/task4/entity/Answer.java,b\0\b08f86d108312d99660c925fbfd0b799c90d10dd
-Y
-)src/com/epam/task4/entity/AnswerType.java,2\1\210a72cb3c1f3c47dce977896e5c2c86abca9fee
-]
--src/com/epam/task4/factory/AnswerFactory.java,f\4\f44745665fd26ff49340a28c6f5ecbe7e38da9fe
 c
 3src/com/epam/task4/service/RegistrationService.java,4\5\458561ab87ec8d7312f2df819a8b208fc5e7b567
 j
@@ -141,3 +135,7 @@ b
 2src/com/epam/task4/constant/AttributeConstant.java,5\5\55139a5498bbcbaf2b07dc6ae142539754701eaa
 b
 2src/com/epam/task4/constant/ParameterConstant.java,e\2\e2449d988b066f1de531b7cef227798b493ad554
+U
+%src/com/epam/task4/entity/Router.java,6\7\6731487169a9940a772238bcf0e405979ed32b35
+]
+-src/com/epam/task4/factory/RouterFactory.java,6\c\6c223ffc656c53e1aa3ebc430e0b9b467c6a3112

@@ -5,7 +5,6 @@ import com.epam.task4.constant.ParameterConstant;
 import com.epam.task4.entity.Router;
 import com.epam.task4.service.CommandService;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class RegistrationCommand extends XMLCommand {
     }
 
     @Override
-    public Router execute(HttpServletRequest request, ServletContext servletContext) throws ServletException, IOException {
+    public Router execute(HttpServletRequest request) throws ServletException, IOException {
         HashMap<String, String> parameterMap = new HashMap<>();
         HashMap<String, Object> attributeMap = new HashMap<>();
 
