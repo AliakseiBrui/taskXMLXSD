@@ -13,10 +13,8 @@ public enum  DataBaseConfigurator {
     private static final Logger LOGGER = LogManager.getLogger(DataBaseConfigurator.class);
 
     public void configureDBProperties(String filePath){
-        InputStream inputStream;
 
-        try {
-            inputStream = new FileInputStream(new File(filePath));
+        try(FileInputStream inputStream = new FileInputStream(new File(filePath))){
             dbProperties = new Properties();
             dbProperties.load(inputStream);
         } catch (FileNotFoundException e) {
