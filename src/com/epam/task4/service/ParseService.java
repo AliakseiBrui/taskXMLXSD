@@ -27,6 +27,6 @@ public class ParseService implements CommandService {
         attributeMap.put(AttributeConstant.PHONE_SET_ATTRIBUTE,deviceBuilder.getPhoneSet());
         attributeMap.put(AttributeConstant.PARSER_TYPE_ATTRIBUTE,parserType);
         attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory
-                .createAnswer(Router.RouteType.FORWARD,PagePath.RESULT_PAGE));
+                .createRouter(Router.RouteType.FORWARD,PagePath.RESULT_PAGE));
     }
 }

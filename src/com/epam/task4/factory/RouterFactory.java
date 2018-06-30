@@ -6,7 +6,7 @@ public class RouterFactory {
 
     private RouterFactory(){}
 
-    public static Router createAnswer(Router.RouteType routeType, String answerPage){
+    public static Router createRouter(Router.RouteType routeType, String answerPage){
 
         return new Router(routeType,answerPage);
     }

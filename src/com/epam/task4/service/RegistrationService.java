@@ -32,12 +32,12 @@ public class RegistrationService implements CommandService {
 
             attributeMap.put(AttributeConstant.MESSAGE_ATTRIBUTE,"Registration succeeded");
             attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory
-                    .createAnswer(Router.RouteType.FORWARD,PagePath.AUTHORIZATION_PAGE));
+                    .createRouter(Router.RouteType.FORWARD,PagePath.AUTHORIZATION_PAGE));
         }else{
 
             attributeMap.put(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE,errorMessage);
             attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory
-                    .createAnswer(Router.RouteType.FORWARD,PagePath.REGISTRATION_PAGE));
+                    .createRouter(Router.RouteType.FORWARD,PagePath.REGISTRATION_PAGE));
         }
     }
 

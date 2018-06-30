@@ -29,12 +29,12 @@ public class AuthorizationService implements CommandService {
         if(authorize(authorizationLogin,authorizationPassword,errorMessage)){
             attributeMap.put(AttributeConstant.LOGGED_IN_ATTRIBUTE,true);
             attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE, RouterFactory
-                    .createAnswer(Router.RouteType.REDIRECT,PagePath.MAIN_PAGE));
+                    .createRouter(Router.RouteType.REDIRECT,PagePath.MAIN_PAGE));
         }else{
             attributeMap.put(AttributeConstant.LOGGED_IN_ATTRIBUTE,false);
             attributeMap.put(AttributeConstant.ERROR_MESSAGE_ATTRIBUTE,errorMessage);
             attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE, RouterFactory
-                    .createAnswer(Router.RouteType.FORWARD,PagePath.AUTHORIZATION_PAGE));
+                    .createRouter(Router.RouteType.FORWARD,PagePath.AUTHORIZATION_PAGE));
         }
     }
 

@@ -15,6 +15,6 @@ public class LogOutService implements CommandService {
             throws ServletException, IOException {
 
         attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory
-                .createAnswer(Router.RouteType.REDIRECT,PagePath.AUTHORIZATION_PAGE));
+                .createRouter(Router.RouteType.REDIRECT,PagePath.AUTHORIZATION_PAGE));
     }
 }

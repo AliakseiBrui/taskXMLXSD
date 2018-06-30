@@ -15,6 +15,6 @@ public class ToXMLPageService implements CommandService {
             throws ServletException, IOException {
 
         attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory
-                .createAnswer(Router.RouteType.REDIRECT,PagePath.XML_PAGE));
+                .createRouter(Router.RouteType.REDIRECT,PagePath.XML_PAGE));
     }
 }
