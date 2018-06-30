@@ -31,8 +31,6 @@ e
 5src/com/epam/task4/builder/AbstractDeviceBuilder.java,2\5\2598bbdd9cfe831eb932023f670baa9a56e9e425
 \
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
-Z
-*.idea/libraries/javax_servlet_jstl_1_2.xml,b\0\b06d1ae898bd45f42e809e6b117aba3c01de9ca9
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 A
@@ -89,8 +87,6 @@ C.idea/libraries/org_ops4j_pax_logging_pax_logging_log4j2_1_10_1.xml,3\5\35ed49
 src/log4j2.xml,1\c\1cf906b37b429e2cd3ffc010578e1569ae4d847f
 ?
 web/jsp/xml.jsp,3\2\3218ccdbcde5b7ea56d2688a7ca1e95bd99ca5e6
-C
-web/res/devices.xsl,5\2\52e977a6e000151d7e8a16af7083b0d9eac9c989
 P
  web/WEB-INF/META-INF/MANIFEST.MF,9\4\944784108cbf635e648ec195ab45cb87551dca9e
 ]
@@ -127,8 +123,6 @@ d
 0src/com/epam/task4/command/ToAnyPageCommand.java,9\e\9e8bff654f103b4ee3af9df9c3907097981cc4fd
 c
 3src/com/epam/task4/command/RegistrationCommand.java,3\a\3ab42df3ccfa5b4547f49c66962d56dfaa052fb5
-\
-,src/com/epam/task4/constant/TableColumn.java,5\5\5542b6d91149f0b82a862cc15743aa07cb502f96
 b
 2src/com/epam/task4/constant/AttributeConstant.java,5\5\55139a5498bbcbaf2b07dc6ae142539754701eaa
 b
@@ -145,3 +139,13 @@ W
 'src/com/test/task4/dao/UserDAOTest.java,9\5\95e6c4f8cf2605560924e8661f070ec11525d8c1
 Y
 )src/com/epam/task4/constant/FilePath.java,2\9\29ce9309b44a434495d7215a2da44c6bc5b406eb
+Q
+!.idea/libraries/jstl_jstl_1_2.xml,2\9\2948cb5b1e82467930c7f97cf9872b2736e5bd4f
+[
++src/com/epam/task4/constant/UserColumn.java,4\6\46581405d7785267b348fbbb9d6a05cfe7d24b7f
+O
+web/config/db_config.properties,c\4\c42a8df7eb0b0224b429fe435a6ed8e7f2616af4
+c
+3src/com/epam/task4/config/DataBaseConfigurator.java,b\1\b1e8901ae8feb7e003bfe2075518a666565a2479
+g
+7src/com/test/task4/config/DataBaseConfiguratorTest.java,b\3\b36a4729e2279371a5bc30847bc613c88f795426

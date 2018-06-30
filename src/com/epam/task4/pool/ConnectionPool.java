@@ -1,5 +1,6 @@
 package com.epam.task4.pool;
 
+import com.epam.task4.config.DataBaseConfigurator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,11 +14,6 @@ public enum ConnectionPool {
 
     private static final int DEFAULT_POOL_SIZE = 10;
     private static final String DB_URL = "jdbc:mysql://localhost/xml";
-    private static final String DEFAULT_USER = "root";
-    private static final String DEFAULT_PASS = "27031998";
-    private static final String AUTO_RECONNECT = "true";
-    private static final String CHARACTER_ENCODING = "UTF-8";
-    private static final String USE_UNICODE = "true";
     private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private SQLDriverManager sqlDriverManager = new SQLDriverManager();
@@ -47,17 +43,11 @@ public enum ConnectionPool {
         if(canInitialize) {
             LOGGER.debug("Initializing connection pool.");
             sqlDriverManager.registerDriver();
-            Properties dbProperties = new Properties();
-            dbProperties.put("user", DEFAULT_USER);
-            dbProperties.put("password", DEFAULT_PASS);
-            dbProperties.put("autoReconnect", AUTO_RECONNECT);
-            dbProperties.put("characterEncoding", CHARACTER_ENCODING);
-            dbProperties.put("useUnicode", USE_UNICODE);
 
             try {
 
                 for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
-                    connectionQueue.put(createConnection(dbProperties));
+                    connectionQueue.put(createConnection(DataBaseConfigurator.INSTANCE.getDbProperties()));
                 }
             } catch (InterruptedException e) {
                 LOGGER.error("Interrupted while creating connections for connection pool.", e);
