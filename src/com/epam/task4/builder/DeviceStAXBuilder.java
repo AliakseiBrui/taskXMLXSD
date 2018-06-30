@@ -52,7 +52,7 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
                 }
             }
         } catch (XMLStreamException | IOException e) {
-            LOGGER.error("Exception while parsing devices.",e);
+            LOGGER.fatal("Exception while parsing devices.",e);
             throw new RuntimeException(e);
         }
     }

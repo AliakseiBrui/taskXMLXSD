@@ -28,7 +28,7 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
         try{
             documentBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            LOGGER.error("Exception while creating document builder for DOM.",e);
+            LOGGER.fatal("Exception while creating document builder for DOM.",e);
             throw new RuntimeException(e);
         }
     }
@@ -56,7 +56,7 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
                 phoneSet.add(phone);
             }
         } catch (SAXException | IOException e) {
-            LOGGER.error("Exception while parsing devices.",e);
+            LOGGER.fatal("Exception while parsing devices.",e);
             throw new RuntimeException(e);
         }
     }

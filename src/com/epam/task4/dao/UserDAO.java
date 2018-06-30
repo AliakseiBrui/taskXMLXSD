@@ -1,6 +1,6 @@
 package com.epam.task4.dao;
 
-import com.epam.task4.constant.TableColumn;
+import com.epam.task4.constant.UserColumn;
 import com.epam.task4.entity.User;
 import com.epam.task4.factory.UserFactory;
 import com.epam.task4.pool.ConnectionPool;
@@ -37,7 +37,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
 
                 while (resultSet.next()){
                     userList.add(UserFactory
-                            .createUser(resultSet.getInt(TableColumn.ID),resultSet.getString(TableColumn.LOGIN),resultSet.getString(TableColumn.PASSWORD)));
+                            .createUser(resultSet.getInt(UserColumn.ID),resultSet.getString(UserColumn.LOGIN),resultSet.getString(UserColumn.PASSWORD)));
                 }
             }
         } catch (SQLException e) {
@@ -60,7 +60,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
             }
 
             if(resultSet!=null && resultSet.next()){
-                return UserFactory.createUser(resultSet.getInt(TableColumn.ID),resultSet.getString(TableColumn.LOGIN),resultSet.getString(TableColumn.PASSWORD));
+                return UserFactory.createUser(resultSet.getInt(UserColumn.ID),resultSet.getString(UserColumn.LOGIN),resultSet.getString(UserColumn.PASSWORD));
             }
         } catch (SQLException e) {
             throw new DAOException("Exception while selecting user by id",e);
@@ -143,7 +143,7 @@ public class UserDAO extends AbstractDAO<Integer,User> implements UserTableDAO {
             }
 
             if(resultSet!=null && resultSet.next()){
-                return UserFactory.createUser(resultSet.getInt(TableColumn.ID),resultSet.getString(TableColumn.LOGIN),resultSet.getString(TableColumn.PASSWORD));
+                return UserFactory.createUser(resultSet.getInt(UserColumn.ID),resultSet.getString(UserColumn.LOGIN),resultSet.getString(UserColumn.PASSWORD));
             }
         } catch (SQLException e) {
             throw new DAOException("Exception while selecting user by login",e);

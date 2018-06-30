@@ -20,10 +20,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.31" level="application_server_libraries" />
-    <orderEntry type="library" scope="PROVIDED" name="javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" name="org.testng:testng:6.14.3" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.11" level="project" />
     <orderEntry type="library" name="org.zenframework.z8.dependencies.birt:org.apache.commons.codec_1.6.0.v201305230611:2.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="org.ops4j.pax.logging:pax-logging-log4j2:1.10.1" level="project" />
+    <orderEntry type="library" name="jstl:jstl:1.2" level="project" />
   </component>
 </module>

@@ -22,7 +22,7 @@ public class DeviceSAXBuilder extends AbstractDeviceBuilder {
             xmlReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             xmlReader.setContentHandler(deviceHandler);
         } catch (SAXException | ParserConfigurationException e) {
-            LOGGER.error("Exception while creating xml reader.",e);
+            LOGGER.fatal("Exception while creating xml reader.",e);
             throw new RuntimeException(e);
         }
     }
@@ -34,7 +34,7 @@ public class DeviceSAXBuilder extends AbstractDeviceBuilder {
         try{
             xmlReader.parse(fileName);
         } catch (SAXException | IOException e) {
-            LOGGER.error("Exception while parsing devices.",e);
+            LOGGER.fatal("Exception while parsing devices.",e);
             throw new RuntimeException(e);
         }
         pcComponentSet = deviceHandler.getPcComponentSet();

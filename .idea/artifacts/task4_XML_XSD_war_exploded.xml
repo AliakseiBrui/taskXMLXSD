@@ -12,6 +12,8 @@
           <element id="library" level="project" name="mysql:mysql-connector-java:8.0.11" />
           <element id="library" level="project" name="org.zenframework.z8.dependencies.birt:org.apache.commons.codec_1.6.0.v201305230611:2.0-SNAPSHOT" />
           <element id="library" level="project" name="org.ops4j.pax.logging:pax-logging-log4j2:1.10.1" />
+          <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="jstl:jstl:1.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">
