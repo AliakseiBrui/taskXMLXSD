@@ -9,12 +9,15 @@ import com.epam.task4.encoder.PasswordEncoder;
 import com.epam.task4.entity.Router;
 import com.epam.task4.entity.User;
 import com.epam.task4.factory.RouterFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.Map;
 
 public class AuthorizationService implements CommandService {
+    private static final Logger LOGGER = LogManager.getLogger(AuthorizationService.class);
     @Override
     public void process(Map<String, String> parameterMap, Map<String, Object> attributeMap)
             throws ServletException, IOException {
@@ -48,6 +51,7 @@ public class AuthorizationService implements CommandService {
             }
             errorMessage.append("Wrong login or password");
         } catch (DAOException e) {
+            LOGGER.error("Exception during user authorization.",e);
             errorMessage.append("Error code: ").append(e.getErrorCode()).append(". ").append(e.getMessage());
         }
         return false;

@@ -43,8 +43,6 @@ Z
 *src/com/epam/task4/entity/PCComponent.java,b\4\b4c91c513064592d4aed47dbce7aee64cc42efcd
 T
 $src/com/epam/task4/entity/Phone.java,6\1\61fd434ab4ba6db552453b687c63226c2adddf62
-C
-web/xsd/devices.xsd,f\6\f6e4e7e0e3698ee15694441856db2746e095dc20
 ^
 .src/com/epam/task4/command/XMLCommandType.java,7\7\770d748089df02c13a5d9901aa65de99a1c26e0f
 Z
@@ -139,3 +137,11 @@ U
 %src/com/epam/task4/entity/Router.java,6\7\6731487169a9940a772238bcf0e405979ed32b35
 ]
 -src/com/epam/task4/factory/RouterFactory.java,6\c\6c223ffc656c53e1aa3ebc430e0b9b467c6a3112
+C
+web/res/devices.xsd,5\a\5af9d8f4820ec3969689ca3ec19b5cd9c4c45d7f
+d
+4src/com/test/task4/builder/DeviceXMLBuilderTest.java,6\9\695c7f8985c2d343178976bc56fde4270bfbbd6e
+W
+'src/com/test/task4/dao/UserDAOTest.java,9\5\95e6c4f8cf2605560924e8661f070ec11525d8c1
+Y
+)src/com/epam/task4/constant/FilePath.java,2\9\29ce9309b44a434495d7215a2da44c6bc5b406eb

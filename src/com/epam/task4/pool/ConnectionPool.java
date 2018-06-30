@@ -87,7 +87,7 @@ public enum ConnectionPool {
         try {
             return new SafeConnection(DriverManager.getConnection(DB_URL,dbProperties));
         } catch (SQLException e) {
-            LOGGER.error("Exception while creating connection.",e);
+            LOGGER.fatal("Exception while creating connection.",e);
             throw new RuntimeException(e);
         }
     }

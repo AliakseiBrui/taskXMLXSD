@@ -10,12 +10,15 @@ import com.epam.task4.entity.Router;
 import com.epam.task4.entity.User;
 import com.epam.task4.factory.RouterFactory;
 import com.epam.task4.factory.UserFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.Map;
 
 public class RegistrationService implements CommandService {
+    private static final Logger LOGGER = LogManager.getLogger(RegistrationService.class);
 
     @Override
     public void process(Map<String, String> parameterMap, Map<String, Object> attributeMap)
@@ -47,6 +50,7 @@ public class RegistrationService implements CommandService {
                     .encryptPassword(password));
             return userDAO.create(user);
         }catch (DAOException e){
+            LOGGER.error("Exception during user registration.",e);
             errorMessage.append("Error code: ").append(e.getErrorCode()).append(". ").append(e.getMessage());
         }
         return false;

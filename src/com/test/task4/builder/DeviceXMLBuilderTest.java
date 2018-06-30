@@ -10,10 +10,11 @@ import java.io.File;
 
 public class DeviceXMLBuilderTest {
     private AbstractDeviceBuilder deviceBuilder;
+    private static final String XML_FILE_PATH = FilePath.WEB_DIRECTORY + File.separator + FilePath.RESOURCE_DIRECTORY + File.separator + FilePath.XML_FILE;
     @Test
     public void testBuildDevicesDOM1(){
         deviceBuilder = DeviceBuilderFactory.createDeviceBuilder(DeviceBuilderFactory.DeviceBuilderType.DOM);
-        deviceBuilder.buildDeviceSet(FilePath.WEB_DIRECTORY + File.separator + FilePath.RESOURCE_DIRECTORY + File.separator + FilePath.XML_FILE);
+        deviceBuilder.buildDeviceSet(XML_FILE_PATH);
         Assert.assertNotNull(deviceBuilder.getPhoneSet());
         Assert.assertNotNull(deviceBuilder.getPcComponentSet());
     }
@@ -21,15 +22,15 @@ public class DeviceXMLBuilderTest {
     @Test
     public void testBuildDevicesSAX1(){
         deviceBuilder = DeviceBuilderFactory.createDeviceBuilder(DeviceBuilderFactory.DeviceBuilderType.SAX);
-        deviceBuilder.buildDeviceSet(FilePath.WEB_DIRECTORY + File.separator + FilePath.RESOURCE_DIRECTORY + File.separator + FilePath.XML_FILE);
+        deviceBuilder.buildDeviceSet(XML_FILE_PATH);
         Assert.assertNotNull(deviceBuilder.getPhoneSet());
         Assert.assertNotNull(deviceBuilder.getPcComponentSet());
     }
 
     @Test
-    public void testBuildDevicesStAX(){
+    public void testBuildDevicesStAX1(){
         deviceBuilder = DeviceBuilderFactory.createDeviceBuilder(DeviceBuilderFactory.DeviceBuilderType.STAX);
-        deviceBuilder.buildDeviceSet(FilePath.WEB_DIRECTORY + File.separator + FilePath.RESOURCE_DIRECTORY + File.separator + FilePath.XML_FILE);
+        deviceBuilder.buildDeviceSet(XML_FILE_PATH);
         Assert.assertNotNull(deviceBuilder.getPhoneSet());
         Assert.assertNotNull(deviceBuilder.getPcComponentSet());
     }
