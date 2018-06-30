@@ -13,7 +13,6 @@ public enum ConnectionPool {
     INSTANCE;
 
     private static final int DEFAULT_POOL_SIZE = 10;
-    private static final String DB_URL = "jdbc:mysql://localhost/xml";
     private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private SQLDriverManager sqlDriverManager = new SQLDriverManager();
@@ -75,7 +74,7 @@ public enum ConnectionPool {
     private SafeConnection createConnection(Properties dbProperties){
 
         try {
-            return new SafeConnection(DriverManager.getConnection(DB_URL,dbProperties));
+            return new SafeConnection(DriverManager.getConnection((String) dbProperties.get("url"),dbProperties));
         } catch (SQLException e) {
             LOGGER.fatal("Exception while creating connection.",e);
             throw new RuntimeException(e);
