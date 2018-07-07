@@ -1,7 +1,9 @@
 package com.epam.task4.servlet;
 
 import com.epam.task4.config.DataBaseConfigurator;
+import com.epam.task4.constant.AttributeConstant;
 import com.epam.task4.constant.FilePath;
+import com.epam.task4.constant.LocaleConstant;
 import com.epam.task4.pool.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;
@@ -11,6 +13,7 @@ import java.io.File;
 
 @WebListener
 public class ServletContextListenerImpl implements ServletContextListener {
+
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         DataBaseConfigurator.INSTANCE.configureDBProperties(servletContextEvent.getServletContext().getRealPath(File.separator + FilePath.CONFIG_DIRECTORY + File.separator + FilePath.DATABASE_CONFIG_FILE));

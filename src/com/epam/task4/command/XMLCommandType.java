@@ -12,7 +12,8 @@ public enum XMLCommandType {
     TO_REGISTRATION_PAGE_COMMAND(new ToAnyPageCommand(new ToRegistrationPageService())),
     TO_AUTHORIZATION_PAGE_COMMAND(new ToAnyPageCommand(new ToAuthorizationPageService())),
     LOG_OUT_COMMAND(new LogOutCommand(new LogOutService())),
-    TO_XML_PAGE_COMMAND(new ToAnyPageCommand(new ToXMLPageService()));
+    TO_XML_PAGE_COMMAND(new ToAnyPageCommand(new ToXMLPageService())),
+    CHANGE_LOCALE_COMMAND(new ChangeLocaleCommand(new ChangeLocaleService()));
 
     private XMLCommand command;
     private static final Logger LOGGER = LogManager.getLogger(XMLCommandType.class);

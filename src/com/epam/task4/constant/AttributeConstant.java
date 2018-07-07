@@ -9,6 +9,8 @@ public class AttributeConstant {
    public static final String PHONE_SET_ATTRIBUTE = "phoneSet";
    public static final String PARSER_TYPE_ATTRIBUTE = "parserType";
    public static final String MESSAGE_ATTRIBUTE = "message";
+   public static final String LOCALE_ATTRIBUTE = "locale";
+   public static final String SESSION_ATTRIBUTE = "session";
 
     private AttributeConstant(){}
 }

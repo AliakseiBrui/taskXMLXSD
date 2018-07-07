@@ -149,3 +149,7 @@ c
 3src/com/epam/task4/config/DataBaseConfigurator.java,b\1\b1e8901ae8feb7e003bfe2075518a666565a2479
 g
 7src/com/test/task4/config/DataBaseConfiguratorTest.java,b\3\b36a4729e2279371a5bc30847bc613c88f795426
+M
+web/res/text_en_US.properties,e\d\ed3c8a5549e7827b894a6ad1da28f6ebd94a22bd
+M
+web/res/text_ru_RU.properties,f\5\f5d37dece01ffa3101b643360578114e3309a51a

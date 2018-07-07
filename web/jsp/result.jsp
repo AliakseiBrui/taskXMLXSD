@@ -7,17 +7,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<fmt:bundle basename="resources.text">
 <html>
 <head>
-    <title>Parsed devices</title>
+    <title>
+        <fmt:message key="title.result"/>
+    </title>
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<fmt:message key="button.main_page" var="button_main_page"/>
 <div align="right">
-    <a class="login-text">
-    <c:out value="Login: ${sessionScope.get('login')}"/>
-    </a>
+    <p class="login-text">
+        <fmt:message key="label.login"/>
+        <c:out value=": ${sessionScope.get('login')}"/>
+    </p>
 </div>
 <div align="center">
     <h1>
@@ -25,7 +30,7 @@
     </h1>
     <table width="100% ">
         <caption align="center" class="parser-selector">
-            PC Component Table
+            <fmt:message key="label.computer_components"/>
         </caption>
         <thead>
             <tr>
@@ -59,7 +64,7 @@
     <br/>
     <table width="100% ">
         <caption align="center" class="parser-selector">
-            Phone Table
+            <fmt:message key="label.phones"/>
         </caption>
         <thead>
         <tr>
@@ -85,8 +90,9 @@
     <br/>
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="TO_MAIN_PAGE_COMMAND"/>
-        <input type="submit" id="back_button" value="Back" class="nice-button"/>
+        <input type="submit" id="back_button" value="${button_main_page}" class="nice-button"/>
     </form>
 </div>
 </body>
 </html>
+</fmt:bundle>

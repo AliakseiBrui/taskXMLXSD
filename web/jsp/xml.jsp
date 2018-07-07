@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -8,19 +8,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:bundle basename="resources.text">
 <html>
 <head>
-    <title>XML</title>
+    <title>
+        <fmt:message key="title.xml"/>
+    </title>
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<fmt:message key="button.main_page" var="button_main_page"/>
 <div align="right">
     <p class="login-text">
-        <c:out value="Login: ${sessionScope.get('login')}"/>
+        <fmt:message key="label.login"/>
+        <c:out value=": ${sessionScope.get('login')}"/>
     </p>
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="TO_MAIN_PAGE_COMMAND"/>
-        <input type="submit" name="to_main_page_button" value="Main page" class="nice-button"/>
+        <input type="submit" name="to_main_page_button" value="${button_main_page}" class="nice-button"/>
     </form>
 </div>
 <div align="center" style="height: 100%; align-content: center">
@@ -28,3 +33,4 @@
 </div>
 </body>
 </html>
+</fmt:bundle>
