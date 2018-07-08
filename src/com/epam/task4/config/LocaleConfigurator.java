@@ -10,7 +10,7 @@ public enum LocaleConfigurator {
     INSTANCE;
     private static final Logger LOGGER = LogManager.getLogger(LocaleConfigurator.class);
 
-    public void configureLocale (String locale, HttpSession session){
+    public void configureLocale(String locale, HttpSession session){
         LOGGER.debug("Configuring locale "+locale+".");
         session.setAttribute(AttributeConstant.LOCALE_ATTRIBUTE,locale);
     }

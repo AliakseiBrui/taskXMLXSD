@@ -24,6 +24,7 @@ public class ChangeLocaleCommand extends XMLCommand {
         HashMap<String, Object> attributeMap = new HashMap<>();
 
         parameterMap.put(ParameterConstant.LANG_PARAMETER,request.getParameter(ParameterConstant.LANG_PARAMETER));
+        parameterMap.put(ParameterConstant.PAGE_PATH_PARAMETER,request.getParameter(ParameterConstant.PAGE_PATH_PARAMETER));
         attributeMap.put(AttributeConstant.SESSION_ATTRIBUTE,request.getSession());
 
         getService().process(parameterMap,attributeMap);

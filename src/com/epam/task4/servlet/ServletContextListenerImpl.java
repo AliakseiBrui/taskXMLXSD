@@ -1,9 +1,7 @@
 package com.epam.task4.servlet;
 
 import com.epam.task4.config.DataBaseConfigurator;
-import com.epam.task4.constant.AttributeConstant;
 import com.epam.task4.constant.FilePath;
-import com.epam.task4.constant.LocaleConstant;
 import com.epam.task4.pool.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;

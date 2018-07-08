@@ -14,10 +14,6 @@ import java.io.IOException;
 @WebServlet(name="XMLParsingServlet",
             urlPatterns = "/XMLServlet")
 public class XMLServlet extends HttpServlet {
-    @Override
-    public void init() throws ServletException {
-        super.init();
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

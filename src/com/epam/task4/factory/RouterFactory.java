@@ -7,7 +7,6 @@ public class RouterFactory {
     private RouterFactory(){}
 
     public static Router createRouter(Router.RouteType routeType, String answerPage){
-
         return new Router(routeType,answerPage);
     }
 }

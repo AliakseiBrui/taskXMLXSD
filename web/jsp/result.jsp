@@ -7,7 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${locale}"/>
 <fmt:bundle basename="resources.text">
 <html>
 <head>
@@ -17,13 +18,9 @@
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<c:set var="pagePath" value="jsp/app.jsp"/>
 <fmt:message key="button.main_page" var="button_main_page"/>
-<div align="right">
-    <p class="login-text">
-        <fmt:message key="label.login"/>
-        <c:out value=": ${sessionScope.get('login')}"/>
-    </p>
-</div>
+<%@include file="parts/header.jsp" %>
 <div align="center">
     <h1>
         <c:out value="${parserType}"/>
@@ -34,15 +31,33 @@
         </caption>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Origin Country</th>
-                <th>isCritical</th>
-                <th>isPeripheral</th>
-                <th>Energy Consumption</th>
-                <th>Has Cooler</th>
-                <th>Component Group</th>
-                <th>Port</th>
+                <th>
+                    <fmt:message key="table.id"/>
+                </th>
+                <th>
+                    <fmt:message key="table.name"/>
+                </th>
+                <th>
+                    <fmt:message key="table.origin_country"/>
+                </th>
+                <th>
+                    <fmt:message key="table.is_critical"/>
+                </th>
+                <th>
+                    <fmt:message key="table.is_peripheral"/>
+                </th>
+                <th>
+                    <fmt:message key="table.energy_consumption"/>
+                </th>
+                <th>
+                    <fmt:message key="table.has_cooler"/>
+                </th>
+                <th>
+                    <fmt:message key="table.component_group"/>
+                </th>
+                <th>
+                    <fmt:message key="table.port"/>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -68,11 +83,21 @@
         </caption>
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Origin Country</th>
-            <th>RAM</th>
-            <th>Build Date</th>
+            <th>
+                <fmt:message key="table.id"/>
+            </th>
+            <th>
+                <fmt:message key="table.name"/>
+            </th>
+            <th>
+                <fmt:message key="table.origin_country"/>
+            </th>
+            <th>
+                <fmt:message key="table.ram"/>
+            </th>
+            <th>
+                <fmt:message key="table.build_date"/>
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -90,7 +115,7 @@
     <br/>
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="TO_MAIN_PAGE_COMMAND"/>
-        <input type="submit" id="back_button" value="${button_main_page}" class="nice-button"/>
+        <input type="submit" value="${button_main_page}" class="nice-button"/>
     </form>
 </div>
 </body>

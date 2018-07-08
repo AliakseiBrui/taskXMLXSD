@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -8,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setLocale value="${locale}"/>
 <fmt:bundle basename="resources.text">
 <html>
 <head>
@@ -17,15 +18,13 @@
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<c:set var="pagePath" value="jsp/xml.jsp"/>
 <fmt:message key="button.main_page" var="button_main_page"/>
+<%@include file="parts/header.jsp" %>
 <div align="right">
-    <p class="login-text">
-        <fmt:message key="label.login"/>
-        <c:out value=": ${sessionScope.get('login')}"/>
-    </p>
     <form action="/XMLServlet" method="get">
         <input type="hidden" name="commandType" value="TO_MAIN_PAGE_COMMAND"/>
-        <input type="submit" name="to_main_page_button" value="${button_main_page}" class="nice-button"/>
+        <input type="submit" value="${button_main_page}" class="nice-button"/>
     </form>
 </div>
 <div align="center" style="height: 100%; align-content: center">

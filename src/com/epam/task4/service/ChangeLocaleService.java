@@ -1,10 +1,7 @@
 package com.epam.task4.service;
 
 import com.epam.task4.config.LocaleConfigurator;
-import com.epam.task4.constant.AttributeConstant;
-import com.epam.task4.constant.LocaleConstant;
-import com.epam.task4.constant.PagePath;
-import com.epam.task4.constant.ParameterConstant;
+import com.epam.task4.constant.*;
 import com.epam.task4.entity.Router;
 import com.epam.task4.factory.RouterFactory;
 
@@ -14,25 +11,14 @@ import java.io.IOException;
 import java.util.Map;
 
 public class ChangeLocaleService implements CommandService{
-    private static final String LANG_RUS = "RUS";
-    private static final String LANG_ENG = "ENG";
     @Override
     public void process(Map<String, String> parameterMap, Map<String, Object> attributeMap) throws ServletException, IOException {
-        String lang = parameterMap.get(ParameterConstant.LANG_PARAMETER);
+        Language language = Language.valueOf(parameterMap.get(ParameterConstant.LANG_PARAMETER));
         HttpSession session = (HttpSession) attributeMap.get(AttributeConstant.SESSION_ATTRIBUTE);
-        String locale = null;
+        String path = parameterMap.get(ParameterConstant.PAGE_PATH_PARAMETER);
 
-        switch (lang){
-            case LANG_RUS:
-                locale = LocaleConstant.RUS;
-                break;
-            case LANG_ENG:
-                locale = LocaleConstant.ENG;
-                break;
-                default:
-        }
-        LocaleConfigurator.INSTANCE.configureLocale(locale,session);
+        LocaleConfigurator.INSTANCE.configureLocale(language.getLocale(),session);
 
-        attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory.createRouter(Router.RouteType.REDIRECT,PagePath.MAIN_PAGE));
+        attributeMap.put(AttributeConstant.ROUTER_ATTRIBUTE,RouterFactory.createRouter(Router.RouteType.REDIRECT,path));
     }
 }
