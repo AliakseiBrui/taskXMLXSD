@@ -12,11 +12,13 @@ import java.util.concurrent.LinkedBlockingQueue;
 public enum ConnectionPool {
     INSTANCE;
 
+    private static final String URL_PROPERTY = "url";
     private static final int DEFAULT_POOL_SIZE = 10;
     private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private SqlDriverManager sqlDriverManager = new SqlDriverManager();
     private boolean canInitialize = true;
+
 
     public SafeConnection takeConnection(){
 
@@ -63,6 +65,7 @@ public enum ConnectionPool {
             try {
                 connectionQueue.take().closeConnection();
             } catch (InterruptedException e) {
+                LOGGER.error("Interrupted while closing connections in connection pool.", e);
                 Thread.currentThread().interrupt();
             }
         }
@@ -74,7 +77,7 @@ public enum ConnectionPool {
     private SafeConnection createConnection(Properties dbProperties){
 
         try {
-            return new SafeConnection(DriverManager.getConnection((String) dbProperties.get("url"),dbProperties));
+            return new SafeConnection(DriverManager.getConnection((String) dbProperties.get(URL_PROPERTY),dbProperties));
         } catch (SQLException e) {
             LOGGER.fatal("Exception while creating connection.",e);
             throw new RuntimeException(e);
