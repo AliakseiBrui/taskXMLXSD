@@ -153,8 +153,6 @@ c
 3src/com/epam/task4/command/ChangeLocaleCommand.java,6\7\67f62f9d32fe998de973e995cc87808f34b800a4
 a
 1src/com/epam/task4/config/LocaleConfigurator.java,2\f\2f579c7a18d1e9f2fc4d7ab075d036bb78c1088a
-_
-/src/com/epam/task4/constant/LocaleConstant.java,3\d\3da9b8cf4bdbf4b40c5103e33a7e871ea03514eb
 c
 3src/com/epam/task4/service/ChangeLocaleService.java,0\3\03830403f11cb7009b96d0b0b4af62714de9b108
 c
@@ -167,3 +165,5 @@ H
 web/jsp/parts/header.jsp,e\f\ef72a255d9b280fd08c8fa5007bcf63b9cff4eed
 @
 web/jsp/auth.jsp,6\8\6888855c027c92be5fa315c6913e1c6201c2400d
+Y
+)src/com/epam/task4/constant/Language.java,2\3\23ab44c88ff45b322c3f5db32cb7cb81278f1d89

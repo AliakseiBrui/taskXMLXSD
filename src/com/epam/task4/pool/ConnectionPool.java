@@ -13,9 +13,9 @@ public enum ConnectionPool {
     INSTANCE;
 
     private static final int DEFAULT_POOL_SIZE = 10;
-    private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>();
+    private LinkedBlockingQueue<SafeConnection> connectionQueue = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
-    private SQLDriverManager sqlDriverManager = new SQLDriverManager();
+    private SqlDriverManager sqlDriverManager = new SqlDriverManager();
     private boolean canInitialize = true;
 
     public SafeConnection takeConnection(){

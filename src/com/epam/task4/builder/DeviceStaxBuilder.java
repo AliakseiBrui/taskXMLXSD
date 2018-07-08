@@ -1,7 +1,7 @@
 package com.epam.task4.builder;
 
 import com.epam.task4.entity.ComponentType;
-import com.epam.task4.entity.PCComponent;
+import com.epam.task4.entity.PcComponent;
 import com.epam.task4.entity.DeviceEnum;
 import com.epam.task4.entity.Phone;
 import org.apache.logging.log4j.LogManager;
@@ -16,11 +16,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-public class DeviceStAXBuilder extends AbstractDeviceBuilder {
+public class DeviceStaxBuilder extends AbstractDeviceBuilder {
     private XMLInputFactory inputFactory;
-    private static final Logger LOGGER = LogManager.getLogger(DeviceStAXBuilder.class);
+    private static final Logger LOGGER = LogManager.getLogger(DeviceStaxBuilder.class);
 
-    public DeviceStAXBuilder(){
+    public DeviceStaxBuilder(){
         inputFactory = XMLInputFactory.newInstance();
     }
 
@@ -43,7 +43,7 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
                     name = reader.getLocalName();
 
                     if(DeviceEnum.PC_COMPONENT.getTag().equals(name)){
-                        PCComponent pcComponent = buildComponent(reader);
+                        PcComponent pcComponent = buildComponent(reader);
                         pcComponentSet.add(pcComponent);
                     }else if(DeviceEnum.PHONE.getTag().equals(name)){
                         Phone phone = buildPhone(reader);
@@ -57,8 +57,8 @@ public class DeviceStAXBuilder extends AbstractDeviceBuilder {
         }
     }
 
-    private PCComponent buildComponent(XMLStreamReader reader) throws XMLStreamException{
-        PCComponent pcComponent = new PCComponent();
+    private PcComponent buildComponent(XMLStreamReader reader) throws XMLStreamException{
+        PcComponent pcComponent = new PcComponent();
         pcComponent.setDeviceId(reader.getAttributeValue(null,DeviceEnum.ID.getTag()));
         pcComponent.setDeviceName(reader.getAttributeValue(null,DeviceEnum.NAME.getTag()));
         String name;

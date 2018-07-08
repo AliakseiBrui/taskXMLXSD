@@ -86,7 +86,7 @@
         </sequence>
     </complexType>
 
-    <complexType name="PCComponent">
+    <complexType name="PcComponent">
         <complexContent>
             <extension base="mc:Device">
                 <sequence>

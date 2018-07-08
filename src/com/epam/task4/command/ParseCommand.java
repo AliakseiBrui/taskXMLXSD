@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class ParseCommand extends XMLCommand {
+public class ParseCommand extends XmlCommand {
 
     public ParseCommand(CommandService service) {
         super(service);

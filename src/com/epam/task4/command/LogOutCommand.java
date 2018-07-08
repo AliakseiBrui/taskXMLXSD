@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class LogOutCommand extends XMLCommand {
+public class LogOutCommand extends XmlCommand {
 
     public LogOutCommand(CommandService service) {
         super(service);

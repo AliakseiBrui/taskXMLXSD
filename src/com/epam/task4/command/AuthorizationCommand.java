@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class AuthorizationCommand extends XMLCommand {
+public class AuthorizationCommand extends XmlCommand {
 
     public AuthorizationCommand(CommandService service) {
         super(service);

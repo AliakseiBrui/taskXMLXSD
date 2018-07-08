@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class RegistrationCommand extends XMLCommand {
+public class RegistrationCommand extends XmlCommand {
 
     public RegistrationCommand(CommandService service) {
         super(service);

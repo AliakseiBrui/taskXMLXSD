@@ -3,7 +3,7 @@ package com.epam.task4.entity;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class PCComponent extends Device {
+public class PcComponent extends Device {
     private boolean isCritical;
     private ComponentType componentType;
 
@@ -15,11 +15,11 @@ public class PCComponent extends Device {
         this.componentType = componentType;
     }
 
-    public PCComponent() {
+    public PcComponent() {
         this.componentType = new ComponentType();
     }
 
-    public PCComponent(String deviceId, String deviceName, String originCountry, BigDecimal devicePrice, boolean isCritical, ComponentType componentType) {
+    public PcComponent(String deviceId, String deviceName, String originCountry, BigDecimal devicePrice, boolean isCritical, ComponentType componentType) {
         this.deviceId = deviceId;
         this.deviceName = deviceName;
         this.originCountry = originCountry;
@@ -38,7 +38,7 @@ public class PCComponent extends Device {
 
     @Override
     public String toString() {
-        return "PCComponent{" +
+        return "PcComponent{" +
                 "deviceId='" + deviceId + '\'' +
                 ", deviceName='" + deviceName + '\'' +
                 ", originCountry='" + originCountry + '\'' +
@@ -52,7 +52,7 @@ public class PCComponent extends Device {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PCComponent pcComponent = (PCComponent) o;
+        PcComponent pcComponent = (PcComponent) o;
         return isCritical == pcComponent.isCritical &&
                 Objects.equals(deviceId, pcComponent.deviceId) &&
                 Objects.equals(deviceName, pcComponent.deviceName) &&

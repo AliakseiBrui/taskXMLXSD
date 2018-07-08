@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class ToAnyPageCommand extends XMLCommand {
+public class ToAnyPageCommand extends XmlCommand {
 
     public ToAnyPageCommand(CommandService service) {
         super(service);

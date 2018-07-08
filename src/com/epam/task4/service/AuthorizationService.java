@@ -3,8 +3,8 @@ package com.epam.task4.service;
 import com.epam.task4.constant.AttributeConstant;
 import com.epam.task4.constant.PagePath;
 import com.epam.task4.constant.ParameterConstant;
-import com.epam.task4.dao.DAOException;
-import com.epam.task4.dao.UserDAO;
+import com.epam.task4.dao.DaoException;
+import com.epam.task4.dao.UserDao;
 import com.epam.task4.encoder.PasswordEncoder;
 import com.epam.task4.entity.Router;
 import com.epam.task4.entity.User;
@@ -39,7 +39,7 @@ public class AuthorizationService implements CommandService {
     }
 
     private boolean authorize(String login, String password, StringBuilder errorMessage){
-        UserDAO userDAO = new UserDAO();
+        UserDao userDAO = new UserDao();
         PasswordEncoder passwordEncoder = new PasswordEncoder();
 
         try {
@@ -50,7 +50,7 @@ public class AuthorizationService implements CommandService {
                 return true;
             }
             errorMessage.append("Wrong login or password");
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             LOGGER.error("Exception during user authorization.",e);
             errorMessage.append("Error code: ").append(e.getErrorCode()).append(". ").append(e.getMessage());
         }

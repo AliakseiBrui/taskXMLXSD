@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.Map;
 
-public class ToXMLPageService implements CommandService {
+public class ToXmlPageService implements CommandService {
     @Override
     public void process(Map<String, String> parameterMap, Map<String, Object> attributeMap)
             throws ServletException, IOException {

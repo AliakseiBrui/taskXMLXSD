@@ -6,10 +6,10 @@ import org.apache.logging.log4j.Logger;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-class SQLDriverManager {
-    private static final Logger LOGGER = LogManager.getLogger(SQLDriverManager.class);
+class SqlDriverManager {
+    private static final Logger LOGGER = LogManager.getLogger(SqlDriverManager.class);
 
-    SQLDriverManager(){}
+    SqlDriverManager(){}
 
     void registerDriver(){
         LOGGER.debug("Registering drivers.");

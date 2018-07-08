@@ -10,12 +10,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
-public class DeviceSAXBuilder extends AbstractDeviceBuilder {
+public class DeviceSaxBuilder extends AbstractDeviceBuilder {
     private DeviceHandler deviceHandler;
     private XMLReader xmlReader;
-    private static final Logger LOGGER = LogManager.getLogger(DeviceSAXBuilder.class);
+    private static final Logger LOGGER = LogManager.getLogger(DeviceSaxBuilder.class);
 
-    public DeviceSAXBuilder(){
+    public DeviceSaxBuilder(){
         deviceHandler = new DeviceHandler();
 
         try{

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class ChangeLocaleCommand extends XMLCommand {
+public class ChangeLocaleCommand extends XmlCommand {
     public ChangeLocaleCommand(CommandService service) {
         super(service);
     }

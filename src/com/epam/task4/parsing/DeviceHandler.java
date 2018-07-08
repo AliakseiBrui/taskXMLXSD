@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class DeviceHandler extends DefaultHandler {
-    private Set<PCComponent> pcComponentSet;
+    private Set<PcComponent> pcComponentSet;
     private Set<Phone> phoneSet;
     private Device current = null;
     private DeviceEnum currentEnum = null;
@@ -22,7 +22,7 @@ public class DeviceHandler extends DefaultHandler {
         withText = EnumSet.range(DeviceEnum.ORIGIN_COUNTRY,DeviceEnum.ENERGY_CONSUMPTION);
     }
 
-    public Set<PCComponent> getPcComponentSet(){
+    public Set<PcComponent> getPcComponentSet(){
         return pcComponentSet;
     }
 
@@ -35,7 +35,7 @@ public class DeviceHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes){
 
         if(DeviceEnum.PC_COMPONENT.getTag().equals(qName)){
-            current = new PCComponent();
+            current = new PcComponent();
             current.setDeviceId(attributes.getValue(0));
             current.setDeviceName(attributes.getValue(1));
         }else if(DeviceEnum.PHONE.getTag().equals(qName)){
@@ -55,7 +55,7 @@ public class DeviceHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName){
 
         if(DeviceEnum.PC_COMPONENT.getTag().equals(qName)){
-            pcComponentSet.add((PCComponent)current);
+            pcComponentSet.add((PcComponent)current);
         }else if(DeviceEnum.PHONE.getTag().equals(qName)){
             phoneSet.add((Phone)current);
         }
@@ -75,22 +75,22 @@ public class DeviceHandler extends DefaultHandler {
                     current.setDevicePrice(BigDecimal.valueOf(Long.parseLong(s)));
                     break;
                 case CRITICAL:
-                    ((PCComponent) current).setCritical(Boolean.parseBoolean(s));
+                    ((PcComponent) current).setCritical(Boolean.parseBoolean(s));
                     break;
                 case PERIPHERAL:
-                    ((PCComponent) current).getComponentType().setPeripheral(Boolean.parseBoolean(s));
+                    ((PcComponent) current).getComponentType().setPeripheral(Boolean.parseBoolean(s));
                     break;
                 case ENERGY_CONSUMPTION:
-                    ((PCComponent) current).getComponentType().setEnergyConsumption(Integer.parseInt(s));
+                    ((PcComponent) current).getComponentType().setEnergyConsumption(Integer.parseInt(s));
                     break;
                 case HAS_COOLER:
-                    ((PCComponent) current).getComponentType().setHasCooler(Boolean.parseBoolean(s));
+                    ((PcComponent) current).getComponentType().setHasCooler(Boolean.parseBoolean(s));
                     break;
                 case COMPONENT_GROUP:
-                    ((PCComponent) current).getComponentType().setComponentGroup(ComponentType.ComponentGroup.valueOf(s.toUpperCase()));
+                    ((PcComponent) current).getComponentType().setComponentGroup(ComponentType.ComponentGroup.valueOf(s.toUpperCase()));
                     break;
                 case PORT:
-                    ((PCComponent) current).getComponentType().setPort(ComponentType.Port.valueOf(s.toUpperCase()));
+                    ((PcComponent) current).getComponentType().setPort(ComponentType.Port.valueOf(s.toUpperCase()));
                     break;
                 case RAM:
                     ((Phone) current).setRam(Integer.parseInt(s));

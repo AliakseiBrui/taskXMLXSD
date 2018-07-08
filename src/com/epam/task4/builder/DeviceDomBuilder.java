@@ -1,7 +1,7 @@
 package com.epam.task4.builder;
 
 import com.epam.task4.entity.DeviceEnum;
-import com.epam.task4.entity.PCComponent;
+import com.epam.task4.entity.PcComponent;
 import com.epam.task4.entity.ComponentType;
 import com.epam.task4.entity.Phone;
 import org.apache.logging.log4j.LogManager;
@@ -18,11 +18,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-public class DeviceDOMBuilder extends AbstractDeviceBuilder {
+public class DeviceDomBuilder extends AbstractDeviceBuilder {
     private DocumentBuilder documentBuilder;
-    private static final Logger LOGGER  = LogManager.getLogger(DeviceDOMBuilder.class);
+    private static final Logger LOGGER  = LogManager.getLogger(DeviceDomBuilder.class);
 
-    public DeviceDOMBuilder(){
+    public DeviceDomBuilder(){
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
         try{
@@ -46,7 +46,7 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
 
             for(int i = 0; i < componentList.getLength(); i++){
                 Element componentElement = (Element) componentList.item(i);
-                PCComponent pcComponent = buildComponent(componentElement);
+                PcComponent pcComponent = buildComponent(componentElement);
                 pcComponentSet.add(pcComponent);
             }
 
@@ -61,8 +61,8 @@ public class DeviceDOMBuilder extends AbstractDeviceBuilder {
         }
     }
 
-    private PCComponent buildComponent(Element deviceElement){
-        PCComponent pcComponent = new PCComponent();
+    private PcComponent buildComponent(Element deviceElement){
+        PcComponent pcComponent = new PcComponent();
         pcComponent.setDeviceId(deviceElement.getAttribute(DeviceEnum.ID.getTag()));
         pcComponent.setDeviceName(deviceElement.getAttribute(DeviceEnum.NAME.getTag()));
         pcComponent.setOriginCountry(getElementTextContent(deviceElement,DeviceEnum.ORIGIN_COUNTRY.getTag()));

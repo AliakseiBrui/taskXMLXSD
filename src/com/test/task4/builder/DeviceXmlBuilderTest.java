@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 
-public class DeviceXMLBuilderTest {
+public class DeviceXmlBuilderTest {
     private AbstractDeviceBuilder deviceBuilder;
     private static final String XML_FILE_PATH = FilePath.WEB_DIRECTORY + File.separator + FilePath.RESOURCE_DIRECTORY + File.separator + FilePath.XML_FILE;
     @Test

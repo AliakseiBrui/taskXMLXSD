@@ -7,15 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-public abstract class XMLCommand {
+public abstract class XmlCommand {
     private CommandService service;
 
 
-    XMLCommand(CommandService service) {
+    XmlCommand(CommandService service) {
         this.service = service;
     }
 
-    XMLCommand() {
+    XmlCommand() {
     }
 
     public CommandService getService() {
